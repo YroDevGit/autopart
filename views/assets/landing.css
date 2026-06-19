@@ -1,0 +1,201 @@
+ /* custom styles - no extra frameworks, pure bootstrap + minimal enhancements */
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, 'Roboto', sans-serif;
+    background: #ffffff;
+    overflow-x: hidden;
+  }
+
+  /* navbar custom */
+  .navbar-autoparts {
+    background: rgba(10, 20, 22, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+  }
+  .navbar-brand {
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+  .brand-glow {
+    background: linear-gradient(135deg, #ff8c42, #e25822);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .btn-outline-autoparts {
+    border: 2px solid #e25822;
+    color: #e25822;
+    border-radius: 50px;
+    padding: 0.4rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .btn-outline-autoparts:hover {
+    background: #e25822;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(226,88,34,0.2);
+  }
+  .btn-autoparts-primary {
+    background: linear-gradient(95deg, #e25822, #ff7b2c);
+    border: none;
+    border-radius: 50px;
+    padding: 0.7rem 2rem;
+    font-weight: 700;
+    transition: all 0.2s;
+    color: white;
+    box-shadow: 0 6px 14px rgba(226,88,34,0.3);
+  }
+
+  .btn-bradius {
+    padding: 0.7rem 2rem;
+    border-radius: 50px;
+  }
+  .btn-autoparts-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(226,88,34,0.4);
+    background: linear-gradient(95deg, #c9471a, #e8622a);
+  }
+  .btn-outline-light-custom {
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50px;
+    color: white;
+    transition: all 0.2s;
+  }
+  .btn-outline-light-custom:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: #ff7b2c;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    background: linear-gradient(135deg, #0a1a1f 0%, #0f2a2f 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle at 20% 40%, rgba(226,88,34,0.08) 2%, transparent 2.5%);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+  .hero-title {
+    font-size: 3.8rem;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+  .highlight-orange {
+    color: #ff8c42;
+    border-bottom: 3px solid #ff8c42;
+    display: inline-block;
+  }
+  .hero-stats-card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(8px);
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255,140,66,0.3);
+    transition: transform 0.2s;
+  }
+  .hero-stats-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* Feature cards */
+  .feature-card {
+    border-radius: 1.5rem;
+    border: none;
+    transition: all 0.25s ease;
+    background: white;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+  }
+  .feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 35px rgba(226,88,34,0.12);
+  }
+  .feature-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #fff5ed, #ffe6d5);
+    border-radius: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #e25822;
+  }
+
+  /* categories section */
+  .category-badge {
+    background: #f8f9fa;
+    border-radius: 80px;
+    padding: 0.6rem 1.5rem;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .category-badge:hover {
+    background: #e25822;
+    color: white;
+    transform: scale(1.02);
+  }
+
+  /* testimonial */
+  .testimonial-card {
+    background: #fefaf7;
+    border-radius: 1.8rem;
+    border-left: 5px solid #e25822;
+    transition: all 0.2s;
+  }
+  .avatar-icon {
+    width: 55px;
+    height: 55px;
+    background: #e25822;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.4rem;
+  }
+
+  /* CTA section */
+  .cta-section {
+    background: linear-gradient(110deg, #0f2128 0%, #1a353f 100%);
+    border-radius: 2rem;
+  }
+
+  footer {
+    background: #071317;
+    color: #9aaeb7;
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+    .hero-stats-card {
+      margin-bottom: 0.8rem;
+    }
+    .feature-icon {
+      width: 55px;
+      height: 55px;
+      font-size: 1.5rem;
+    }
+  }
+
+  /* smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }

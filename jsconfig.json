@@ -1,0 +1,7 @@
+{
+  "include": ["views/code/**/*.js", "views/js/*.js", "views/js/**/*.js", "views/js/**/**/*.js", "views/js/**/**/**/*.js"],
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es2020"
+  }
+}

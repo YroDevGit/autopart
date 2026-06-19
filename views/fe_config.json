@@ -1,0 +1,12 @@
+{
+    "main_page" :"landing", 
+    "page_not_found": "404",
+    "prod_error_page": "prod_error",
+    "dev_error_page": "dev_error",
+    "js_version": 1.0,
+    "variable": {
+        "pagename" : "CodeTazer App",
+        "email" : "admin@autoparts.com",
+        "appname": "KYG Autoparts"
+    }
+}
