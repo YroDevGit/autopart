@@ -285,6 +285,10 @@ async function showOrderItems(orderId) {
     }
     
     new bootstrap.Modal(document.getElementById('orderItemsModal')).show();
+    if(oldStatus == 11){
+        document.querySelector("#saveStatusBtn").disabled = true;
+        document.querySelector("#newStatusSelect").disabled = true;
+    }
 }
 
 function showToast(msg, type = 'success') {

@@ -38,7 +38,7 @@ class Migration
     }
 
     public static function query($query){
-        $db = getenv("database");
+        $db = env("database");
         if (empty($db)) {
             self::setLastQuery("No database found in (.env)");
             echo "❌ No Database found in .env\n";
@@ -61,7 +61,7 @@ class Migration
 
     public static function table(string $tablename, array $columns, bool $timestamp = false, $active = false): bool
     {
-        $db = getenv("database");
+        $db = env("database");
         if (empty($db)) {
             self::setLastQuery("No database found in (.env)");
             echo "❌ No Database found in .env\n";
