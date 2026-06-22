@@ -29,7 +29,7 @@
         <li class="nav-item"><a class="nav-link text-white-50" href="#testimonials">Testimonials</a></li>
       </ul>
       <div class="d-flex gap-2">
-        <a href="#" class="btn btn-outline-autoparts" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+        <a href="/login" class="btn btn-outline-autoparts">Login</a>
         <a href="/order" class="btn btn-autoparts-primary"><i class="bi bi-cart-fill"></i> Direct order</a>
       </div>
     </div>

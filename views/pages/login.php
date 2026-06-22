@@ -177,6 +177,10 @@
           <form id="loginForm">
             <!-- Email / Username field with icon group -->
             <div class="mb-4">
+              <label style="margin-right: 5px; color:white;display:none;" for="cust"><input type="radio" name="type" id="cust" disabled> Customer</label>
+              <label style="margin-right: 5px; color:white;" for="ad"><input type="radio" name="type" checked id="ad"> Admin/Rider</label>
+            </div>
+            <div class="mb-4">
               <label for="loginEmail" class="form-label text-light fw-semibold small text-uppercase tracking-wide">
                 <i class="bi bi-envelope-paper-fill me-1"></i> <?=t('Email address')?>
               </label>
@@ -185,7 +189,7 @@
                   <i class="bi bi-person-badge"></i>
                 </span>
                 <input type="text" class="form-control form-control-autoparts" id="loginEmail" 
-                       placeholder="mechanic@autoparts.com" name="email" value="" >
+                       placeholder="Enter email..." name="email" value="" >
               </div>
               <div class="text-danger errmsg" id="_email">
                 
@@ -209,7 +213,6 @@
                 </button>
               </div>
               <div class="text-danger errmsg" id="_password">
-                
               </div>
             </div>
 

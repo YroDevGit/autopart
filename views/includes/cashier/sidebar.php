@@ -30,6 +30,11 @@
         <i class="bi bi-laptop"></i> <span><?=t('POS')?></span>
       </a>
     </li>
+    <li class="nav-item">
+      <a href="/cashier/users" class="nav-link-admin nav-link d-flex align-items-center <?=current_page() == "cashier/users" ? 'active' : ''?>">
+        <i class="bi bi-people"></i> <span><?=t('People')?></span>
+      </a>
+    </li>
     <!--
     <li class="nav-item">
       <a href="#" class="nav-link-admin nav-link d-flex align-items-center">
