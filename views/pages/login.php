@@ -178,7 +178,22 @@
             <!-- Email / Username field with icon group -->
             <div class="mb-4">
               <label style="margin-right: 5px; color:white;display:none;" for="cust"><input type="radio" name="type" id="cust" disabled> Customer</label>
-              <label style="margin-right: 5px; color:white;" for="ad"><input type="radio" name="type" checked id="ad"> Admin/Rider</label>
+              <label style="margin-right: 5px; color:white; display:none;" for="ad"><input type="radio" name="type" checked id="ad"> Admin/Rider</label>
+            </div>
+            <div class="text-center mt-2">
+              <!--
+              <p class="text-white-50 small">New to AutoParts Elite? 
+                <a href="#" class="link-autoparts fw-semibold" data-bs-toggle="modal" data-bs-target="#signupModal">Create an account</a>
+              </p>
+                -->
+              <div class="d-flex justify-content-center gap-2 mt-3 mb-4">
+                <span class="badge bg-dark text-warning border border-warning rounded-pill px-3 py-2">
+                  <i class="bi bi-shield-check"></i> Login as admin
+                </span>
+                <span class="badge bg-dark text-warning border border-warning rounded-pill px-3 py-2">
+                  <i class="bi bi-truck"></i> Login as Rider
+                </span>
+              </div>
             </div>
             <div class="mb-4">
               <label for="loginEmail" class="form-label text-light fw-semibold small text-uppercase tracking-wide">
