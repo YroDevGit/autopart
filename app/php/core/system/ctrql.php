@@ -47,11 +47,9 @@ if($realtime){
 }
 
 /**
- * setup limit request per minute
- * default is 10
+ * Include ql.php as middleware
  */
-$limit_request_per_minute = 5000;
-Ctrx::x_rate_limit($limit_request_per_minute, 60, "ctrql_" . $action);
+include "app/config/ql.php";
 
 /**
  * Check if ctrql is active
@@ -117,6 +115,11 @@ if (! $action) {
 if ($action == "disable") {
     Ctrql::disable();
     Response::code(success_code)->message("Yes.! ctrql disabled.")->send();
+}
+
+if($action == "userdata"){
+    $data = Ctrx::get_user_data();
+    Response::code(success_code)->message("OK")->data($data)->send();
 }
 
 if ($action == "query") {

@@ -2,12 +2,19 @@
  * This is tyrax config
  */
 
-import Ctr from "../mods/ctr.js";
+import Ctr from "../src/mods/ctr.js";
+import Loading from "../src/mods/loading.js";
 
 //This is tyrax default header
 export const headerHandler = {
     Authorization: "Bearer sometoken",
     "Content-Type": "application/json",
+}
+
+//Tyrax loading
+export const CtrLoading = {
+    wait: ()=> Loading.load(true),
+    done: ()=> Loading.load(false)
 }
 
 /**
