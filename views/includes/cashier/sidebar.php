@@ -26,18 +26,17 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="/cashier/pos" class="nav-link-admin nav-link d-flex align-items-center <?=current_page() == "cashier/pos" ? 'active' : ''?>">
+      <a href="/cashier/pos" class="nav-link-admin nav-link d-flex align-items-center <?=active_class('/cashier/pos')?>">
         <i class="bi bi-laptop"></i> <span><?=t('POS')?></span>
       </a>
     </li>
     <li class="nav-item">
-      <a href="/cashier/users" class="nav-link-admin nav-link d-flex align-items-center <?=current_page() == "cashier/users" ? 'active' : ''?>">
+      <a href="/cashier/users" class="nav-link-admin nav-link d-flex align-items-center <?=active_class('/cashier/users')?>">
         <i class="bi bi-people"></i> <span><?=t('People')?></span>
       </a>
     </li>
-    <!--
     <li class="nav-item">
-      <a href="#" class="nav-link-admin nav-link d-flex align-items-center">
+      <a href="/cashier/customer" class="nav-link-admin nav-link d-flex align-items-center <?=active_class('/cashier/customer')?>">
         <i class="bi bi-people"></i> <span><?=t('Customers')?></span>
       </a>
     </li>
@@ -47,7 +46,7 @@
         <i class="bi bi-bar-chart-steps"></i> <span>Analytics</span>
       </a>
     </li>
-    -->
+
     <li class="nav-item">
       <a href="/ctrxtools/db" class="nav-link-admin <?=current_page() == "ctrxtools/db" ? 'active' : ''?> nav-link d-flex align-items-center">
         <i class="bi bi-database"></i> <span>Database</span>
