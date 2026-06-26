@@ -1,4 +1,3 @@
-<?=include_page("cashier/filter")?>
 <!DOCTYPE html>
 <html lang="en">
 

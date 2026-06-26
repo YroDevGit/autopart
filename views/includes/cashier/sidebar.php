@@ -36,7 +36,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="/cashier/customer" class="nav-link-admin nav-link d-flex align-items-center <?=active_class('/cashier/customer')?>">
+      <a href="/cashier/customers" class="nav-link-admin nav-link d-flex align-items-center <?=active_class('/cashier/customers')?>">
         <i class="bi bi-people"></i> <span><?=t('Customers')?></span>
       </a>
     </li>
