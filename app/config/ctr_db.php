@@ -1,4 +1,8 @@
-<?php 
+<?php // ctrxtools/database
+/**
+ * For General database management
+ ** Ctrx::use_database_management();
+ */
 use Classes\Ctrx;
 use Classes\Ccookie;
 use Tables\User;
@@ -9,7 +13,7 @@ $user = User::findOne(["id"=>$id]);
 if($user){
     $role = $user['role'];
     if($role == 2){
-        Ctrx::use_database_tools();
+        Ctrx::use_database_management();
     }
 }
 

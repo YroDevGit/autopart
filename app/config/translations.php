@@ -1,8 +1,7 @@
-<?php 
+<?php // ctrxtools/translations
 /**
- * Welcome to Ctrx Translation tools
- * This is a blocker/Middleware for Translation management access
- * use  Ctrx::use_translate_tools();
+ * For Translation management
+ ** Ctrx::use_translate_tools();
  */
 use Classes\Ccookie;
 use Classes\Ctrx;

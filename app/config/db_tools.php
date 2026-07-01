@@ -1,11 +1,8 @@
-<?php
+<?php // ctrxtools/db
 /**
- * This file blocks users to use db tools
- * make a logic to filter users that can access db tool
- * /ctrxtools/db
- * Ctrx::use_db_tools(); // use this to activate db tools
+ * For Database export/import table data
+ ** Ctrx::use_db_tools();
  */
-
 use Classes\Ccookie;
 use Classes\Ctrx;
 use Tables\User;
