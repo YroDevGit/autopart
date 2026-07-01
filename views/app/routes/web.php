@@ -13,10 +13,11 @@ Page::group(
       if(! $user){
         redirect("logout");
       }
-      if(isset($user['role']) && $user['role'] != 2){
+      if(isset($user['role']) && ($user['role'] != 2 && $user['role'] != 1)){
         redirect("logout");
       }
       $fullname = $user['fullname'] ?? "USER";
       
-      gval("fullname", $fullname);      
+      gval("fullname", $fullname);  
+      gval("role", $user['role']);      
 });

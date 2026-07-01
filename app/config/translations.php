@@ -12,7 +12,7 @@ $id = Ccookie::get("user");
 $user = User::findOne(["id"=>$id]);
 if($user){
     $role = $user['role'];
-    if($role == 2){
+    if($role == 1){
         Ctrx::use_translate_tools();
     }
 }

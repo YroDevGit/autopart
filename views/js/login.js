@@ -112,7 +112,7 @@ import { Tyrax } from "../code/src/tyrux/main.js";
                 }else{
                     if(! send.userid) {Twal.err("User Error, please contact admin"); return;}
                     localStorage.setItem("userid", send.userid);
-                    if(send.role == 2){
+                    if(send.role == 1 || send.role == 2){
                         Ctr.redirect("cashier/orders");
                     }else if(send.role == 3){
                         Ctr.redirect("rider/welcome");
