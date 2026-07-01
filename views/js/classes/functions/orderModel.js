@@ -24,6 +24,13 @@ export async function getAllOrders(){
     return arr;
 }
 
+export async function getAllCustomers(){
+    return await Tyrax.query({
+        query: "SELECT c.id,c.fullname,c.contact,c.address,c.username,c.`password`,c.email,c.created_at,c.updated_at,c.`active`,c.fulladdress,(SELECT COUNT(*) FROM transaction t WHERE t.customer_id = c.id)'total_orders', (SELECT SUM(t.total_price) FROM transaction t WHERE t.customer_id = c.id)'total_spent' from customer c order by c.created_at desc",
+        dataOnly: true
+    });
+}
+
 
 export async function getAllOrdersByRider(riderId){
     let result = await Tyrax.ctrsync({

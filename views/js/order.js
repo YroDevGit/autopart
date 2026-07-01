@@ -3,14 +3,13 @@ import Currency from "../code/src/mods/currency.js";
 import Loading from "../code/src/mods/loading.js";
 import Toast from "../code/src/mods/toast.js";
 import { Twal } from "../code/src/mods/twal.js";
-import { Tyrax } from "../code/src/tyrux/main.js";
 import { NegrosCode, getAllAddress, getShippingById, getShippingDetailsById, setAddressOnCB } from "./classes/functions/address.js";
 import { getBaranggay, getMunicipality, getProvince } from "./classes/functions/addresses.js";
 import { displayCategoryOnCB } from "./classes/functions/category.js";
 import { getCustomerDetails } from "./classes/functions/customer.js";
 import { addProducts, getProductLeft, getProducts } from "./classes/functions/products.js";
 
-Loading.load(true);
+
 let shippingDetails = [];
 let current_user = localStorage.getItem("userid");
 let cities = await getMunicipality(NegrosCode());
@@ -448,7 +447,9 @@ if (checkoutForm) {
           cart: cart
         };
 
+        Loading.load(true);
         let result = await addProducts(orderDetails);
+        Loading.load(false);
         if (result.code == 205 || result.code == 400) {
           Twal.err(result.message);
           return;
