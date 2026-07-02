@@ -230,7 +230,8 @@
               <label class="form-label fw-semibold">Role <span class="text-danger">*</span></label>
               <select class="form-select" id="userRole" name="role" >
                 <option value="">Select Role...</option>
-                <option value="2">Administrator</option>
+                <option value="1">Administrator</option>
+                <option value="2">Cashier</option>
                 <option value="3">Rider</option>
               </select>
               <?=error_text("role")?>

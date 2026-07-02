@@ -249,7 +249,7 @@
               <div class="input-group search-input-group">
                 <input type="text" class="form-control search-input" id="orderSearchInput" 
                        placeholder="🔍 Search by customer name, email, or order ID..." 
-                       aria-label="Search orders">
+                       aria-label="Search orders" value="<?=$_GET['code'] ?? ''?>">
                 <button class="btn search-btn" id="searchButton" type="button">
                   <i class="bi bi-search"></i>
                 </button>

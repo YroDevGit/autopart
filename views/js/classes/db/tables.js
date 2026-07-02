@@ -22,3 +22,7 @@ export function tbl_inventory(){
 export function tbl_supplier(){
     return "supplier";
 }
+
+export function tbl_transaction(){
+    return "transaction";
+}

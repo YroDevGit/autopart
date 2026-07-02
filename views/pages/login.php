@@ -251,6 +251,10 @@
               </button>
             </div>
 
+            <div class="d-grid gap-2 mb-4" align='center'>
+              <a href="#" id="signupclick">Sign up here</a>
+            </div>
+
             <!-- signup prompt & special auto parts note -->
             <div class="text-center mt-2">
               <!--

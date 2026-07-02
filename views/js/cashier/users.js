@@ -20,11 +20,13 @@ function getInitials(firstName, lastName) {
 
 function getRoleBadge(role) {
     const roleMap = {
-        '2': 'role-admin',
+        '1': 'role-admin',
+        '2': 'role-user',
         '3': 'role-rider',
     };
     const labelMap = {
-        '2': 'Administrator',
+        '1': 'Administrator',
+        '2': 'Cashier',
         '3': "Rider"
 
     };
@@ -136,7 +138,7 @@ function renderUsers() {
                         </div>
                         <div class="col-6">
                             <small class="text-muted"><i class="bi bi-clock"></i> Last Login</small>
-                            <p class="mb-0 small">${formatDate(user.last_login)}</p>
+                            <p class="mb-0 small">${formatDate(user.updated_at)}</p>
                         </div>
                     </div>
                 </div>

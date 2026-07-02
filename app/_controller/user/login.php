@@ -44,5 +44,10 @@ Ctrx::set_user_data([
     "role" => $res['role']
 ]);
 
+User::update(["id"=>$res['id']],[
+    "updated_at" => now(),
+    
+]);
+
 
 Response::code(200)->message("OK")->var(["cookie"=>$cookie, "role"=>$res['role'], "userid"=>$res['id']])->send();

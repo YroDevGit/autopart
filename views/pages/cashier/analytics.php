@@ -172,6 +172,30 @@
       max-width: 200px;
     }
     
+    .combined-chart-container {
+      background: white;
+      border-radius: 1rem;
+      padding: 1.25rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e9ecef;
+      margin-top: 1.5rem;
+    }
+    
+    .combined-chart-container .chart-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #2c3e50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .combined-chart-container canvas {
+      max-height: 300px;
+      max-width: 100%;
+    }
+    
     @media (max-width: 768px) {
       .analytics-stat-card .number {
         font-size: 1.5rem;
@@ -187,6 +211,9 @@
       }
       .compare-select {
         max-width: 100%;
+      }
+      .combined-chart-container canvas {
+        max-height: 200px;
       }
     }
   </style>
@@ -372,7 +399,7 @@
         </div>
       </div>
       
-      <!-- Month Comparison Results -->
+      <!-- Month Comparison Results - Side by Side Charts -->
       <div class="row g-3 mt-3">
         <div class="col-md-6">
           <div class="chart-container">
@@ -392,6 +419,15 @@
             <canvas id="month2Chart"></canvas>
           </div>
         </div>
+      </div>
+      
+      <!-- Combined Comparison Line Chart -->
+      <div class="combined-chart-container">
+        <div class="chart-title">
+          <span><i class="bi bi-graph-up-arrow text-success"></i> Combined Comparison: <span id="combinedLabel">June 2025 vs June 2024</span></span>
+          <span class="badge bg-success bg-opacity-10 text-success">Revenue Comparison</span>
+        </div>
+        <canvas id="combinedComparisonChart"></canvas>
       </div>
     </div>
 

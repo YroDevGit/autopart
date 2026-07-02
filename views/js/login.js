@@ -1,9 +1,40 @@
 import Ctr from "../code/src/mods/ctr.js";
+import TModal from "../code/src/mods/tmodal.js";
+import Todal from "../code/src/mods/todal.js";
 import { Twal } from "../code/src/mods/twal.js";
 import Validator from "../code/src/mods/validator.js";
 import { Tyrax } from "../code/src/tyrux/main.js";
 
+
 (function () {
+
+    const modex = TModal.init({
+        title: "Register here",
+        id: "modex", 
+        form_id: "regForm",
+        form: {
+            email: {type: "text", label: "Enter email here:", validation:{email:true, maxChar: 50, label: "Email"}}
+        }
+    });
+
+    Ctr.click("#signupclick", ()=>{
+        modex.show();
+    });
+
+    modex.form_submit(function(data){
+        Tyrax.post({
+            url: "customer/reg",
+            data: data,
+            res: (send, code, message, data, errors)=>{
+                if(code == 200){
+
+                }else{
+                    Twal.err(message);
+                }
+            }
+        })
+    });
+
     const emailInput = document.getElementById('loginEmail');
     const passwordInput = document.getElementById('loginPassword');
     const loginForm = document.getElementById('loginForm');
