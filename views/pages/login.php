@@ -5,21 +5,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>AutoParts Elite | Login</title>
-  <!-- Bootstrap 5 CSS + Icons (Bootstrap Icons are part of BS ecosystem, but only BS5 CSS used for styling) -->
+  <!-- Bootstrap 5 CSS + Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons (optional but keeps visual consistency, no external CSS frameworks aside from BS) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <style>
-    /* custom overrides using only Bootstrap variables / minimal extra to enhance "auto parts" theme
-       no extra css frameworks, but custom background & subtle effects are added to match the amazing autoparts vibe.
-       All structural layout remains Bootstrap 5 compliant. */
     body {
       background: linear-gradient(135deg, #0a1a1f 0%, #0f2128 100%);
       min-height: 100vh;
       font-family: system-ui, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
     }
 
-    /* Carbon fiber texture overlay inspired by auto parts - just background enrichment */
     .carbon-pattern {
       position: relative;
     }
@@ -36,7 +31,6 @@
       z-index: 0;
     }
 
-    /* main card styling: modern, sleek, metallic touch */
     .autoparts-card {
       background: rgba(10, 20, 22, 0.85);
       backdrop-filter: blur(8px);
@@ -51,7 +45,6 @@
       border-color: rgba(255, 100, 0, 0.6);
     }
 
-    /* Custom accent for input groups, buttons */
     .btn-autoparts {
       background: linear-gradient(95deg, #e25822 0%, #ff7b2c 100%);
       border: none;
@@ -94,7 +87,6 @@
       color: #ff9142;
     }
 
-    /* gear & mechanical decorative elements */
     .gear-icon {
       background: rgba(226, 88, 34, 0.15);
       width: 55px;
@@ -108,7 +100,6 @@
       transition: 0.3s;
     }
 
-    /* mechanical thin line above footer */
     .mech-line {
       height: 2px;
       background: linear-gradient(90deg, transparent, #ff7b2c, #ffb347, transparent);
@@ -116,13 +107,11 @@
       margin: 0 auto;
     }
 
-    /* logo area with bolt icon */
     .brand-icon {
       font-size: 3.4rem;
       filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
     }
 
-    /* custom link styling */
     .link-autoparts {
       color: #ffaa66;
       text-decoration: none;
@@ -134,7 +123,69 @@
       text-decoration: underline;
     }
 
-    /* responsive adjustments */
+    /* Role Selection Radio Buttons Styling */
+    .role-radio-group {
+      background: rgba(20, 30, 33, 0.6);
+      border-radius: 1rem;
+      padding: 0.5rem;
+      border: 1px solid rgba(255, 140, 0, 0.2);
+      margin-bottom: 1.5rem;
+    }
+
+    .role-radio-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 0.75rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      color: #b0c4cc;
+    }
+
+    .role-radio-item:hover {
+      background: rgba(255, 140, 0, 0.1);
+      color: #ffffff;
+    }
+
+    .role-radio-item input[type="radio"] {
+      accent-color: #ff7b2c;
+      width: 1.1rem;
+      height: 1.1rem;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .role-radio-item .role-icon {
+      font-size: 1.2rem;
+      width: 1.8rem;
+      text-align: center;
+      color: #ff9142;
+    }
+
+    .role-radio-item .role-label {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .role-radio-item .role-badge {
+      font-size: 0.65rem;
+      padding: 0.15rem 0.6rem;
+      border-radius: 20px;
+      background: rgba(255, 140, 0, 0.15);
+      color: #ffb347;
+      margin-left: auto;
+    }
+
+    .role-radio-item input[type="radio"]:checked + .role-label {
+      color: #ffb347;
+    }
+
+    .role-radio-item:has(input:checked) {
+      background: rgba(255, 140, 0, 0.12);
+      border: 1px solid rgba(255, 140, 0, 0.3);
+    }
+
     @media (max-width: 576px) {
       .autoparts-card {
         border-radius: 1.5rem;
@@ -142,6 +193,10 @@
       }
       .brand-icon {
         font-size: 2.6rem;
+      }
+      .role-radio-item {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -151,9 +206,7 @@
   <div class="container py-5 my-auto">
     <div class="row justify-content-center align-items-center min-vh-100">
       <div class="col-lg-5 col-md-7 col-sm-10">
-        <!-- main card with premium auto parts theme -->
         <div class="autoparts-card p-4 p-xl-5">
-          <!-- top decorative emblem & title -->
           <div class="text-center mb-4">
             <div class="d-flex justify-content-center align-items-center gap-3 mb-2">
               <div class="gear-icon">
@@ -168,33 +221,38 @@
             <h2 class="display-6 fw-bold text-white mt-2">
               <span style="background: linear-gradient(120deg, #fff, #ffb347); background-clip: text; -webkit-background-clip: text; color: transparent;">KYG AUTOPARTS</span>
             </h2>
-            <p class="text-light-emphasis text-white-50 mb-0"><?=t('Heavy‑Duty Performance Portal')?></p>
+            <p style="display: none;" class="text-light-emphasis text-white-50 mb-0"><?=t('Heavy‑Duty Performance Portal')?></p>
             <div class="mech-line my-3"></div>
-            <p class="text-white-70 mt-2" style="color: #cfdfe3;"><?=t('Sign in to access inventory, orders & technical specs')?></p>
+            <p class="text-white-70 mt-2" style="color: #cfdfe3; display:none;"><?=t('Sign in to access inventory, orders & technical specs')?></p>
           </div>
 
-          <!-- login form -->
           <form id="loginForm">
-            <!-- Email / Username field with icon group -->
-            <div class="mb-4">
-              <label style="margin-right: 5px; color:white;display:none;" for="cust"><input type="radio" name="type" id="cust" disabled> Customer</label>
-              <label style="margin-right: 5px; color:white; display:none;" for="ad"><input type="radio" name="type" checked id="ad"> Admin/Rider</label>
-            </div>
-            <div class="text-center mt-2">
-              <!--
-              <p class="text-white-50 small">New to AutoParts Elite? 
-                <a href="#" class="link-autoparts fw-semibold" data-bs-toggle="modal" data-bs-target="#signupModal">Create an account</a>
-              </p>
-                -->
-              <div class="d-flex justify-content-center gap-2 mt-3 mb-4">
-                <span class="badge bg-dark text-warning border border-warning rounded-pill px-3 py-2">
-                  <i class="bi bi-shield-check"></i> Login as admin
-                </span>
-                <span class="badge bg-dark text-warning border border-warning rounded-pill px-3 py-2">
-                  <i class="bi bi-truck"></i> Login as Rider
-                </span>
+            <!-- Role Selection - Radio Buttons -->
+            <div class="role-radio-group">
+              <div class="d-flex flex-wrap justify-content-center gap-1">
+                <!-- Admin/Rider Radio (default checked) -->
+                <label class="role-radio-item flex-grow-1" style="min-width: 100px;">
+                  <input type="radio" name="user_role" value="admin_rider" id="roleAdminRider" checked>
+                  <span class="role-icon"><i class="bi bi-shield-check"></i></span>
+                  <span class="role-label">Admin/Rider/Cashier</span>
+                  <span class="role-badge">Staff</span>
+                </label>
+
+                <!-- Customer Radio -->
+                <label class="role-radio-item flex-grow-1" style="min-width: 100px;">
+                  <input type="radio" name="user_role" checked value="customer" id="roleCustomer">
+                  <span class="role-icon"><i class="bi bi-person"></i></span>
+                  <span class="role-label">Customer</span>
+                  <span class="role-badge">Buyer</span>
+                </label>
+
               </div>
             </div>
+
+            <!-- Hidden field to store selected role for form submission -->
+            <input type="hidden" name="login_role" id="loginRole" value="admin_rider">
+
+            <!-- Email / Username field -->
             <div class="mb-4">
               <label for="loginEmail" class="form-label text-light fw-semibold small text-uppercase tracking-wide">
                 <i class="bi bi-envelope-paper-fill me-1"></i> <?=t('Email address')?>
@@ -204,14 +262,12 @@
                   <i class="bi bi-person-badge"></i>
                 </span>
                 <input type="text" class="form-control form-control-autoparts" id="loginEmail" 
-                       placeholder="Enter email..." name="email" value="" >
+                       placeholder="Enter email..." name="email" value="">
               </div>
-              <div class="text-danger errmsg" id="_email">
-                
-              </div>
+              <div class="text-danger errmsg" id="_email"></div>
             </div>
 
-            <!-- Password field with toggle visibility (extra UX) -->
+            <!-- Password field -->
             <div class="mb-4">
               <label for="loginPassword" class="form-label text-light fw-semibold small text-uppercase">
                 <i class="bi bi-shield-lock-fill me-1"></i> <?=t('Password')?>
@@ -227,11 +283,10 @@
                   <i class="bi bi-eye-slash-fill" id="toggleIcon"></i>
                 </button>
               </div>
-              <div class="text-danger errmsg" id="_password">
-              </div>
+              <div class="text-danger errmsg" id="_password"></div>
             </div>
 
-            <!-- extra row: remember me & forgot password -->
+            <!-- remember me & forgot password -->
             <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="rememberCheck" style="background-color:#1f3a42; border-color:#ff7b2c;">
@@ -244,7 +299,7 @@
               </a>
             </div>
 
-            <!-- Login Button with loading simulation -->
+            <!-- Login Button -->
             <div class="d-grid gap-2 mb-4">
               <button type="submit" class="btn btn-autoparts btn-lg py-2" id="loginBtn">
                 <i class="bi bi-box-arrow-in-right me-2"></i> LOGIN TO DASHBOARD
@@ -255,13 +310,8 @@
               <a href="#" id="signupclick">Sign up here</a>
             </div>
 
-            <!-- signup prompt & special auto parts note -->
+            <!-- Footer badges -->
             <div class="text-center mt-2">
-              <!--
-              <p class="text-white-50 small">New to AutoParts Elite? 
-                <a href="#" class="link-autoparts fw-semibold" data-bs-toggle="modal" data-bs-target="#signupModal">Create an account</a>
-              </p>
-  -->
               <div class="d-flex justify-content-center gap-2 mt-3">
                 <span class="badge bg-dark text-warning border border-warning rounded-pill px-3 py-2">
                   <i class="bi bi-shield-check"></i> OEM Parts
@@ -274,10 +324,9 @@
           </form>
         </div>
         
-        <!-- mechanical footer note -->
         <div class="text-center mt-4 text-white-50 small">
           <div>
-          <i class="bi bi-wrench-adjustable-circle-fill"></i> Powering professional workshops & performance garages
+            <i class="bi bi-wrench-adjustable-circle-fill"></i> Powering professional workshops & performance garages
           </div>
           <span class="mx-2">⚙️</span> <span id="year"></span> MADE IN CODETAZER 
         </div>
@@ -285,7 +334,7 @@
     </div>
   </div>
 
-  <!-- Forgot Password Modal (Bootstrap 5 modal) No extra CSS, fully BS component -->
+  <!-- Forgot Password Modal -->
   <div class="modal fade" id="forgotModal" tabindex="-1" aria-labelledby="forgotModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content bg-dark text-white border-secondary">
@@ -294,7 +343,7 @@
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p class="text-white-70">Enter your email address and we’ll send you a link to reset your password for <strong class="text-warning">AutoParts Portal</strong>.</p>
+          <p class="text-white-70">Enter your email address and we'll send you a link to reset your password for <strong class="text-warning">AutoParts Portal</strong>.</p>
           <input type="email" class="form-control form-control-autoparts mt-2" id="resetEmail" placeholder="your@email.com">
           <div class="mt-3 small text-info"><i class="bi bi-info-circle"></i> Reset link will be sent within minutes.</div>
         </div>
@@ -306,7 +355,7 @@
     </div>
   </div>
 
-  <!-- Signup demo Modal (just for showcase, no actual backend) -->
+  <!-- Signup Modal -->
   <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content bg-dark text-white border-secondary">
@@ -338,6 +387,16 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Update hidden field when radio changes
+    document.querySelectorAll('input[name="user_role"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        document.getElementById('loginRole').value = this.value;
+      });
+    });
+
+  </script>
 
   <?=js()?>
 </body>

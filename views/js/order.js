@@ -417,6 +417,11 @@ if (checkoutForm) {
           return;
         }
 
+        const USER = Ctr.storage_get("userid");
+        if(! USER){
+          Twal.err("User error, please login again", "/logout");
+          return;
+        }
         const subtotal = getSubtotal();
         const total = subtotal + currentShippingFee;
         const shippingAddressText = document.getElementById('shippingaddress');
@@ -437,6 +442,7 @@ if (checkoutForm) {
         const orderDetails = {
           code: await Ctr.shortHash(15),
           fullname: name,
+          id: USER,
           email: email,
           subtotal: subtotal,
           shippingFee: currentShippingFee,
@@ -447,9 +453,7 @@ if (checkoutForm) {
           cart: cart
         };
 
-        Loading.load(true);
         let result = await addProducts(orderDetails);
-        Loading.load(false);
         if (result.code == 205 || result.code == 400) {
           Twal.err(result.message);
           return;
@@ -460,6 +464,10 @@ if (checkoutForm) {
         }
         if (result.code == 402) {
           Twal.err(result.message);
+          return;
+        }
+        if (result.code == 206) {
+          Twal.err(result.message, "/logout");
           return;
         }
         if (result.code != 200) {

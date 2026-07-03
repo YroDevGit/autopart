@@ -21,13 +21,14 @@ import { Tyrax } from "../code/src/tyrux/main.js";
         modex.show();
     });
 
-    modex.form_submit(function(data){
+    modex.form_submit(function(data,form){
         Tyrax.post({
             url: "customer/reg",
             data: data,
+            loading: true,
             res: (send, code, message, data, errors)=>{
                 if(code == 200){
-
+                    Twal.ok("Verification sent to your email", true);
                 }else{
                     Twal.err(message);
                 }
@@ -126,7 +127,27 @@ import { Tyrax } from "../code/src/tyrux/main.js";
         }, 3000);
     }
 
-    Ctr.submit("#loginForm", (data)=>{
+    Ctr.submit("#loginForm", (data, formData)=>{
+        if(formData.user_role == "customer"){
+            //Ctr.log(formData);return;
+            Tyrax.findOne({
+                table: "customer",
+                where: {username: formData.email, password: formData.password},
+                res: (send, code, message,data)=>{
+                    if(code == 200){
+                        if(send.empty){
+                            Twal.err("Account is invalid");
+                        }else{
+                            Ctr.storage_set("userid", data.id);
+                            Twal.ok("Login success", "/order");
+                        }
+                    }else{
+                        Twal.err(message);
+                    }
+                }
+            });
+            return;
+        }
         Ctr.set_html(".errmsg", ``);
         Tyrax.post({
             url: "user/login",

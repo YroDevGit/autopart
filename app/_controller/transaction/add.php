@@ -17,11 +17,17 @@ use Tables\Product;
 $fullname = Validator::post("fullname")->required()->maxChars(50)->minChars(3)->exec();
 $email = Validator::post("email")->required()->email()->exec();
 $contact = Validator::post("contact")->required()->exec();
+$id = Validator::post("id")->required()->number()->exec();
 $address = Validator::post("address")->required()->minChars(10)->maxChars(200)->exec();
 
 if (Validator::failed()) {
     $errors = Validator::errors();
     Response::code(402)->message("Validation failed")->errors($errors)->send();
+}
+
+$custExist = Customer::findOne(['id'=>$id]);
+if(! $custExist){
+    Response::code(206)->message("Invalid User")->send();
 }
 
 Validator::reset();
@@ -39,27 +45,16 @@ $cart = Request::post("cart");
 
 db_start();
 try {
-    $check = Customer::findOne([
-        "or" => [
-            ["username" => $email],
-            ["email" => $email]
-        ]
-    ]);
-
-    if ($check) {
-        db_rollback();
-        Response::code(205)->message("Email & Username is already taken")->var(["data" => $check])->send();
-    }
-    $pass = Random::integer(4);
-    $cust = Customer::insert([
-        "fullname" => $fullname,
-        "contact" => $contact,
+    $where = ["id"=>$id];
+    $update = [
+        "fullname" =>$fullname,
         "address" => $address,
         "fulladdress" => Request::post("fulladdress"),
-        "username" => $email,
-        "password" => $pass,
-        "email" => $email
-    ]);
+        "contact" => $contact,
+    ];
+
+    Customer::update($where, $update);
+   
 
     $findCode = Transaction::findOne(["transaction_code"=>$code]);
     if($findCode){
@@ -72,7 +67,7 @@ try {
         "subtotal" => $subtotal,
         "shipping" => $shipping,
         "total_price" => $total,
-        "customer_id" => $cust->_id()
+        "customer_id" => $id
     ]);
 
     foreach ($cart as $k => $v) {
@@ -83,21 +78,20 @@ try {
 
         $tr_dt_id = Transaction_details::insert([
             "product_id" => $prod_id,
-            "customer_id" => $cust->_id(),
+            "customer_id" => $id,
             "quantity" => $qty,
             "price" => $price,
             "total_price" => $price * $qty,
             "transaction_code" => $code
         ]);
     }
-    $url = rootpath;
+    $url = rootpath."/login";
     $appname = variable("appname");
-    Mail::send_email($email, "$appname Order processed", "Your order in $appname has been processed, to track you order you can login to $url<br>
-    your password is: $pass");
+    Mail::send_email($email, "$appname Order processed", "Your order in $appname has been processed, to track you order you can login to $url<br>");
     db_commit();
 } catch (Throwable $e) {
     db_rollback();
     Response::code(500)->message($e->getMessage())->var(["e" => $e->getTrace()])->send();
 }
 
-Response::code(200)->message("ok")->var(['userid' => $cust->_id(), 'ref'=>$code])->send();
+Response::code(200)->message("ok")->var(['userid' => $id, 'ref'=>$code])->send();

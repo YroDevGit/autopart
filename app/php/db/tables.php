@@ -65,6 +65,13 @@ Migration::table_ts("customer", [
     "email" => VARCHAR
 ], true);
 
+
+Migration::table_ts("verification", [
+    "id"=> PK,
+    "email" => "varchar",
+    "code" => ["varchar"=> 10000]
+], true);
+
 Migration::table_ts("transaction_details", [
     "id" => PK,
     "product_id" => INTEGER,

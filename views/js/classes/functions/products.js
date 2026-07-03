@@ -70,6 +70,8 @@ export async function addProducts(data){
         Tyrax.post({
             url: "transaction/add",
             data: data,
+            loading: true,
+            //test: true,
             response: (send)=>{
                 resolve(send);
             },

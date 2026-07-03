@@ -19,7 +19,7 @@ foreach($arr as $k=>$v){
 }
 
 
-$rp = DB::query("SELECT c.id 'customer', t.id 'transaction', c.fullname, c.contact, c.address, t.created_at,t.transaction_code FROM transaction t, customer c WHERE t.customer_id = c.id and c.contact != '-' order by t.created_at asc");
+$rp = DB::query("SELECT c.id 'customer', t.id 'transaction', c.fullname, c.contact, c.address, t.created_at,t.transaction_code FROM transaction t, customer c WHERE t.customer_id = c.id and c.contact != '-' order by t.created_at desc");
 
 $newData=[];
 
