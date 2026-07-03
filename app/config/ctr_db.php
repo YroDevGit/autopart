@@ -7,7 +7,7 @@ use Classes\Ctrx;
 use Classes\Ccookie;
 use Tables\User;
 
-$id = Ccookie::get("user");
+$id = Ctrx::get_user_data("id");
 
 $user = User::findOne(["id"=>$id]);
 if($user){

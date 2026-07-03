@@ -42,7 +42,7 @@ Ccookie::add("user", $res['id']);
 Ctrx::set_user_data([
     "id" => $res['id'],
     "role" => $res['role']
-]);
+],10);
 
 User::update(["id"=>$res['id']],[
     "updated_at" => now(),

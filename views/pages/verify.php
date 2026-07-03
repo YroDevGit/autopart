@@ -5,15 +5,15 @@ use Tables\Verification;
 
 $code = get("code");
 if(! $code){
-    Ctrx::forbidden_page();
+    //Ctrx::forbidden_page();
 }
 
 $result = Verification::findOne(["code"=>$code, "active"=>1]);
 if(! $result){
-    Ctrx::forbidden_page();
+    //Ctrx::forbidden_page();
 }
 
-$email = $result['email'];
+$email = $result['email']?? null;
 ?>
 
 <!DOCTYPE html>

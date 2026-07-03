@@ -2,14 +2,15 @@
 use Tables\User;
 use Classes\Ccookie;
 use Classes\Page;
+use Classes\Ctrx;
 
 Page::group(
 "cashier/*"
 )->except("cashier/orders", "cashier/pos")->run(function(){
-    if(! Ccookie::get("user")){
+    if(! Ctrx::get_user_data("id")){
         redirect("logout");
       }
-      $user = User::findOne(["id"=> Ccookie::get("user")]);
+      $user = User::findOne(["id"=> Ctrx::get_user_data("id")]);
       if(! $user){
         redirect("logout");
       }
@@ -25,10 +26,10 @@ Page::group(
 Page::group(
   "cashier/*"
   )->run(function(){
-      if(! Ccookie::get("user")){
+      if(! Ctrx::get_user_data("id")){
           redirect("logout");
         }
-        $user = User::findOne(["id"=> Ccookie::get("user")]);
+        $user = User::findOne(["id"=> Ctrx::get_user_data("id")]);
         if(! $user){
           redirect("logout");
         }

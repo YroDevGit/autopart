@@ -274,9 +274,10 @@ const tyrax = { // tyrux default config :: CodeTazeR
             if (options.dataOnly) {
                 if (result.code) {
                     if (result.code == 200) {
-                        options.response(result.data ?? []);
+                        options.response(result.data ?? [], result);
                     } else {
-                        options.response([]);
+                        console.error(result.message ?? "CTRQL Server error", result);
+                        options.response([], result);
                     }
                 }
             } else {
@@ -291,17 +292,17 @@ const tyrax = { // tyrux default config :: CodeTazeR
                     return result?.data ?? [];
                 } else {
                     if (options.errorType == "console") {
-                        console.error(result);
-                        return;
+                        console.error(result.message ?? "CTRQL Server error", result);
+                        return [];
                     } else {
-                        alert(result.message ?? "There is an error, please check console");
-                        console.error(result);
-                        return;
+                        alert(result.message ?? "CTRQL Server error");
+                        console.error(result.message ?? "CTRQL Server error", result);
+                        return [];
                     }
                 }
             } else {
                 console.error(result);
-                return;
+                return [];
             }
         }
         return result;
