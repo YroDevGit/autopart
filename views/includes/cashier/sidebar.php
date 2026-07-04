@@ -15,9 +15,10 @@
           <i class="bi bi-laptop"></i> <span><?= t('POS') ?></span>
         </a>
       </li>
+      
     <?php if (gval("role") == 1): ?>
       <li class="nav-item">
-        <a href="/cashier/uploads" class="nav-link-admin <?= current_page() == "cashier/uploads" ? 'active' : '' ?> nav-link d-flex align-items-center">
+        <a href="/cashier/uploads" class="nav-link-admin <?= current_page(true) == "cashier/uploads" ? 'active' : '' ?> nav-link d-flex align-items-center">
           <i class="bi bi-upload"></i> <span>Upload</span>
         </a>
       </li>

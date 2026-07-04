@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,7 +88,6 @@
 <body>
 
 <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
-
 <?=include_page("cashier/sidebar")?>
 
 <div class="main-content-wrapper" id="mainContentWrapper">

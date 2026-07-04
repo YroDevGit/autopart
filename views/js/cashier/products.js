@@ -1,6 +1,7 @@
 import Ctr from "../../code/src/mods/ctr.js";
 import Currency from "../../code/src/mods/currency.js";
 import CtrDATE from "../../code/src/mods/date.js";
+import Loading from "../../code/src/mods/loading.js";
 import TModal from "../../code/src/mods/tmodal.js";
 import Toast from "../../code/src/mods/toast.js";
 import { Twal } from "../../code/src/mods/twal.js";
@@ -44,6 +45,7 @@ document.querySelector("#searchButton").addEventListener("click", async () => {
 });
 
 async function productList() {
+  Loading.load(true);
   let prods = await getProducts(srch.value);
   let pr = [];
 
@@ -52,6 +54,7 @@ async function productList() {
     row['stock'] = await getStocks(row.id);
     pr[p] = row;
   }
+  Loading.load(false);
   return pr;
 }
 let nextId = 6;
