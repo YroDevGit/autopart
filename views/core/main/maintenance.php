@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 | Page Not Found</title>
+    <title>System maintenance · <?=env('system_version')?></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700;800&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -36,9 +36,10 @@
         }
 
         .icon-wrapper {
-            font-size: 70px;
+            font-size: 50px;
             margin-bottom: 20px;
             opacity: .9;
+            font-weight: bold;
         }
 
         .code {
@@ -50,27 +51,6 @@
             font-family: 'Orbitron', sans-serif;
         }
 
-        @keyframes pulse {
-            0%,
-            100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.04);
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(25px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         h1 {
             font-size: 2rem;
             margin-bottom: 15px;
@@ -78,7 +58,7 @@
         }
 
         .subhead {
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             color: #cbd5e1;
             margin-bottom: 20px;
             line-height: 1.7;
@@ -186,14 +166,40 @@
         }
 
         @keyframes pulse-dot {
+
             0%,
             100% {
                 opacity: 1;
                 transform: scale(1);
             }
+
             50% {
                 opacity: 0.5;
                 transform: scale(0.8);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.04);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
@@ -215,20 +221,39 @@
 
 <body>
     <div class="maintenance-card">
-        <div class="code">404</div>
-        <h1>Page Not Found</h1>
+        <div class="code"><?=env('system_version')?></div>
+        <h1>System maintenance</h1>
         <div class="subhead">
-            <i class="fas fa-exclamation-triangle fa-fw" style="margin-right: 6px;"></i> Oops... Page: <b>/<?=htmlspecialchars(current_page())?></b> Not Found
+            <i class="fas fa-sync-alt fa-fw" style="margin-right: 6px;"></i> scheduled maintenance
         </div>
 
         <p class="description">
-            It seems you've stumbled into the void. Return before the system notices...
+            We're performing a seamless upgrade to enhance performance, security, and reliability.<br>
+            Our team is working hard — the system will be back shortly.
         </p>
 
-        <a href="<?=prev_page?>" class="btn-primary">
-            <i class="fas fa-home"></i> Return to Mainframe
-        </a>
+        <button class="btn-primary" id="reloadbtn">
+            <i class="fas fa-sync-alt"></i> Reload
+        </button>
+
+        <div class="footer-note">
+            <span>system status: healthy</span>
+            <i class="fas fa-circle" style="color: #b0c8e0; opacity: 0.2; font-size: 0.3rem; margin: 0 4px;"></i>
+            <span style="background: transparent; padding: 0;">⚡ <?=env('system_version')?></span>
+        </div>
     </div>
+
+    <script>
+        (function() {
+            const btn = document.getElementById('reloadbtn');
+            if (btn) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    location.reload();
+                });
+            }
+        })();
+    </script>
 </body>
 
 </html>

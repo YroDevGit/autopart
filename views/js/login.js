@@ -1,13 +1,13 @@
 import Ctr from "../code/src/mods/ctr.js";
-import TModal from "../code/src/mods/tmodal.js";
-import Todal from "../code/src/mods/todal.js";
+import Popmodal from "../code/src/mods/modals/popmodal.js";
+import TModal from "../code/src/mods/modals/tmodal.js";
+import Toast from "../code/src/mods/toast.js";
 import { Twal } from "../code/src/mods/twal.js";
 import Validator from "../code/src/mods/validator.js";
 import { Tyrax } from "../code/src/tyrux/main.js";
 
 
 (function () {
-
     const modex = TModal.init({
         title: "Register here",
         id: "modex", 

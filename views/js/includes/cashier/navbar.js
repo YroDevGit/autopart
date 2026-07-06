@@ -1,6 +1,6 @@
 import Ctr from "../../../code/src/mods/ctr.js";
 import Notify from "../../../code/src/mods/notify.js";
-import TModal from "../../../code/src/mods/tmodal.js";
+import TModal from "../../../code/src/mods/modals/tmodal.js";
 import Toast from "../../../code/src/mods/toast.js";
 import { Twal } from "../../../code/src/mods/twal.js";
 import { Tyrax } from "../../../code/src/tyrux/main.js";

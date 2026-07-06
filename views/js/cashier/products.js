@@ -2,7 +2,7 @@ import Ctr from "../../code/src/mods/ctr.js";
 import Currency from "../../code/src/mods/currency.js";
 import CtrDATE from "../../code/src/mods/date.js";
 import Loading from "../../code/src/mods/loading.js";
-import TModal from "../../code/src/mods/tmodal.js";
+import TModal from "../../code/src/mods/modals/tmodal.js";
 import Toast from "../../code/src/mods/toast.js";
 import { Twal } from "../../code/src/mods/twal.js";
 import { Tyrax } from "../../code/src/tyrux/main.js";

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,7 +69,7 @@
       border: 1px solid #e9edf2;
       transition: all 0.15s;
       cursor: pointer;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
     }
 
     .order-row:hover {
@@ -124,12 +125,34 @@
       gap: 0.3rem;
     }
 
-    .status-badge i { font-size: 0.65rem; }
-    .status-badge.shipped { background: #d1fae5; color: #0b6e4f; }
-    .status-badge.delivered { background: #d1fae5; color: #0b6e4f; }
-    .status-badge.processing { background: #fef3c7; color: #a15813; }
-    .status-badge.cancelled { background: #fee2e2; color: #991b1b; }
-    .status-badge.pending { background: #e0f2fe; color: #1a4a8a; }
+    .status-badge i {
+      font-size: 0.65rem;
+    }
+
+    .status-badge.shipped {
+      background: #d1fae5;
+      color: #0b6e4f;
+    }
+
+    .status-badge.delivered {
+      background: #d1fae5;
+      color: #0b6e4f;
+    }
+
+    .status-badge.processing {
+      background: #fef3c7;
+      color: #a15813;
+    }
+
+    .status-badge.cancelled {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .status-badge.pending {
+      background: #e0f2fe;
+      color: #1a4a8a;
+    }
 
     .view-icon {
       color: #5f7d9c;
@@ -172,7 +195,7 @@
       max-height: 90vh;
       overflow-y: auto;
       padding: 2rem 2rem 1.8rem;
-      box-shadow: 0 40px 60px -20px rgba(0,0,0,0.4);
+      box-shadow: 0 40px 60px -20px rgba(0, 0, 0, 0.4);
       transform: scale(0.96) translateY(8px);
       transition: all 0.2s ease;
     }
@@ -199,7 +222,9 @@
       gap: 0.5rem;
     }
 
-    .modal-header h2 i { color: #2563eb; }
+    .modal-header h2 i {
+      color: #2563eb;
+    }
 
     .modal-close {
       background: #f1f4f9;
@@ -388,21 +413,35 @@
       background: #2563eb;
       color: white;
     }
-    .btn-primary:hover { background: #1d4ed8; transform: scale(0.97); }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+      transform: scale(0.97);
+    }
 
     .btn-danger {
       background: #dc2626;
       color: white;
     }
-    .btn-danger:hover { background: #b91c1c; transform: scale(0.97); }
+
+    .btn-danger:hover {
+      background: #b91c1c;
+      transform: scale(0.97);
+    }
+
     .btn-danger:disabled {
       opacity: 0.5;
       pointer-events: none;
       filter: grayscale(0.3);
     }
 
-    .btn-secondary { background: #eef2f6; }
-    .btn-secondary:hover { background: #e2e8f0; }
+    .btn-secondary {
+      background: #eef2f6;
+    }
+
+    .btn-secondary:hover {
+      background: #e2e8f0;
+    }
 
     .toast-message {
       margin-top: 0.8rem;
@@ -416,7 +455,10 @@
       border-left: 4px solid #22a06b;
       display: none;
     }
-    .toast-message.show { display: block; }
+
+    .toast-message.show {
+      display: block;
+    }
 
     .empty-msg {
       text-align: center;
@@ -424,113 +466,238 @@
       padding: 2.5rem 0;
     }
 
+    .btnField {
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    .btnField a button {
+      background: #1f314b;
+      border: none;
+      border-radius: 2rem;
+      padding: 0.5rem 0;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #d1e0ff;
+      border-bottom: 3px solid #0b1422;
+      cursor: pointer;
+      transition: 0.1s ease;
+      box-shadow: 0 4px 0 #0a111f;
+
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .btn-primary {
+      background: #3b5b8a;
+      color: white;
+      border-bottom-color: #1b2d4a;
+    }
+
     @media (max-width: 600px) {
-      .card { padding: 1.2rem; }
-      .order-row { flex-direction: column; align-items: stretch; gap: 0.6rem; }
-      .order-info { gap: 0.4rem; }
-      .modal-box { padding: 1.5rem; }
-      .modal-actions { justify-content: center; }
-      .product-item { flex-wrap: wrap; }
+      .card {
+        padding: 1.2rem;
+      }
+
+      .order-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.6rem;
+      }
+
+      .order-info {
+        gap: 0.4rem;
+      }
+
+      .modal-box {
+        padding: 1.5rem;
+      }
+
+      .modal-actions {
+        justify-content: center;
+      }
+
+      .product-item {
+        flex-wrap: wrap;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<div class="card" id="app">
-  <h1><i class="fas fa-clock-rotate-left"></i> Order history</h1>
-  <div id="orderListContainer" class="order-list"></div>
-</div>
-
-<!-- MODAL -->
-<div class="modal-overlay" id="orderModal">
-  <div class="modal-box">
-    <div class="modal-header">
-      <h2><i class="fas fa-receipt"></i> Order details</h2>
-      <button class="modal-close" id="modalCloseBtn"><i class="fas fa-xmark"></i></button>
+  <div class="card" id="app">
+    <h1><i class="fas fa-clock-rotate-left"></i> Order history</h1>
+    <div id="orderListContainer" class="order-list"></div>
+    <div align='center' class="btnField">
+      <a href="<?=prev_page?>"><button>Order now</button></a>
     </div>
-    <div class="modal-body" id="modalBody"></div>
-    <div class="modal-actions">
-      <button class="btn btn-secondary" id="modalCloseBtn2"><i class="fas fa-arrow-left"></i> Back to orders</button>
-      <button class="btn btn-danger" id="cancelOrderBtn"><i class="fas fa-ban"></i> Cancel order</button>
-    </div>
-    <div id="modalToast" class="toast-message">✅ Order cancelled</div>
   </div>
-</div>
 
-<script>
-  (function() {
-    // ---------- MOCK DATA with products & images ----------
-    const orders = [
-      { 
-        id: '#ORD-1004', date: '2026-06-28', total: '$ 184.50', status: 'delivered', 
-        products: [
-          { name: 'Wireless Headphones Pro', price: 79.99, qty: 1, img: '🎧' },
-          { name: 'USB-C Hub 6-in-1', price: 44.50, qty: 2, img: '🔌' },
-          { name: 'Screen Protector (2 pack)', price: 19.99, qty: 1, img: '📱' }
-        ]
-      },
-      { 
-        id: '#ORD-1003', date: '2026-06-25', total: '$ 67.20', status: 'shipped',
-        products: [
-          { name: 'Bluetooth Speaker Mini', price: 34.99, qty: 1, img: '🔊' },
-          { name: 'Silicone Case', price: 12.99, qty: 2, img: '📦' }
-        ]
-      },
-      { 
-        id: '#ORD-1002', date: '2026-06-20', total: '$ 312.00', status: 'processing',
-        products: [
-          { name: 'Mechanical Keyboard RGB', price: 89.99, qty: 2, img: '⌨️' },
-          { name: 'Gaming Mouse', price: 59.99, qty: 1, img: '🖱️' },
-          { name: 'Mouse Pad XL', price: 24.99, qty: 2, img: '🧩' }
-        ]
-      },
-      { 
-        id: '#ORD-1001', date: '2026-06-15', total: '$ 49.90', status: 'pending',
-        products: [
-          { name: 'Phone Stand', price: 19.99, qty: 1, img: '📱' },
-          { name: 'Cable Organizer', price: 9.99, qty: 3, img: '🔗' }
-        ]
-      },
-      { 
-        id: '#ORD-1000', date: '2026-06-10', total: '$ 129.75', status: 'cancelled',
-        products: [
-          { name: 'Smart Watch Band', price: 29.99, qty: 2, img: '⌚' },
-          { name: 'Charging Dock', price: 39.99, qty: 1, img: '⚡' },
-          { name: 'Screen Cleaner Kit', price: 14.99, qty: 1, img: '🧴' }
-        ]
-      }
-    ];
+  <!-- MODAL -->
+  <div class="modal-overlay" id="orderModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2><i class="fas fa-receipt"></i> Order details</h2>
+        <button class="modal-close" id="modalCloseBtn"><i class="fas fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" id="modalCloseBtn2"><i class="fas fa-arrow-left"></i> Back to orders</button>
+        <button class="btn btn-danger" id="cancelOrderBtn"><i class="fas fa-ban"></i> Cancel order</button>
+      </div>
+      <div id="modalToast" class="toast-message">✅ Order cancelled</div>
+    </div>
+  </div>
 
-    // store ratings per product (key: orderId + productName)
-    const ratingsStore = new Map();
+  <script>
+    (function() {
+      // ---------- MOCK DATA with products & images ----------
+      const orders = [{
+          id: '#ORD-1004',
+          date: '2026-06-28',
+          total: '$ 184.50',
+          status: 'delivered',
+          products: [{
+              name: 'Wireless Headphones Pro',
+              price: 79.99,
+              qty: 1,
+              img: '🎧'
+            },
+            {
+              name: 'USB-C Hub 6-in-1',
+              price: 44.50,
+              qty: 2,
+              img: '🔌'
+            },
+            {
+              name: 'Screen Protector (2 pack)',
+              price: 19.99,
+              qty: 1,
+              img: '📱'
+            }
+          ]
+        },
+        {
+          id: '#ORD-1003',
+          date: '2026-06-25',
+          total: '$ 67.20',
+          status: 'shipped',
+          products: [{
+              name: 'Bluetooth Speaker Mini',
+              price: 34.99,
+              qty: 1,
+              img: '🔊'
+            },
+            {
+              name: 'Silicone Case',
+              price: 12.99,
+              qty: 2,
+              img: '📦'
+            }
+          ]
+        },
+        {
+          id: '#ORD-1002',
+          date: '2026-06-20',
+          total: '$ 312.00',
+          status: 'processing',
+          products: [{
+              name: 'Mechanical Keyboard RGB',
+              price: 89.99,
+              qty: 2,
+              img: '⌨️'
+            },
+            {
+              name: 'Gaming Mouse',
+              price: 59.99,
+              qty: 1,
+              img: '🖱️'
+            },
+            {
+              name: 'Mouse Pad XL',
+              price: 24.99,
+              qty: 2,
+              img: '🧩'
+            }
+          ]
+        },
+        {
+          id: '#ORD-1001',
+          date: '2026-06-15',
+          total: '$ 49.90',
+          status: 'pending',
+          products: [{
+              name: 'Phone Stand',
+              price: 19.99,
+              qty: 1,
+              img: '📱'
+            },
+            {
+              name: 'Cable Organizer',
+              price: 9.99,
+              qty: 3,
+              img: '🔗'
+            }
+          ]
+        },
+        {
+          id: '#ORD-1000',
+          date: '2026-06-10',
+          total: '$ 129.75',
+          status: 'cancelled',
+          products: [{
+              name: 'Smart Watch Band',
+              price: 29.99,
+              qty: 2,
+              img: '⌚'
+            },
+            {
+              name: 'Charging Dock',
+              price: 39.99,
+              qty: 1,
+              img: '⚡'
+            },
+            {
+              name: 'Screen Cleaner Kit',
+              price: 14.99,
+              qty: 1,
+              img: '🧴'
+            }
+          ]
+        }
+      ];
 
-    let currentOrder = null;
-    const orderListEl = document.getElementById('orderListContainer');
-    const modalOverlay = document.getElementById('orderModal');
-    const modalBody = document.getElementById('modalBody');
-    const modalCloseBtn = document.getElementById('modalCloseBtn');
-    const modalCloseBtn2 = document.getElementById('modalCloseBtn2');
-    const cancelBtn = document.getElementById('cancelOrderBtn');
-    const toastEl = document.getElementById('modalToast');
+      // store ratings per product (key: orderId + productName)
+      const ratingsStore = new Map();
 
-    // ---------- RENDER ORDER LIST ----------
-    function renderOrders() {
-      if (!orderListEl) return;
-      if (orders.length === 0) {
-        orderListEl.innerHTML = `<div class="empty-msg"><i class="fas fa-box-open" style="font-size: 2rem; opacity: 0.4; display: block; margin-bottom: 0.6rem;"></i> No orders found</div>`;
-        return;
-      }
+      let currentOrder = null;
+      const orderListEl = document.getElementById('orderListContainer');
+      const modalOverlay = document.getElementById('orderModal');
+      const modalBody = document.getElementById('modalBody');
+      const modalCloseBtn = document.getElementById('modalCloseBtn');
+      const modalCloseBtn2 = document.getElementById('modalCloseBtn2');
+      const cancelBtn = document.getElementById('cancelOrderBtn');
+      const toastEl = document.getElementById('modalToast');
 
-      let html = '';
-      orders.forEach((order, index) => {
-        const statusClass = order.status.toLowerCase();
-        let badgeIcon = 'fa-circle';
-        if (statusClass === 'delivered' || statusClass === 'shipped') badgeIcon = 'fa-check-circle';
-        else if (statusClass === 'processing') badgeIcon = 'fa-spinner';
-        else if (statusClass === 'cancelled') badgeIcon = 'fa-circle-xmark';
-        else badgeIcon = 'fa-clock';
+      // ---------- RENDER ORDER LIST ----------
+      function renderOrders() {
+        if (!orderListEl) return;
+        if (orders.length === 0) {
+          orderListEl.innerHTML = `<div class="empty-msg"><i class="fas fa-box-open" style="font-size: 2rem; opacity: 0.4; display: block; margin-bottom: 0.6rem;"></i> No orders found</div>`;
+          return;
+        }
 
-        html += `
+        let html = '';
+        orders.forEach((order, index) => {
+          const statusClass = order.status.toLowerCase();
+          let badgeIcon = 'fa-circle';
+          if (statusClass === 'delivered' || statusClass === 'shipped') badgeIcon = 'fa-check-circle';
+          else if (statusClass === 'processing') badgeIcon = 'fa-spinner';
+          else if (statusClass === 'cancelled') badgeIcon = 'fa-circle-xmark';
+          else badgeIcon = 'fa-clock';
+
+          html += `
           <div class="order-row" data-index="${index}" data-orderid="${order.id}">
             <div class="order-info">
               <span class="order-id">${order.id}</span>
@@ -541,82 +708,82 @@
             <span class="view-icon"><i class="fas fa-chevron-right"></i> view</span>
           </div>
         `;
-      });
-
-      orderListEl.innerHTML = html;
-
-      document.querySelectorAll('.order-row').forEach(row => {
-        row.addEventListener('click', function() {
-          const idx = this.dataset.index;
-          if (idx !== undefined && orders[idx]) {
-            openModal(orders[idx]);
-          }
         });
-      });
-    }
 
-    // ---------- RATING HELPERS ----------
-    function getRatingKey(orderId, productName) {
-      return `${orderId}::${productName}`;
-    }
+        orderListEl.innerHTML = html;
 
-    function getProductRating(orderId, productName) {
-      const key = getRatingKey(orderId, productName);
-      return ratingsStore.get(key) || 0;
-    }
-
-    function setProductRating(orderId, productName, rating) {
-      const key = getRatingKey(orderId, productName);
-      ratingsStore.set(key, rating);
-      // persist in order products (optional but we keep in store)
-    }
-
-    // ---------- MODAL ----------
-    function openModal(order) {
-      if (!order) return;
-      currentOrder = order;
-      populateModal(order);
-      modalOverlay.classList.add('active');
-      toastEl.classList.remove('show');
-      toastEl.style.display = 'none';
-
-      // cancel button state
-      const cancellable = ['pending', 'processing', 'shipped'];
-      const isCancellable = cancellable.includes(order.status.toLowerCase());
-      cancelBtn.disabled = !isCancellable;
-      cancelBtn.innerHTML = `<i class="fas fa-ban"></i> Cancel order`;
-      cancelBtn.title = isCancellable ? 'Cancel this order' : 'This order cannot be cancelled';
-    }
-
-    function populateModal(order) {
-      if (!modalBody) return;
-      const statusLower = order.status.toLowerCase();
-      let badgeIcon = 'fa-circle';
-      if (statusLower === 'delivered' || statusLower === 'shipped') badgeIcon = 'fa-check-circle';
-      else if (statusLower === 'processing') badgeIcon = 'fa-spinner';
-      else if (statusLower === 'cancelled') badgeIcon = 'fa-circle-xmark';
-      else badgeIcon = 'fa-clock';
-
-      // ---- build product list with stars if delivered ----
-      let productsHtml = '';
-      if (order.products && order.products.length) {
-        productsHtml = `<div class="product-list">`;
-        order.products.forEach((p, idx) => {
-          const currentRating = getProductRating(order.id, p.name);
-          // generate stars
-          let starsHtml = '';
-          const isDelivered = order.status.toLowerCase() === 'delivered';
-          if (isDelivered) {
-            for (let i = 1; i <= 5; i++) {
-              const active = i <= currentRating ? 'active' : '';
-              starsHtml += `<i class="fas fa-star ${active}" data-star="${i}" data-product="${p.name}" data-orderid="${order.id}" style="cursor:pointer;"></i>`;
+        document.querySelectorAll('.order-row').forEach(row => {
+          row.addEventListener('click', function() {
+            const idx = this.dataset.index;
+            if (idx !== undefined && orders[idx]) {
+              openModal(orders[idx]);
             }
-            starsHtml += `<span class="rating-label">${currentRating > 0 ? currentRating + '★' : 'rate'}</span>`;
-          } else {
-            starsHtml = `<span style="color:#9aaebf; font-size:0.8rem;">—</span>`;
-          }
+          });
+        });
+      }
 
-          productsHtml += `
+      // ---------- RATING HELPERS ----------
+      function getRatingKey(orderId, productName) {
+        return `${orderId}::${productName}`;
+      }
+
+      function getProductRating(orderId, productName) {
+        const key = getRatingKey(orderId, productName);
+        return ratingsStore.get(key) || 0;
+      }
+
+      function setProductRating(orderId, productName, rating) {
+        const key = getRatingKey(orderId, productName);
+        ratingsStore.set(key, rating);
+        // persist in order products (optional but we keep in store)
+      }
+
+      // ---------- MODAL ----------
+      function openModal(order) {
+        if (!order) return;
+        currentOrder = order;
+        populateModal(order);
+        modalOverlay.classList.add('active');
+        toastEl.classList.remove('show');
+        toastEl.style.display = 'none';
+
+        // cancel button state
+        const cancellable = ['pending', 'processing', 'shipped'];
+        const isCancellable = cancellable.includes(order.status.toLowerCase());
+        cancelBtn.disabled = !isCancellable;
+        cancelBtn.innerHTML = `<i class="fas fa-ban"></i> Cancel order`;
+        cancelBtn.title = isCancellable ? 'Cancel this order' : 'This order cannot be cancelled';
+      }
+
+      function populateModal(order) {
+        if (!modalBody) return;
+        const statusLower = order.status.toLowerCase();
+        let badgeIcon = 'fa-circle';
+        if (statusLower === 'delivered' || statusLower === 'shipped') badgeIcon = 'fa-check-circle';
+        else if (statusLower === 'processing') badgeIcon = 'fa-spinner';
+        else if (statusLower === 'cancelled') badgeIcon = 'fa-circle-xmark';
+        else badgeIcon = 'fa-clock';
+
+        // ---- build product list with stars if delivered ----
+        let productsHtml = '';
+        if (order.products && order.products.length) {
+          productsHtml = `<div class="product-list">`;
+          order.products.forEach((p, idx) => {
+            const currentRating = getProductRating(order.id, p.name);
+            // generate stars
+            let starsHtml = '';
+            const isDelivered = order.status.toLowerCase() === 'delivered';
+            if (isDelivered) {
+              for (let i = 1; i <= 5; i++) {
+                const active = i <= currentRating ? 'active' : '';
+                starsHtml += `<i class="fas fa-star ${active}" data-star="${i}" data-product="${p.name}" data-orderid="${order.id}" style="cursor:pointer;"></i>`;
+              }
+              starsHtml += `<span class="rating-label">${currentRating > 0 ? currentRating + '★' : 'rate'}</span>`;
+            } else {
+              starsHtml = `<span style="color:#9aaebf; font-size:0.8rem;">—</span>`;
+            }
+
+            productsHtml += `
             <div class="product-item">
               <div class="product-img">${p.img || '📦'}</div>
               <div class="product-details">
@@ -629,14 +796,14 @@
               </div>
             </div>
           `;
-        });
-        productsHtml += `</div>`;
-      } else {
-        productsHtml = `<div style="color:#7b8da0; font-size:0.9rem; padding:0.3rem 0;"><i class="fas fa-box-open"></i> No products</div>`;
-      }
+          });
+          productsHtml += `</div>`;
+        } else {
+          productsHtml = `<div style="color:#7b8da0; font-size:0.9rem; padding:0.3rem 0;"><i class="fas fa-box-open"></i> No products</div>`;
+        }
 
-      // order details + product list
-      modalBody.innerHTML = `
+        // order details + product list
+        modalBody.innerHTML = `
         <div class="detail-row">
           <span class="detail-label"><i class="far fa-hashtag"></i> Order ID</span>
           <span class="detail-value">${order.id}</span>
@@ -661,95 +828,96 @@
         </div>
       `;
 
-      // ---- attach star click events (delegation) ----
-      if (order.status.toLowerCase() === 'delivered') {
-        const productItems = modalBody.querySelectorAll('.product-item');
-        productItems.forEach(item => {
-          const stars = item.querySelectorAll('.rating-stars i.fa-star');
-          const productName = item.querySelector('.product-name')?.textContent;
-          if (!productName) return;
-          stars.forEach(star => {
-            star.addEventListener('click', function(e) {
-              e.stopPropagation();
-              const rating = parseInt(this.dataset.star, 10);
-              const orderId = this.dataset.orderid;
-              const pName = this.dataset.product;
-              if (orderId && pName) {
-                setProductRating(orderId, pName, rating);
-                // re-render modal to reflect updated stars
-                populateModal(currentOrder);
-                // show small toast (optional)
-                toastEl.textContent = `⭐ Rated ${rating}★ for ${pName}`;
-                toastEl.style.display = 'block';
-                toastEl.classList.add('show');
-                toastEl.style.borderLeftColor = '#fbbf24';
-                toastEl.style.background = '#fffbeb';
-                toastEl.style.color = '#92400e';
-                setTimeout(() => {
-                  toastEl.classList.remove('show');
-                  toastEl.style.display = 'none';
-                }, 2000);
-              }
+        // ---- attach star click events (delegation) ----
+        if (order.status.toLowerCase() === 'delivered') {
+          const productItems = modalBody.querySelectorAll('.product-item');
+          productItems.forEach(item => {
+            const stars = item.querySelectorAll('.rating-stars i.fa-star');
+            const productName = item.querySelector('.product-name')?.textContent;
+            if (!productName) return;
+            stars.forEach(star => {
+              star.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const rating = parseInt(this.dataset.star, 10);
+                const orderId = this.dataset.orderid;
+                const pName = this.dataset.product;
+                if (orderId && pName) {
+                  setProductRating(orderId, pName, rating);
+                  // re-render modal to reflect updated stars
+                  populateModal(currentOrder);
+                  // show small toast (optional)
+                  toastEl.textContent = `⭐ Rated ${rating}★ for ${pName}`;
+                  toastEl.style.display = 'block';
+                  toastEl.classList.add('show');
+                  toastEl.style.borderLeftColor = '#fbbf24';
+                  toastEl.style.background = '#fffbeb';
+                  toastEl.style.color = '#92400e';
+                  setTimeout(() => {
+                    toastEl.classList.remove('show');
+                    toastEl.style.display = 'none';
+                  }, 2000);
+                }
+              });
             });
           });
-        });
+        }
       }
-    }
 
-    function closeModal() {
-      modalOverlay.classList.remove('active');
-      currentOrder = null;
-      toastEl.classList.remove('show');
-      toastEl.style.display = 'none';
-    }
+      function closeModal() {
+        modalOverlay.classList.remove('active');
+        currentOrder = null;
+        toastEl.classList.remove('show');
+        toastEl.style.display = 'none';
+      }
 
-    // ---------- CANCEL ----------
-    function handleCancelOrder() {
-      if (!currentOrder) return;
-      const status = currentOrder.status.toLowerCase();
-      const cancellable = ['pending', 'processing', 'shipped'];
-      if (!cancellable.includes(status)) {
-        toastEl.textContent = '⚠️ This order cannot be cancelled';
+      // ---------- CANCEL ----------
+      function handleCancelOrder() {
+        if (!currentOrder) return;
+        const status = currentOrder.status.toLowerCase();
+        const cancellable = ['pending', 'processing', 'shipped'];
+        if (!cancellable.includes(status)) {
+          toastEl.textContent = '⚠️ This order cannot be cancelled';
+          toastEl.style.display = 'block';
+          toastEl.classList.add('show');
+          toastEl.style.borderLeftColor = '#dc2626';
+          toastEl.style.background = '#fee2e2';
+          toastEl.style.color = '#991b1b';
+          return;
+        }
+
+        // update status
+        currentOrder.status = 'cancelled';
+        const idx = orders.findIndex(o => o.id === currentOrder.id);
+        if (idx !== -1) orders[idx].status = 'cancelled';
+
+        renderOrders();
+        populateModal(currentOrder);
+        cancelBtn.disabled = true;
+        cancelBtn.title = 'Order already cancelled';
+
+        toastEl.textContent = '✅ Order cancelled successfully';
         toastEl.style.display = 'block';
         toastEl.classList.add('show');
-        toastEl.style.borderLeftColor = '#dc2626';
-        toastEl.style.background = '#fee2e2';
-        toastEl.style.color = '#991b1b';
-        return;
+        toastEl.style.borderLeftColor = '#22a06b';
+        toastEl.style.background = '#e6f7e6';
+        toastEl.style.color = '#0b6e4f';
       }
 
-      // update status
-      currentOrder.status = 'cancelled';
-      const idx = orders.findIndex(o => o.id === currentOrder.id);
-      if (idx !== -1) orders[idx].status = 'cancelled';
+      // ---------- EVENTS ----------
+      modalCloseBtn.addEventListener('click', closeModal);
+      modalCloseBtn2.addEventListener('click', closeModal);
+      modalOverlay.addEventListener('click', function(e) {
+        if (e.target === modalOverlay) closeModal();
+      });
+      cancelBtn.addEventListener('click', handleCancelOrder);
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modalOverlay.classList.contains('active')) closeModal();
+      });
 
       renderOrders();
-      populateModal(currentOrder);
-      cancelBtn.disabled = true;
-      cancelBtn.title = 'Order already cancelled';
-
-      toastEl.textContent = '✅ Order cancelled successfully';
-      toastEl.style.display = 'block';
-      toastEl.classList.add('show');
-      toastEl.style.borderLeftColor = '#22a06b';
-      toastEl.style.background = '#e6f7e6';
-      toastEl.style.color = '#0b6e4f';
-    }
-
-    // ---------- EVENTS ----------
-    modalCloseBtn.addEventListener('click', closeModal);
-    modalCloseBtn2.addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', function(e) {
-      if (e.target === modalOverlay) closeModal();
-    });
-    cancelBtn.addEventListener('click', handleCancelOrder);
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && modalOverlay.classList.contains('active')) closeModal();
-    });
-
-    renderOrders();
-    toastEl.style.display = 'none';
-  })();
-</script>
+      toastEl.style.display = 'none';
+    })();
+  </script>
 </body>
+
 </html>

@@ -1,6 +1,7 @@
-<?=include_page("redirector")?>
+<?= include_page("redirector") ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
@@ -18,6 +19,7 @@
     .carbon-pattern {
       position: relative;
     }
+
     .carbon-pattern::before {
       content: "";
       position: fixed;
@@ -37,8 +39,9 @@
       border: 1px solid rgba(255, 140, 0, 0.35);
       border-radius: 2rem;
       transition: transform 0.25s ease, box-shadow 0.3s;
-      box-shadow: 0 25px 45px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255, 90, 0, 0.1) inset;
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 90, 0, 0.1) inset;
     }
+
     .autoparts-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 30px 55px -12px black;
@@ -54,6 +57,7 @@
       color: white;
       box-shadow: 0 4px 12px rgba(226, 88, 34, 0.3);
     }
+
     .btn-autoparts:hover {
       background: linear-gradient(95deg, #c9471a 0%, #e8622a 100%);
       transform: scale(1.01);
@@ -68,6 +72,7 @@
       padding: 0.75rem 1rem;
       transition: all 0.2s;
     }
+
     .form-control-autoparts:focus {
       background-color: #1e2f35;
       border-color: #ff7b2c;
@@ -75,6 +80,7 @@
       box-shadow: 0 0 0 3px rgba(255, 100, 0, 0.35);
       color: white;
     }
+
     .form-control-autoparts::placeholder {
       color: #8ea3aa;
       font-weight: 400;
@@ -109,7 +115,7 @@
 
     .brand-icon {
       font-size: 3.4rem;
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
     }
 
     .link-autoparts {
@@ -118,6 +124,7 @@
       font-weight: 500;
       transition: 0.2s;
     }
+
     .link-autoparts:hover {
       color: #ff7b2c;
       text-decoration: underline;
@@ -177,7 +184,7 @@
       margin-left: auto;
     }
 
-    .role-radio-item input[type="radio"]:checked + .role-label {
+    .role-radio-item input[type="radio"]:checked+.role-label {
       color: #ffb347;
     }
 
@@ -191,9 +198,11 @@
         border-radius: 1.5rem;
         margin: 0 1rem;
       }
+
       .brand-icon {
         font-size: 2.6rem;
       }
+
       .role-radio-item {
         padding: 0.4rem 0.75rem;
         font-size: 0.9rem;
@@ -201,8 +210,12 @@
     }
   </style>
 </head>
+
 <body class="carbon-pattern d-flex align-items-center">
-  <?=translation_icon("#wowid")?>
+
+  
+  <?= translation_icon("#wowid") ?>
+
   <div class="container py-5 my-auto">
     <div class="row justify-content-center align-items-center min-vh-100">
       <div class="col-lg-5 col-md-7 col-sm-10">
@@ -221,9 +234,9 @@
             <h2 class="display-6 fw-bold text-white mt-2">
               <span style="background: linear-gradient(120deg, #fff, #ffb347); background-clip: text; -webkit-background-clip: text; color: transparent;">KYG AUTOPARTS</span>
             </h2>
-            <p style="display: none;" class="text-light-emphasis text-white-50 mb-0"><?=t('Heavy‑Duty Performance Portal')?></p>
+            <p style="display: none;" class="text-light-emphasis text-white-50 mb-0"><?= t('Heavy‑Duty Performance Portal') ?></p>
             <div class="mech-line my-3"></div>
-            <p class="text-white-70 mt-2" style="color: #cfdfe3; display:none;"><?=t('Sign in to access inventory, orders & technical specs')?></p>
+            <p class="text-white-70 mt-2" style="color: #cfdfe3; display:none;"><?= t('Sign in to access inventory, orders & technical specs') ?></p>
           </div>
 
           <form id="loginForm">
@@ -255,14 +268,14 @@
             <!-- Email / Username field -->
             <div class="mb-4">
               <label for="loginEmail" class="form-label text-light fw-semibold small text-uppercase tracking-wide">
-                <i class="bi bi-envelope-paper-fill me-1"></i> <?=t('Email address')?>
+                <i class="bi bi-envelope-paper-fill me-1"></i> <?= t('Email address') ?>
               </label>
               <div class="input-group">
                 <span class="input-group-text input-group-text-custom border-end-0">
                   <i class="bi bi-person-badge"></i>
                 </span>
-                <input type="text" class="form-control form-control-autoparts" id="loginEmail" 
-                       placeholder="Enter email..." name="email" value="">
+                <input type="text" class="form-control form-control-autoparts" id="loginEmail"
+                  placeholder="Enter email..." name="email" value="">
               </div>
               <div class="text-danger errmsg" id="_email"></div>
             </div>
@@ -270,16 +283,16 @@
             <!-- Password field -->
             <div class="mb-4">
               <label for="loginPassword" class="form-label text-light fw-semibold small text-uppercase">
-                <i class="bi bi-shield-lock-fill me-1"></i> <?=t('Password')?>
+                <i class="bi bi-shield-lock-fill me-1"></i> <?= t('Password') ?>
               </label>
               <div class="input-group">
                 <span class="input-group-text input-group-text-custom border-end-0">
                   <i class="bi bi-key-fill"></i>
                 </span>
-                <input type="password" class="form-control form-control-autoparts" id="loginPassword" 
-                       placeholder="••••••••" value="" name="password">
-                <button class="btn btn-outline-secondary border-start-0" type="button" id="togglePasswordBtn" 
-                        style="background-color:#1b2c32; border-color:#3a525b; color:#ff9142; border-radius: 0 1rem 1rem 0;">
+                <input type="password" class="form-control form-control-autoparts" id="loginPassword"
+                  placeholder="••••••••" value="" name="password">
+                <button class="btn btn-outline-secondary border-start-0" type="button" id="togglePasswordBtn"
+                  style="background-color:#1b2c32; border-color:#3a525b; color:#ff9142; border-radius: 0 1rem 1rem 0;">
                   <i class="bi bi-eye-slash-fill" id="toggleIcon"></i>
                 </button>
               </div>
@@ -323,12 +336,12 @@
             </div>
           </form>
         </div>
-        
+
         <div class="text-center mt-4 text-white-50 small">
           <div>
             <i class="bi bi-wrench-adjustable-circle-fill"></i> Powering professional workshops & performance garages
           </div>
-          <span class="mx-2">⚙️</span> <span id="year"></span> MADE IN CODETAZER 
+          <span class="mx-2">⚙️</span> <span id="year"></span> MADE IN CODETAZER
         </div>
       </div>
     </div>
@@ -387,7 +400,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  
+
   <script>
     // Update hidden field when radio changes
     document.querySelectorAll('input[name="user_role"]').forEach(radio => {
@@ -395,9 +408,9 @@
         document.getElementById('loginRole').value = this.value;
       });
     });
-
   </script>
 
-  <?=js()?>
+  <?= js() ?>
 </body>
+
 </html>

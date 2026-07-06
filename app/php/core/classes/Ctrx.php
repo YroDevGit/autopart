@@ -394,10 +394,25 @@ class Ctrx
         }
     }
 
-    public static function page404($errorpage){
+    public static function page404($errorpage, $exit = true){
         $errorpage = append_php($errorpage);
         if(! defined("prev_page")) define("prev_page", prev_page());
         include "views/core/errors/" . $errorpage;
+        if($exit){
+            exit;
+        }
+    }
+
+    public static function systemMaintenance($variables = [], $page = "maintenance", $exit = true){
+        $errorpage = append_php($page);
+        if(! defined("prev_page")) define("prev_page", prev_page());
+        if($variables){
+            extract($variables);
+        }
+        include "views/core/main/" . $errorpage;
+        if($exit){
+            exit;
+        }
     }
 
     public static function get_prev_path_toSave()
