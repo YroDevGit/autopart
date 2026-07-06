@@ -38,7 +38,7 @@ Ctr.click("#userprofilelink", () => {
 
 profileModal.form_submit((data) => {
     Ctr.set_html(".error_text", '');
-    Tyrax.delete({
+    Tyrax.post({
         url: "user/update",
         data: data,
         res: (send, code, message, data, error) => {

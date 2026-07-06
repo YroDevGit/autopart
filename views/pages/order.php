@@ -207,9 +207,9 @@ Ctrql::activate("CRUDQ");
         <button class="btn btn-primary rounded-pill" type="button" id="startover">
           <i class="bi bi-arrow-repeat"></i>
         </button>
-        <button class="btn bg-white text-dark rounded-pill" type="button" id="">
+        <a href="/history"><button class="btn bg-white text-dark rounded-pill" type="button" id="">
         <i class="bi bi-clock-history"></i>
-        </button>
+        </button></a>
         <button class="btn btn-danger rounded-pill" type="button" id="exitButtonMain">
           <i class="bi bi-power"></i>
         </button>
