@@ -3,15 +3,13 @@ import CtrDATE from "../../code/src/mods/date.js";
 import { Twal } from "../../code/src/mods/twal.js";
 import { forRiderOrders } from "../classes/functions/constants.js";
 import { getAllOrders, getAllOrdersByRider, updateStatus } from "../classes/functions/orderModel.js";
-import { getRiderName } from "../classes/functions/users.js";
+
 
 document.querySelector("#statusFilterSelect").value = 2;
 
 let currentUser = localStorage.getItem("userid");
 
-let riderName = await getRiderName(localStorage.getItem("userid"));
 
-Ctr.set_html("#riderName", riderName);
 
 let ordersData = await getAllOrdersByRider(currentUser);
 let currentMap = null;

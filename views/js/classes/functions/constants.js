@@ -22,8 +22,9 @@ export function orderStatusName(statusId) {
     else if (statusId === 1) { statusClass = 'status-accepted'; statusText = "Accepted"; }
     else if (statusId === 2) { statusClass = 'status-out-for-delivery'; statusText = "Out for delivery"; }
     else if (statusId === 3) { statusClass = 'status-delivered'; statusText = "Delivered"; }
-    else if (statusId === 7) { statusClass = 'status-rejected'; statusText = "Rejected" }
+    else if (statusId === 7) { statusClass = 'status-rejected'; statusText = "Cancelled" }
     else if (statusId === 11) { statusClass = 'status-walkin'; statusText = "Walk-In" }
+    else{ statusClass = 'none'; statusText = "None"}
 
     return {statusText: statusText, statusClass: statusClass};
 }

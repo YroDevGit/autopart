@@ -54,8 +54,8 @@
           <i class="bi bi-database"></i> <span>Database</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a href="/ctrxtools/translations" class="nav-link-admin <?= current_page() == "/ctrxtools/translations" ? 'active' : '' ?> nav-link d-flex align-items-center">
+      <li class="nav-item" style="display: none;">
+        <a href="/ctrxtools/translations"  class="nav-link-admin <?= current_page() == "/ctrxtools/translations" ? 'active' : '' ?> nav-link d-flex align-items-center">
           <i class="bi bi-flag"></i> <span>Translations</span>
         </a>
       </li>

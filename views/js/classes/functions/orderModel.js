@@ -24,6 +24,23 @@ export async function getAllOrders(){
     return arr;
 }
 
+export async function getAllOrdersByCustomer(id){
+    Loading.load(true);
+    let result = await Tyrax.ctrsync({
+        action: "query",
+        query: `select t.id, t.transaction_code 'code', t.rider, t.subtotal, t.shipping 'shippingFee', t.total_price 'total', t.customer_id, c.contact, c.address, c.email,c.fulladdress, t.created_at 'date', t.status, c.fullname 'customerName', c.id 'customer_id' from ${table} t, ${customer_tbl()} c where c.id = t.customer_id and c.id = ${id} order by t.updated_at desc;`,
+        dataOnly: true
+    });
+    let arr = [];
+    for(let res in result){
+        let row = result[res];
+        row = {...row, products: await getOrderDetails(row.code)}
+        arr = [...arr,{...row}];
+    }
+    Loading.load(false);
+    return arr;
+}
+
 export async function getAllCustomers(){
     return await Tyrax.query({
         query: "SELECT c.id,c.fullname,c.contact,c.address,c.username,c.`password`,c.email,c.created_at,c.updated_at,c.`active`,c.fulladdress,(SELECT COUNT(*) FROM transaction t WHERE t.customer_id = c.id)'total_orders', (SELECT SUM(t.total_price) FROM transaction t WHERE t.customer_id = c.id)'total_spent' from customer c order by c.created_at desc",
@@ -36,6 +53,21 @@ export async function getAllOrdersByRider(riderId){
     let result = await Tyrax.ctrsync({
         action: "query",
         query: `select t.id, t.transaction_code 'code', t.rider, t.subtotal, t.shipping 'shippingFee',t.date_delivered, t.total_price 'total', t.customer_id, c.contact, c.address, c.email,c.fulladdress, t.created_at 'orderDate', t.status, c.fullname 'customerName', c.id 'customer_id' from ${table} t, ${customer_tbl()} c where c.id = t.customer_id and t.rider = ${riderId} order by t.updated_at desc;`,
+        dataOnly: true
+    });
+    let arr = [];
+    for(let res in result){
+        let row = result[res];
+        row = {...row, items: await getOrderDetails(row.code)}
+        arr = [...arr,{...row}];
+    }
+    return arr;
+}
+
+export async function getAllDeliveredByRider(riderId){
+    let result = await Tyrax.ctrsync({
+        action: "query",
+        query: `select t.id, t.transaction_code 'code', t.rider, t.subtotal, t.shipping 'shippingFee',t.date_delivered, t.total_price 'total', t.customer_id, c.contact, c.address, c.email,c.fulladdress, t.created_at 'orderDate', t.status, c.fullname 'customerName', c.id 'customer_id' from ${table} t, ${customer_tbl()} c where c.id = t.customer_id and t.rider = ${riderId} and (t.status = 7 or t.status = 3) order by t.updated_at desc;`,
         dataOnly: true
     });
     let arr = [];

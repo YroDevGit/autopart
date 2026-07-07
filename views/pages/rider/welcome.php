@@ -419,53 +419,12 @@ $fullname = $user['fullname'] ?? "USER";
 <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
 <!-- SIDEBAR (Rider Theme) -->
-<div class="sidebar-rider" id="sidebar">
-  <div class="pt-4 pb-2">
-    <div class="text-center mb-4">
-      <i class="bi bi-truck text-success fs-1"></i>
-      <h6 class="text-white mt-2">Rider Panel</h6>
-    </div>
-    <a href="#" class="sidebar-rider-link active">
-      <i class="bi bi-house-door-fill"></i> Dashboard
-    </a>
-    <a href="#" class="sidebar-rider-link">
-      <i class="bi bi-truck"></i> My Deliveries
-    </a>
-    <a href="#" class="sidebar-rider-link">
-      <i class="bi bi-clock-history"></i> Delivery History
-    </a>
-    <a href="#" class="sidebar-rider-link">
-      <i class="bi bi-gear-fill"></i> Settings
-    </a>
-  </div>
-</div>
+<?=include_page('rider/sidebar')?>
 
 <!-- MAIN CONTENT AREA -->
 <div class="main-content-wrapper" id="mainContentWrapper">
   <!-- Navbar Rider -->
-  <nav class="navbar navbar-rider navbar-dark py-3 sticky-top">
-    <div class="container-fluid px-4">
-      <div class="d-flex align-items-center gap-3">
-        <button class="menu-toggle" id="menuToggle">
-          <i class="bi bi-list"></i>
-        </button>
-        <a class="navbar-brand brand-text fs-4" href="#">
-          <i class="bi bi-truck me-2 text-success"></i><span class="text-success"><?= variable('appname') ?> | Rider</span>
-        </a>
-      </div>
-      <div class="mobile-nav-items">
-        <div class="text-white me-2 d-none d-sm-block">
-          <i class="bi bi-person-circle"></i> <span id="riderName">Michael Dela Cruz</span>
-        </div>
-        <button class="btn btn-outline-light rounded-pill" type="button" id="refreshOrdersBtn">
-          <i class="bi bi-arrow-repeat"></i> <span class="d-none d-md-inline">Refresh</span>
-        </button>
-        <button class="btn btn-danger rounded-pill" type="button" id="exitButtonMain">
-          <i class="bi bi-power"></i> <span class="d-none d-md-inline">Logout</span>
-        </button>
-      </div>
-    </div>
-  </nav>
+  <?=include_page('rider/nav')?>
 
   <!-- MAIN CONTENT -->
   <div class="content-inner">

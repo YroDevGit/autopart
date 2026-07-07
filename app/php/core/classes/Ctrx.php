@@ -288,16 +288,18 @@ class Ctrx
 
     public static function use_tool(string $file, $path)
     {
+        self::resetBackend();
         self::include_all_autoFiles();
         $_SESSION['basixs_current_fe_ctrx'] = $path;
         $prev = self::get_prev_path_toSave();
-        if(! defined("prev_page")) define("prev_page", prev_page());
+        if (! defined("prev_page")) define("prev_page", prev_page());
         include $file;
-        \Classes\Ctrx::ctrx_save_previous_pages($prev);
+        self::ctrx_save_previous_pages($prev);
         return true;
     }
 
-    public static function removeCharacter(string $character, int $index){
+    public static function removeCharacter(string $character, int $index)
+    {
         return substr($character, $index);
     }
 
@@ -344,6 +346,7 @@ class Ctrx
 
     public static function use_translate_tools(string|null $backpage = null, $exit = true)
     {
+        self::resetBackend();
         $backRoute = $backpage ?? previous_page();
         if ($backRoute) {;
             include "app/php/core/system/trnsltn.php";
@@ -355,6 +358,7 @@ class Ctrx
 
     public static function use_database_management(string|null $backpage = null, $exit = true)
     {
+        self::resetBackend();
         $backRoute = $backpage ?? previous_page();
         if ($backRoute) {
             include "app/php/core/system/dtbs.php";
@@ -373,9 +377,14 @@ class Ctrx
                 "backpage" => $backRoute
             ]);
         }
-        if(! defined("prev_page")) define("prev_page", prev_page());
+        if (! defined("prev_page")) define("prev_page", prev_page());
         include "views/core/errors/forbidden.php";
         if ($exit) exit;
+    }
+
+    public static function resetBackend()
+    {
+        unset($_SESSION['basixs_current_be_ctrx']);
     }
 
     public static function ctrx_prvPage($withParam = false)
@@ -394,23 +403,25 @@ class Ctrx
         }
     }
 
-    public static function page404($errorpage, $exit = true){
+    public static function page404($errorpage, $exit = true)
+    {
         $errorpage = append_php($errorpage);
-        if(! defined("prev_page")) define("prev_page", prev_page());
+        if (! defined("prev_page")) define("prev_page", prev_page());
         include "views/core/errors/" . $errorpage;
-        if($exit){
+        if ($exit) {
             exit;
         }
     }
 
-    public static function systemMaintenance($variables = [], $page = "maintenance", $exit = true){
+    public static function systemMaintenance($variables = [], $page = "maintenance", $exit = true)
+    {
         $errorpage = append_php($page);
-        if(! defined("prev_page")) define("prev_page", prev_page());
-        if($variables){
+        if (! defined("prev_page")) define("prev_page", prev_page());
+        if ($variables) {
             extract($variables);
         }
         include "views/core/main/" . $errorpage;
-        if($exit){
+        if ($exit) {
             exit;
         }
     }

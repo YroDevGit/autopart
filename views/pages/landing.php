@@ -31,7 +31,7 @@
       </ul>
       <div class="d-flex gap-2">
         <a href="/login" class="btn btn-outline-autoparts">Login</a>
-        <a href="/order" class="btn btn-autoparts-primary"><i class="bi bi-cart-fill"></i> Direct order</a>
+        <a href="/order" class="btn btn-autoparts-primary" style="display: none;"><i class="bi bi-cart-fill"></i> Direct order</a>
       </div>
     </div>
   </div>

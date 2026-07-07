@@ -12,8 +12,9 @@ import { addProducts, getProductLeft, getProducts } from "./classes/functions/pr
 
 let shippingDetails = [];
 let current_user = localStorage.getItem("userid");
+Loading.load(true);
 let cities = await getMunicipality(NegrosCode());
-
+Loading.load(false);
 Ctr.setOptions("#city",cities,{value: "code", label: "name", onChange: async(element)=>{
   let cityCode = element.value;
   showbrgys(cityCode);
