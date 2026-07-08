@@ -2,6 +2,7 @@
 // DYNAMIC YEAR GENERATION
 // ========================================
 
+import Currency from "../../code/src/mods/currency";
 import Notify from "../../code/src/mods/notify";
 import { Tyrax } from "../../code/src/tyrux/main";
 
@@ -774,10 +775,10 @@ async function updateStats(year) {
     const totalCustomers = await getTotalCustomers();
     const avgOrderValue = totalOrders > 0 ? totalRevenue / totalOrders : 0;
     
-    document.getElementById('totalRevenue').innerText = '₱' + totalRevenue.toFixed(2);
+    document.getElementById('totalRevenue').innerText = Currency.peso(totalRevenue);
     document.getElementById('totalOrders').innerText = totalOrders;
     document.getElementById('totalCustomers').innerText = totalCustomers;
-    document.getElementById('avgOrderValue').innerText = '₱' + avgOrderValue.toFixed(2);
+    document.getElementById('avgOrderValue').innerText = Currency.peso(avgOrderValue);
     
     // Calculate trends (compare with previous year)
     const prevYear = parseInt(year) - 1;
@@ -817,7 +818,7 @@ async function updateComparison(year1, year2) {
     const avg2 = orders2 > 0 ? revenue2 / orders2 : 0;
     const avgDiff = avg2 > 0 ? ((avg1 - avg2) / avg2 * 100) : 0;
     
-    document.getElementById('compareRevenue').innerText = '₱' + revenue1.toFixed(2);
+    document.getElementById('compareRevenue').innerText = Currency.peso(revenue1);
     document.getElementById('compareOrders').innerText = orders1;
     document.getElementById('compareAvg').innerText = '₱' + avg1.toFixed(2);
     

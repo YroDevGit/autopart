@@ -145,7 +145,6 @@
 
   <div class="main-content-wrapper" id="mainContentWrapper">
     <?= include_page('cashier/navbar', ["pagename" => "Customer Management"]) ?>
-    <button href="as">click me</button>
     <div class="content-inner">
       <!-- CUSTOMER MANAGEMENT CARD -->
       <div class="card admin-card border-0 shadow-sm">

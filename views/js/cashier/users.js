@@ -70,11 +70,8 @@ function renderUsers() {
     
     if (searchVal) {
         filtered = filtered.filter(user => 
-            user.first_name.toLowerCase().includes(searchVal) ||
-            user.last_name.toLowerCase().includes(searchVal) ||
-            user.email.toLowerCase().includes(searchVal) ||
-            user.username.toLowerCase().includes(searchVal) ||
-            user.role.toLowerCase().includes(searchVal)
+            user.fullname.toLowerCase().includes(searchVal) ||
+            user.username.toLowerCase().includes(searchVal)
         );
     }
     
@@ -143,7 +140,7 @@ function renderUsers() {
                     </div>
                 </div>
                 <div class="user-card-footer">
-                    <button class="btn btn-sm btn-outline-primary edit-user-btn" disabled data-id="${user.id}">
+                    <button class="btn btn-sm btn-outline-primary edit-user-btn" style='display:none;' disabled data-id="${user.id}">
                         <i class="bi bi-pencil"></i> Edit
                     </button>
                     ${actbtn}

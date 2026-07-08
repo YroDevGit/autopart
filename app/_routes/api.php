@@ -12,7 +12,8 @@ Router::group(
 Router::group(
     ["post" => "transaction/getupdate"],
     ["get" => "user/add"],
-    ["post" => "user/update"]
+    ["post" => "user/update"],
+    ["post" => "transaction/getrevenue"]
 )->run(function(){
     if(! Ctrx::has_user_data()){
         Response::code(unauthorized_code)->message("User not authorized")->send(unauthorized_code);

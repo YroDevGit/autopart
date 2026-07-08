@@ -297,7 +297,7 @@
     </div>
 
     <!-- Insight Row -->
-    <div class="row g-3 mb-4">
+    <div class="row g-3 mb-4" style="display: none;">
       <div class="col-md-4">
         <div class="insight-box d-flex align-items-center">
           <div class="insight-icon me-3"><i class="bi bi-lightbulb"></i></div>
