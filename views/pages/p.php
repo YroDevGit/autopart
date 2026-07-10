@@ -1,8 +1,13 @@
 <?php
 
-echo "1";
-exec('cmd /c start "" /B php ctrx run:cron');
+use Tables\User;
 
-echo "2";
+$res = User::fuzzy(["fullname"=>"tyrone emz"]);
+print_r($res);exit;
+//echo $distance = levenshtein($query, $name);
 
-levenshtein
+$distance = levenshtein("trone emz", "tyrone lee emz");
+echo $distance;
+exit;
+
+echo json_encode($res);exit;
