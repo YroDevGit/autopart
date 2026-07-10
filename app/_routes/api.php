@@ -6,7 +6,8 @@ use Classes\Router;
 
 Router::group(
     ["post"=>"user/login"],
-    ["post" => "transaction/add"]
+    ["post" => "transaction/add"],
+    ["post" => "cron/notify"]
 );
 
 Router::group(

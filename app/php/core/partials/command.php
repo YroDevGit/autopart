@@ -1,5 +1,6 @@
 <?php
 
+use Classes\Ctrx;
 
 if (PHP_SAPI !== 'cli') {
     echo "This script should only be run from the command line.";
@@ -638,6 +639,33 @@ else if($route == "author"){
     $tyroneEmzname = "Tyrone Limen Malocon 2025";
     echo "\033[32m$tyroneEmzname\033[0m\n";
     exit;
+}
+else if($route == "run:cron"){
+    require_once 'vendor/autoload.php';
+    include_once "app/php/core/partials/envloader.php"; 
+    $dbname = env("database");
+    if (!$dbname) {
+        echo "❌ No Database found @ .env\n\n";
+    }
+    include_once "app/php/core/partials/be.php";
+    include_once "app/php/core/partials/backend.php";
+    date_default_timezone_set(env('time_zone'));
+    $Past = \Classes\Ctrx::getPastDueCronJobs();
+    foreach($Past as $k=>$v){
+        $api = $v['file_path'] ?? null;
+        $id = $v['id'] ?? null;
+        $pass =$v['cron_pass'] ?? null;
+
+        if(! $api | ! $id | ! $pass) continue;
+
+        $result = $result = \Classes\Ctrx::selfCurl("api/".$api, ['apikey'=>$pass]);
+        if(isset($result['code']) && $result['code'] == success_code){
+            $res = \Classes\Ctrx::selfCurl("cron?runNow=true&runId=$id");
+            echo $result;
+        }else{
+            echo $result;
+        }
+    }
 }
 else if ($route == "download:table") {
     include "app/php/core/partials/envloader.php";
