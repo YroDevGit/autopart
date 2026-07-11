@@ -6,9 +6,10 @@ use Classes\Router;
 
 Router::group(
     ["post"=>"user/login"],
-    ["post" => "transaction/add"],
-    ["post" => "cron/notify"]
-);
+    ["post" => "transaction/add"]
+)->run(function(){
+    Ctrx::throttle(4);
+});
 
 Router::group(
     ["post" => "transaction/getupdate"],
