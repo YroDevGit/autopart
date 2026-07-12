@@ -6,6 +6,8 @@ class Role extends BaseTable {
     
     protected $table = "role";
 
+    protected $primaryKey = "id";
+
     protected $fillable = [];
 
     protected $guarded = [];

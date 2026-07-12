@@ -70,21 +70,22 @@ try {
         "customer_id" => $id
     ]);
 
+    $cartData = [];
     foreach ($cart as $k => $v) {
         $row = $cart[$k];
         $qty = $row['quantity'];
         $prod_id = $row['id'];
         $price = $row['price'];
-
-        $tr_dt_id = Transaction_details::insert([
+        $cartData[] = [
             "product_id" => $prod_id,
             "customer_id" => $id,
             "quantity" => $qty,
             "price" => $price,
             "total_price" => $price * $qty,
             "transaction_code" => $code
-        ]);
+        ];
     }
+    $tr_dt_id = Transaction_details::insertMany($cartData);
     $url = rootpath."/login";
     $appname = variable("appname");
     Mail::send_email($email, "$appname Order processed", "Your order in $appname has been processed, to track you order you can login to $url<br>");

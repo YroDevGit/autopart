@@ -6,12 +6,14 @@ class Customer extends BaseTable {
     
     protected $table = "customer";
 
+    protected $primaryKey = "id";
+
     protected $fillable = [];
 
     protected $guarded = [];
 
     protected $hidden = [];
 
-    protected $timestamps = true;
+    protected $timestamps = false;
 }
 ?>

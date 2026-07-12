@@ -6,6 +6,8 @@ class Inventory extends BaseTable {
     
     protected $table = "inventory";
 
+    protected $primaryKey = "id";
+
     protected $fillable = [];
 
     protected $guarded = [];

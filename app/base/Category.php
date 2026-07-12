@@ -6,6 +6,8 @@ class Category extends BaseTable {
     
     protected $table = "category";
 
+    protected $primaryKey = "id";
+
     protected $fillable = [];
 
     protected $guarded = [];

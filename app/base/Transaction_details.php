@@ -6,12 +6,14 @@ class Transaction_details extends BaseTable {
     
     protected $table = "transaction_details";
 
+    protected $primaryKey = "id";
+
     protected $fillable = [];
 
     protected $guarded = [];
 
     protected $hidden = [];
 
-    protected $timestamps = true;
+    protected $timestamps = false;
 }
 ?>

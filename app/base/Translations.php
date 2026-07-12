@@ -6,6 +6,8 @@ class Translations extends BaseTable {
     
     protected $table = "translations";
 
+    protected $primaryKey = "id";
+
     protected $fillable = [];
 
     protected $guarded = [];

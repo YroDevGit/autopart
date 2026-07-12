@@ -6,6 +6,8 @@ class Address extends BaseTable {
     
     protected $table = "address";
 
+    protected $primaryKey = "id";
+
     protected $fillable = [];
 
     protected $guarded = [];

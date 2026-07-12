@@ -6,6 +6,8 @@ class Configs extends BaseTable {
     
     protected $table = "configs";
 
+    protected $primaryKey = "id";
+
     protected $fillable = [];
 
     protected $guarded = [];

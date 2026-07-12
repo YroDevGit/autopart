@@ -2,9 +2,9 @@
 namespace Tables;
 use Classes\BaseTable;
 
-class Verification extends BaseTable {
+class Ctrx_cron extends BaseTable {
     
-    protected $table = "verification";
+    protected $table = "ctrx_cron";
 
     protected $primaryKey = "id";
 

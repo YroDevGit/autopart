@@ -6,6 +6,8 @@ class Supplier extends BaseTable {
     
     protected $table = "supplier";
 
+    protected $primaryKey = "id";
+
     protected $fillable = [];
 
     protected $guarded = [];
