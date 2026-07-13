@@ -7,7 +7,7 @@ use Classes\Router;
 Router::group(
     ["post"=>"user/login"],
     ["post" => "transaction/add"],
-    ["get"=> "customer/Add"]
+    ["get"=> "customer/add"]
 )->run(function(){
     Ctrx::throttle(40);
 });
