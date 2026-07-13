@@ -1,3 +1,6 @@
+import Ctr from "../../code/src/mods/ctr";
+import Currency from "../../code/src/mods/currency";
+import CtrDATE from "../../code/src/mods/date";
 import { getAllCustomers } from "../classes/functions/orderModel";
 
     let customersData = await getAllCustomers();
@@ -114,12 +117,12 @@ import { getAllCustomers } from "../classes/functions/orderModel";
                         </div>
                         <div class="col-6">
                             <small class="text-muted"><i class="bi bi-cash"></i> Total Spent</small>
-                            <p class="mb-0 small fw-bold text-success">₱${(customer.total_spent || 0).toFixed(2)}</p>
+                            <p class="mb-0 small fw-bold text-success">${Currency.peso(customer.total_spent, "0")}</p>
                         </div>
                     </div>
                     <div class="mt-2">
                         <small class="text-muted"><i class="bi bi-calendar-plus"></i> Member Since</small>
-                        <p class="mb-0 small">${formatDate(customer.created_at)}</p>
+                        <p class="mb-0 small">${CtrDATE.get_name(customer.created_at,"F d, Y h:i a")}</p>
                     </div>
                 </div>
                 <div class="customer-card-footer">

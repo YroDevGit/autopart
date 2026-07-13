@@ -135,7 +135,7 @@
 <?=include_page("cashier/sidebar")?>
 
 <div class="main-content-wrapper" id="mainContentWrapper">
-  <?=include_page('cashier/navbar', ["pagename"=>"User Management"])?>
+  <?=include_page('cashier/navbar', ["pagename"=>"User Management", "icon"=>"bi-people"])?>
 
   <div class="content-inner">
     <!-- USER MANAGEMENT CARD -->

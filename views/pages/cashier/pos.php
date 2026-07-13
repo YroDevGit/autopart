@@ -91,7 +91,7 @@
 <?=include_page("cashier/sidebar")?>
 
 <div class="main-content-wrapper" id="mainContentWrapper">
-  <?=include_page('cashier/navbar', ["pagename"=>"Point of Sale"])?>
+  <?=include_page('cashier/navbar', ["pagename"=>"Point of Sale", "icon"=>"bi-laptop"])?>
 
   <div class="content-inner">
     <!-- POS SYSTEM -->

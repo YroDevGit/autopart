@@ -144,7 +144,7 @@
   <?= include_page("cashier/sidebar") ?>
 
   <div class="main-content-wrapper" id="mainContentWrapper">
-    <?= include_page('cashier/navbar', ["pagename" => "Customer Management"]) ?>
+    <?= include_page('cashier/navbar', ["pagename" => "Customer Management", "icon"=>"bi-people"]) ?>
     <div class="content-inner">
       <!-- CUSTOMER MANAGEMENT CARD -->
       <div class="card admin-card border-0 shadow-sm">
@@ -218,8 +218,8 @@
 
   <!-- ADD CUSTOMER MODAL -->
   <div class="modal fade" id="addCustomerModal" tabindex="-1" aria-labelledby="addCustomerModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content border-0 rounded-4 shadow-lg">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content border-0 rounded-4 shadow-xl">
         <div class="modal-header bg-dark text-white rounded-top-4 border-0">
           <h5 class="modal-title fw-bold" id="addCustomerModalLabel">
             <i class="bi bi-person-plus-fill me-2 text-warning"></i> Add New Customer
@@ -302,8 +302,8 @@
 
   <!-- VIEW CUSTOMER DETAILS MODAL -->
   <div class="modal fade" id="viewCustomerModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content border-0 rounded-4 shadow-lg">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content border-0 rounded-4 shadow-xl">
         <div class="modal-header bg-dark text-white rounded-top-4 border-0">
           <h5 class="modal-title fw-bold"><i class="bi bi-person-badge me-2 text-warning"></i> Customer Details</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>

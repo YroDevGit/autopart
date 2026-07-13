@@ -14,6 +14,77 @@ let userDetails = await getUserDetails(id);
 
 let fullname = userDetails.fullname ?? "Unknown"
 
+const menuToggle = document.getElementById('menuToggleBtn');
+const sidebar = document.getElementById('adminSidebar');
+const backdrop = document.getElementById('sidebarBackdrop');
+const mainContent = document.getElementById('mainContentWrapper');
+
+// Toggle sidebar on hamburger click
+if (menuToggle && sidebar) {
+    menuToggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        sidebar.classList.toggle('show');
+
+        if (backdrop) {
+            backdrop.classList.toggle('show');
+        }
+
+        if (mainContent) {
+            mainContent.classList.toggle('sidebar-open');
+        }
+
+        // Change icon
+        const icon = this.querySelector('i');
+        if (icon) {
+            if (sidebar.classList.contains('show')) {
+                icon.className = 'bi bi-x-lg fs-4';
+            } else {
+                icon.className = 'bi bi-list fs-4';
+            }
+        }
+
+        // Prevent body scroll when sidebar is open
+        document.body.style.overflow = sidebar.classList.contains('show') ? 'hidden' : '';
+    });
+}
+
+// Close sidebar when clicking backdrop
+if (backdrop) {
+    backdrop.addEventListener('click', function () {
+        if (sidebar) {
+            sidebar.classList.remove('show');
+        }
+        this.classList.remove('show');
+
+        if (mainContent) {
+            mainContent.classList.remove('sidebar-open');
+        }
+
+        // Reset hamburger icon
+        const icon = menuToggle?.querySelector('i');
+        if (icon) {
+            icon.className = 'bi bi-list fs-4';
+        }
+
+        document.body.style.overflow = '';
+    });
+}
+
+// Close sidebar when pressing Escape key
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && sidebar?.classList.contains('show')) {
+        sidebar.classList.remove('show');
+        if (backdrop) backdrop.classList.remove('show');
+        if (mainContent) mainContent.classList.remove('sidebar-open');
+
+        const icon = menuToggle?.querySelector('i');
+        if (icon) {
+            icon.className = 'bi bi-list fs-4';
+        }
+        document.body.style.overflow = '';
+    }
+});
+
 let profileModal = TModal.init({
     title: "User Profile",
     form_id: "userprofileid",
@@ -93,7 +164,7 @@ async function saveNotif() {
 }
 
 async function checker(auto = 1) {
-    if(notip.className == "dropdown-menu dropdown-menu-end shadow-lg show"){
+    if (notip.className == "dropdown-menu dropdown-menu-end shadow-lg show") {
         return;
     }
     let getOne = localStorage.getItem("ordersRecord");
@@ -103,15 +174,15 @@ async function checker(auto = 1) {
     let res = compare(await getOrderIds(), getOne);
     let sz = res.length;
     document.querySelector("#notificationCount").innerHTML = sz;
-    if(sz>0){
+    if (sz > 0) {
         notificationReceived = false;
     }
 
-    if(notificationReceived == false && kaisa == 0 && auto ==0){
+    if (notificationReceived == false && kaisa == 0 && auto == 0) {
         Notify.fire({
             text: "New order received",
             icon: "order.png",
-            click: ()=>{
+            click: () => {
                 document.querySelector("#notificationBell").click();
             }
         });
@@ -168,7 +239,7 @@ checker();
 
 setInterval(function () {
     checker(0);
-},8000);
+}, 8000);
 
 const notificationBell = document.getElementById('notificationBell');
 const notificationCount = document.getElementById('notificationCount');

@@ -238,7 +238,7 @@
 <?=include_page("cashier/sidebar")?>
 
 <div class="main-content-wrapper" id="mainContentWrapper">
-  <?=include_page('cashier/navbar', ["pagename"=>"Orders"])?>
+  <?=include_page('cashier/navbar', ["pagename"=>"Orders", "icon"=>"bi-truck"])?>
 
   <div class="content-inner">
     <div class="card admin-card border-0 shadow-sm">

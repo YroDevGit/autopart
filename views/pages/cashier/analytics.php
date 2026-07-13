@@ -225,7 +225,7 @@
 <?=include_page("cashier/sidebar")?>
 
 <div class="main-content-wrapper" id="mainContentWrapper">
-  <?=include_page('cashier/navbar', ["pagename"=>"Analytics"])?>
+  <?=include_page('cashier/navbar', ["pagename"=>"Analytics", "icon"=>"bi-bar-chart-steps"])?>
 
   <div class="content-inner">
     <!-- Welcome Banner -->
