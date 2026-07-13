@@ -157,7 +157,7 @@ if ($action == "model") {
     $method = $exp[1] ?? "";
     $function = ucfirst($function);
     $file = "_backend/model/$function.php";
-    if (! file_exists($file)) Response::code(badrequest_code)->message("ctrql: model '$function' not found.!")->send(badrequest_code);
+    if (! \Classes\Ctrx::file_exists_strict($file)) Response::code(badrequest_code)->message("ctrql: model '$function' not found.!")->send(badrequest_code);
     include_once $file;
     $class = "Models\\$function";
     if (! class_exists($class)) Response::code(badrequest_code)->message("ctrql: model class '$class' not found.!")->send(badrequest_code);

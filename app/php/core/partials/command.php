@@ -1,5 +1,5 @@
 <?php
-
+require_once 'vendor/autoload.php';
 use Classes\Ctrx;
 
 if (PHP_SAPI !== 'cli') {
@@ -77,7 +77,7 @@ if ($route == "run" || $route == "server") {
     $portExp = explode(":", $runner);
     $h = $portExp[0];
     $p = $portExp[1];
-    if (file_exists("exec.php")) {
+    if (\Classes\Ctrx::file_exists_strict("exec.php")) {
         include "exec.php";
     }
 
@@ -161,7 +161,7 @@ if ($route == "run" || $route == "server") {
     ?>
     EOT;
 
-    if (file_exists($phpFile)) {
+    if (\Classes\Ctrx::file_exists_strict($phpFile)) {
         echo "❌ File already exists. Please choose a different name.\n";
         exit(1);
     } else {
@@ -242,7 +242,7 @@ else if ($route == "+controller" || $route == "+ctrl" || $route == "+c") {
     
     EOT;
 
-        if (file_exists($phpFile)) {
+        if (\Classes\Ctrx::file_exists_strict($phpFile)) {
             echo "✔️ Controller file [$filename] already created @ $phpFile.\n\n";
         } else {
             $directory = dirname($phpFile);
@@ -294,7 +294,7 @@ else if ($route == "+controller" || $route == "+ctrl" || $route == "+c") {
         @mkdir($dirName, 0777, true);
     }
     $newFile = $jsFolder.$js;
-    if(file_exists($newFile)){
+    if(\Classes\Ctrx::file_exists_strict($newFile)){
         echo "\n❌ File already exist: $newFile\n\n";
         exit;
     }
@@ -338,7 +338,7 @@ else if ($route == "+controller" || $route == "+ctrl" || $route == "+c") {
     }
     EOT;
 
-    if (file_exists($phpFile)) {
+    if (\Classes\Ctrx::file_exists_strict($phpFile)) {
         echo "❌ File already exists. Please choose a different name.\n";
         exit(1);
     } else {
@@ -381,7 +381,7 @@ if ($route == "update") {
     if ($filename == "classes") {
         function deleteFolder($dir)
         {
-            if (!file_exists($dir)) return true;
+            if (!\Classes\Ctrx::file_exists_strict($dir)) return true;
             if (!is_dir($dir)) return unlink($dir);
 
             foreach (scandir($dir) as $item) {
@@ -528,7 +528,7 @@ if ($route == "update") {
     try {
         $fl = "env.json";
         $fullpath = $dir . $fl;
-        if (file_exists($fullpath)) {
+        if (\Classes\Ctrx::file_exists_strict($fullpath)) {
             unlink($fullpath);
         }
         $content = <<<EOT
@@ -590,7 +590,7 @@ if ($route == "update") {
 
     $phpFile = "test/" . $phpFile;
 
-    if (file_exists($phpFile)) {
+    if (\Classes\Ctrx::file_exists_strict($phpFile)) {
         echo "❌ File already exists. Please choose a different name.\n\n";
         exit(1);
     } else {
@@ -619,7 +619,7 @@ if ($route == "update") {
 
     EOT;
 
-    if (file_exists($phpFile)) {
+    if (\Classes\Ctrx::file_exists_strict($phpFile)) {
         echo "❌ File already exists. Please choose a different name.\n";
         exit(1);
     } else {
@@ -702,7 +702,7 @@ else if ($route == "download:table") {
 
     $filename = $table . "_ctrx.json";
 
-    if (file_exists($filename)) {
+    if (\Classes\Ctrx::file_exists_strict($filename)) {
         if (!unlink($filename)) {
             echo "❌ Failed to delete existing file: {$filename}\n";
             exit(1);
@@ -731,7 +731,7 @@ else if ($route == "download:table") {
         exit(1);
     }
 
-    if (! file_exists("app/php/db/" . $filename . ".php")) {
+    if (! \Classes\Ctrx::file_exists_strict("app/php/db/" . $filename . ".php")) {
         echo "❌ Invalid migration name\n";
         exit;
     }
@@ -833,7 +833,7 @@ else if ($route == "download:table") {
 
     $phpFile = "app/library/" . $phpFile;
 
-    if (file_exists($phpFile)) {
+    if (\Classes\Ctrx::file_exists_strict($phpFile)) {
         echo "❌ File already exists. Please choose a different name.\n\n";
         exit(1);
     } else {

@@ -53,7 +53,7 @@ class Page
     {
         foreach ($middleware as $k => $v) {
             $file = append_php($v);
-            if (! file_exists("views/app/middleware/$file")) {
+            if (! \Classes\Ctrx::file_exists_strict("views/app/middleware/$file")) {
                 throw new Exception("Client: Middleware '$file' not found.!");
             }
         }
@@ -113,7 +113,7 @@ class Page
     private static function checkRoutes(string $route)
     {
         $route = append_php($route);
-        if (! file_exists("views/pages/" . $route)) {
+        if (! \Classes\Ctrx::file_exists_strict("views/pages/" . $route)) {
             throw new Exception("Client: Page '$route' not a found or not a file.!");
         }
     }

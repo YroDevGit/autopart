@@ -17,7 +17,7 @@ class Mail
         $email_template = $template;
         $email_template = substr($email_template, -4) == ".php" ? $email_template : $email_template . ".php";
         $template = "app/php/templates/" . $email_template;
-        if (file_exists($template)) {
+        if (\Classes\Ctrx::file_exists_strict($template)) {
             if (!empty($content)) {
                 extract($content);
             }

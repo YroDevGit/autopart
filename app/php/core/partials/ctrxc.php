@@ -181,7 +181,7 @@ function ctrx_log(string $message, string $parent, string $id = null, string $fi
 
     $logEntry = "\$log['$time'][$id] = " . var_export($message, true) . ";\n";
 
-    if (!file_exists($filePath)) {
+    if (!\Classes\Ctrx::file_exists_strict($filePath)) {
         $content = $protection . $logEntry;
         file_put_contents($filePath, $content, LOCK_EX);
     } else {

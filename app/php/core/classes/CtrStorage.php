@@ -123,7 +123,7 @@ class CtrStorage
                 $file = $v["file"] ?? null;
                 if(! $file) continue;
 
-                if(file_exists($file)){
+                if(\Classes\Ctrx::file_exists_strict($file)){
                     unlink($file);
                 }
             }

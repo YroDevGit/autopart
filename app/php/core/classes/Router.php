@@ -91,8 +91,8 @@ class Router
     private static function checkRoutes(string $route)
     {
         $route = append_php($route);
-        if (! file_exists("app/_controller/" . $route)) {
-            throw new Exception("Controller $route not found.!");
+        if (! \Classes\Ctrx::file_exists_strict("app/_controller/" . $route)) {
+            throw new Exception("(Routes): Controller $route not found.!");
         }
     }
 
@@ -105,7 +105,7 @@ class Router
     {
         foreach ($middleware as $k => $v) {
             $file = append_php($v);
-            if (! file_exists("app/middleware/$file")) {
+            if (! \Classes\Ctrx::file_exists_strict("app/middleware/$file")) {
                 throw new Error("middleware '$v' not found.!");
             }
         }
