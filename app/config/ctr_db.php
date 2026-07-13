@@ -7,7 +7,7 @@ use Classes\Ctrx;
 use Classes\Ccookie;
 use Tables\User;
 
-Ctrx::use_database_management();
+//aCtrx::use_database_management();
 
 $id = Ctrx::get_user_data("id");
 

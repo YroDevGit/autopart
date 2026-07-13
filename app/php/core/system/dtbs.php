@@ -1,6 +1,16 @@
 <?php
 include_once "app/php/core/partials/envloader.php";
 
+/**
+ * This is CTR-X database management page
+ * Where you can manage your entire database
+ * Made by CodeYro
+ * Modified date: July 1 2026
+ * 
+ * Added Import SQL feature (file upload + paste query)
+ * Updated Export to use INSERT IGNORE to skip errors on duplicate keys
+ */
+
 $dbname = env("database");
 if (!$dbname) {
     die("❌ No Database found @ .env");
@@ -13,7 +23,7 @@ define('DB_CHARSET', env('dbcharset'));
 $port = env('dbport') ?? "3306";
 $driver = env("dbdriver") == null ? "mysql" : env("dbdriver");
 
-function getDBConnection($driver, $host, $port, $dbname,$charSet) 
+function getDBConnection($driver, $host, $port, $dbname, $charSet)
 {
     try {
         $dsn = "$driver:host=$host;port=$port;dbname=$dbname;charset=$charSet;";
@@ -435,6 +445,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
             case 'insertRow':
                 $data = [];
                 $skipColumns = isset($_POST['skip_columns']) ? json_decode($_POST['skip_columns'], true) : [];
+                $skipColumns = $skipColumns ?? [];
                 foreach ($_POST as $key => $value) {
                     if (strpos($key, 'col_') === 0) {
                         $colName = substr($key, 4);
@@ -447,7 +458,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
                 break;
             case 'updateRow':
                 $data = [];
-                $skipColumns = isset($_POST['skip_columns']) ? json_decode($_POST['skip_columns'], true) : [];
+                $skipColumns = isset($_POST['skip_columns']) ? json_decode($_POST['skip_columns'] ?? [], true) : [];
+                $skipColumns = $skipColumns ?? [];
                 foreach ($_POST as $key => $value) {
                     if (strpos($key, 'col_') === 0) {
                         $colName = substr($key, 4);
@@ -2306,7 +2318,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
 
             if (!dataToShow.length) {
                 container.innerHTML =
-                `<div class="text-center text-muted py-3">${filteredData.length ? 'No matching rows found' : 'No rows found'}</div>`;
+                    `<div class="text-center text-muted py-3">${filteredData.length ? 'No matching rows found' : 'No rows found'}</div>`;
                 return;
             }
 
