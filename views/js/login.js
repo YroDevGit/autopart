@@ -133,6 +133,7 @@ import { Tyrax } from "../code/src/tyrux/main.js";
             //Ctr.log(formData);return;
             Tyrax.findOne({
                 table: "customer",
+                loading: {id: "#loginForm", size: 35}, 
                 where: {username: formData.email, password: formData.password},
                 res: (send, code, message,data)=>{
                     if(code == 200){
@@ -153,6 +154,7 @@ import { Tyrax } from "../code/src/tyrux/main.js";
         Tyrax.post({
             url: "user/login",
             request: data,
+            loading: {id: "#loginForm", size: 35},
             response: (send)=>{
                 if(send.code == 402){
                     Twal.err(send.message);

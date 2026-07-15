@@ -12,7 +12,6 @@ use Tables\User;
 
 $email = Validator::post("email")->required()->label("Email")->email()->exec();
 $password = Validator::post("password")->required()->exec();
-
 if(Validator::failed()){
     $errors = Validator::errors();
     Response::code(402)->message("Validation failed")->errors($errors)->send();
