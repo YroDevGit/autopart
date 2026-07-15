@@ -86,10 +86,10 @@ document.addEventListener('keydown', function (e) {
 });
 
 let profileModal = TModal.init({
-    title: "User Profile",
+    title: "<i>User Profile</i>",
     form_id: "userprofileid",
     form: {
-        fullname: { label: "Full name", type: "text", value: fullname },
+        fullname: { label: "Full name", type: "text", value: fullname},
         password: { label: "New Password", type: "password" },
         rpassword: { label: "Re-Enter password", type: "password" }
     }
@@ -112,18 +112,15 @@ profileModal.form_submit((data) => {
     Tyrax.post({
         url: "user/update",
         data: data,
-        res: (send, code, message, data, error) => {
+        res: (send, code, message, data, errors) => {
             if (code == 402) {
                 Toast.err("Validation failed");
-                let errors = send.errors;
-                for (let er in errors) {
-                    let msg = errors[er];
-                    Ctr.errStrSet(er, msg);
-                }
+                profileModal.displayErrors(errors);
             }
             if (code == 401) {
                 console.log(message);
                 Twal.err(message);
+                profileModal.displayErrors(errors);
             }
             if (code == 200) {
                 Twal.ok("User profile updated", true);

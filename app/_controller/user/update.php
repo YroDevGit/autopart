@@ -11,13 +11,13 @@ use Tables\User;
 
 $id = Ctrx::get_user_data("id");
 
-$fullname = Validator::post("fullname")->required()->exec();
-$password = Validator::post("password")->required()->minChars(8)->exec();
+$fullname = Validator::post("fullname")->required(":? should not be empty")->label("Full name")->maxChars(50)->alpha()->exec();
+$password = Validator::post("password")->required()->label("Password")->minChars(8)->exec();
 $rpassword = Validator::post("rpassword")->required()->label("Re-enter password")->exec();
 
 if(! $password && ! $rpassword){
-    if(! $fullname){
-        Response::code(401)->message("Fullname should not be empty")->send();
+    if($errors = Validator::errors(true, "fullname")){
+        Response::code(401)->message(Validator::post_error("fullname"))->errors($errors)->send();
     }
     $where = ["id"=> $id];
     $set = ["fullname" => $fullname];
