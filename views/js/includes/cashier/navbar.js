@@ -111,6 +111,7 @@ profileModal.form_submit((data) => {
     Ctr.set_html(".error_text", '');
     Tyrax.post({
         url: "user/update",
+        loading: {id: profileModal.form_id},
         data: data,
         res: (send, code, message, data, errors) => {
             if (code == 402) {
