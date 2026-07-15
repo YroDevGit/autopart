@@ -45,7 +45,7 @@ document.querySelector("#searchButton").addEventListener("click", async () => {
 });
 
 async function productList() {
-  Ctr.set_loading(true,"#product-container");
+  Ctr.set_loading(true,"#product-container", 40);
   let prods = await getProducts(srch.value);
   let pr = [];
 
@@ -54,7 +54,7 @@ async function productList() {
     row['stock'] = await getStocks(row.id);
     pr[p] = row;
   }
-  Ctr.set_loading(true,"#product-container");
+  Ctr.set_loading(false,"#product-container");
   return pr;
 }
 let nextId = 6;
