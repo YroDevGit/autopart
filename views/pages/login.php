@@ -247,8 +247,8 @@
                 <label class="role-radio-item flex-grow-1" style="min-width: 100px;">
                   <input type="radio" name="user_role" value="admin_rider" id="roleAdminRider" checked>
                   <span class="role-icon"><i class="bi bi-shield-check"></i></span>
-                  <span class="role-label">Admin/Rider/Cashier</span>
-                  <span class="role-badge">Staff</span>
+                  <span class="role-label">Moderators</span>
+                  <span class="role-badge">Staff/Admin</span>
                 </label>
 
                 <!-- Customer Radio -->
@@ -277,9 +277,8 @@
                 <input type="text" class="form-control form-control-autoparts" id="loginEmail"
                   placeholder="Enter email..." name="email" value="">
               </div>
-              <div class="text-danger errmsg" id="_email"></div>
+              <?=error_text("email")?>
             </div>
-
             <!-- Password field -->
             <div class="mb-4">
               <label for="loginPassword" class="form-label text-light fw-semibold small text-uppercase">
@@ -296,7 +295,7 @@
                   <i class="bi bi-eye-slash-fill" id="toggleIcon"></i>
                 </button>
               </div>
-              <div class="text-danger errmsg" id="_password"></div>
+              <?=error_text("password")?>
             </div>
 
             <!-- remember me & forgot password -->

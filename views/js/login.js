@@ -1,4 +1,5 @@
 import Ctr from "../code/src/mods/ctr.js";
+import FormValidator from "../code/src/mods/formValidator.js";
 import Popmodal from "../code/src/mods/modals/popmodal.js";
 import TModal from "../code/src/mods/modals/tmodal.js";
 import Toast from "../code/src/mods/toast.js";
@@ -13,7 +14,8 @@ import { Tyrax } from "../code/src/tyrux/main.js";
         id: "modex", 
         form_id: "regForm",
         form: {
-            email: {type: "text", label: "Enter email here:", validation:{email:true, maxChar: 50, label: "Email"}}
+            email: {type: "text", label: "Enter email here:", validation:{email:true, maxChar: 50, label: "Email"}},
+            mail: {type: "text", label: "Enter email here:", validation:{email:true, maxChar: 50, label: "Email"}}
         }
     });
 
@@ -148,7 +150,7 @@ import { Tyrax } from "../code/src/tyrux/main.js";
             });
             return;
         }
-        Ctr.set_html(".errmsg", ``);
+
         Tyrax.post({
             url: "user/login",
             request: data,
@@ -156,9 +158,7 @@ import { Tyrax } from "../code/src/tyrux/main.js";
                 if(send.code == 402){
                     Twal.err(send.message);
                     let errs = send.errors;
-                    for(let e in errs){
-                        Ctr.set_html(`#_${e}`, errs[e]);
-                    }
+                    FormValidator.displayErrors(errs, "#loginForm");
                 }else if(send.code == 404){
                     Twal.err(send.message);
                 }else{

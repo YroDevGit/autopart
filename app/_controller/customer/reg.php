@@ -12,7 +12,6 @@ use Tables\Customer;
 use Tables\Verification;
 
 $email = Request::post("email");
-
 if (! $email) {
     Response::code(402)->message("email is required")->send();
 }
