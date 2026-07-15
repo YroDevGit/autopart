@@ -14,11 +14,10 @@ import { Tyrax } from "../code/src/tyrux/main.js";
         id: "modex", 
         form_id: "regForm",
         form: {
-            email: {type: "text", label: "Enter email here:", validation:{email:true, maxChar: 50, label: "Email"}},
-            mail: {type: "text", label: "Enter email here:", validation:{email:true, maxChar: 50, label: "Email"}}
+            email: {type: "text", label: "Enter email here:", validation:{required: true, email:true, maxChar: 50, label: "Email"}}
         }
     });
-
+    
     Ctr.click("#signupclick", ()=>{
         modex.show();
     });
@@ -27,7 +26,7 @@ import { Tyrax } from "../code/src/tyrux/main.js";
         Tyrax.post({
             url: "customer/reg",
             data: data,
-            loading: true,
+            loading: {id: modex.form_id, size: 50},
             res: (send, code, message, data, errors)=>{
                 if(code == 200){
                     Twal.ok("Verification sent to your email", true);

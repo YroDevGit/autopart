@@ -45,7 +45,7 @@ document.querySelector("#searchButton").addEventListener("click", async () => {
 });
 
 async function productList() {
-  Loading.load(true);
+  Ctr.set_loading(true,"#product-container");
   let prods = await getProducts(srch.value);
   let pr = [];
 
@@ -54,7 +54,7 @@ async function productList() {
     row['stock'] = await getStocks(row.id);
     pr[p] = row;
   }
-  Loading.load(false);
+  Ctr.set_loading(true,"#product-container");
   return pr;
 }
 let nextId = 6;
@@ -62,10 +62,10 @@ await displayCategoryOnCB("#prodCategory");
 await displayCategoryOnCB("#editProdCategory");
 
 function renderProductTable(pr = []) {
+  const tbody = document.getElementById('productTableBody');
   if (pr == true) {
     products = pr;
   }
-  const tbody = document.getElementById('productTableBody');
   if (!tbody) return;
   tbody.innerHTML = '';
   if (products.length === 0) {

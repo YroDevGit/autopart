@@ -8,7 +8,7 @@ let table = "transaction";
 let table_details = "transaction_details";
 
 export async function getAllOrders(){
-    Loading.load(true);
+    Ctr.set_loading(true,"#product-container", 30);
     let result = await Tyrax.ctrsync({
         action: "query",
         query: `select t.id, t.transaction_code 'code', t.rider, t.subtotal, t.shipping 'shippingFee', t.total_price 'total', t.customer_id, c.contact, c.address, c.email,c.fulladdress, t.created_at 'orderDate', t.status, c.fullname 'customerName', c.id 'customer_id' from ${table} t, ${customer_tbl()} c where c.id = t.customer_id order by t.updated_at desc;`,
@@ -20,7 +20,7 @@ export async function getAllOrders(){
         row = {...row, items: await getOrderDetails(row.code)}
         arr = [...arr,{...row}];
     }
-    Loading.load(false);
+    Ctr.set_loading(false,"#product-container");
     return arr;
 }
 

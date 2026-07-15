@@ -53,7 +53,7 @@
       </div>
       <div class="card-body p-3 p-md-4">
         <!-- PRODUCTS TABLE (standard html table, action buttons included) -->
-        <div class="table-responsive">
+        <div class="table-responsive" id="product-container">
           <table class="table table-hover align-middle mb-0" id="productTable">
             <thead class="table-light">
               <tr>

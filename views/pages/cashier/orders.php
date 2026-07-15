@@ -305,7 +305,7 @@
           </div>
         </div>
 
-        <div class="orders-table-container">
+        <div class="orders-table-container" id="product-container">
           <div class="table-responsive">
             <table class="table table-hover align-middle table-orders">
               <thead>
