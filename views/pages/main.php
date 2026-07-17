@@ -1,5 +1,5 @@
 <?php
-$version = "v1.9";
+$version = "v3.7";
 $build = 1;
 ?>
 
@@ -10,6 +10,7 @@ $build = 1;
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CTRX | Modern PHP Framework</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="shortcut icon" href="<?= assets('ctrx_favicon.png') ?>" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700;800&family=Orbitron:wght@400;500;700;900&display=swap');
@@ -131,8 +132,8 @@ $build = 1;
         <a href="#" class="btn-primary px-8 py-3 rounded-lg font-bold text-lg flex items-center gap-2">
           <i class="fab fa-github"></i> Visit Repository
         </a>
-        <a href="#" class="btn-primary px-8 py-3 rounded-lg font-bold text-lg flex items-center gap-2">
-          <i class="fas fa-download"></i> Download Now
+        <a href="https://drive.google.com/file/d/1P1RvCMcPFzs_-jLE2ddsORy9PSLE4klf/view?usp=sharing" target="_blank" class="btn-primary px-8 py-3 rounded-lg font-bold text-lg flex items-center gap-2">
+          <i class="fas fa-database"></i> Download MariaDB
         </a>
       </div>
 
