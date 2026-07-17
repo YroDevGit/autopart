@@ -15,7 +15,7 @@ import { Tyrax } from "../code/src/tyrux/main.js";
         form_id: "regForm",
         form: {
             email: {type: "text", label: "Enter email here:", validation:{required: true, email:true, maxChar: 50, label: "Email"}},
-            sel : {tag: "select", label: "Select something", options: [{value: "1", label: "Hi"}, {value: "2", label: "Hello"}]}
+
         }
     });
     
@@ -23,6 +23,13 @@ import { Tyrax } from "../code/src/tyrux/main.js";
         modex.show();
     });
 
+    Ctr.setOptions("#fck", {
+        options: [
+            { id: 1, fullname: "John Doe" },
+            { id: 2, fullname: "Jane Smith" }
+        ],
+        config: {value: "id", label: "fullname"},
+    })
     modex.form_submit(function(data,form){
         Tyrax.post({
             url: "customer/reg",

@@ -298,6 +298,21 @@
               <?=error_text("password")?>
             </div>
 
+
+            <div class="mb-4">
+              <label for="loginPassword" class="form-label text-light fw-semibold small text-uppercase">
+                <i class="bi bi-shield-lock-fill me-1"></i> <?= t('Password') ?>
+              </label>
+              <div class="input-group">
+
+                <select class="form-control-autoparts" name="" id="fck">
+                  <option value="" opt>aw</option>
+                </select>
+
+              </div>
+              <?=error_text("password")?>
+            </div>
+
             <!-- remember me & forgot password -->
             <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
               <div class="form-check">
