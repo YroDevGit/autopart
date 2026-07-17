@@ -304,11 +304,6 @@
                 <i class="bi bi-shield-lock-fill me-1"></i> <?= t('Password') ?>
               </label>
               <div class="input-group">
-
-                <select class="form-control-autoparts" name="" id="fck">
-                  <option value="" opt>aw</option>
-                </select>
-
               </div>
               <?=error_text("password")?>
             </div>
