@@ -4,7 +4,7 @@
       <button class="btn btn-outline-secondary d-md-none" id="menuToggleBtn" type="button" aria-expanded="false" aria-label="Toggle sidebar">
         <i class="bi bi-list fs-4"></i>
       </button>
-      <h5 class="mb-0 fw-semibold"><i class="bi <?=$icon ?? 'bi-speedometer2'?> text-warning"></i>  <span class="text-dark"><?= $pagename ?? "Page" ?></span></h5>
+      <h5 class="mb-0 fw-semibold"><i class="bi <?= $icon ?? 'bi-speedometer2' ?> text-warning"></i> <span class="text-dark"><?= $pagename ?? "Page" ?></span></h5>
     </div>
 
     <div class="d-flex gap-3 align-items-center">
@@ -283,18 +283,18 @@
 
   @media (max-width: 767.98px) {
     .dropdown-menu-end {
-        position: fixed !important;
-        right: 10px !important;
-        left: auto !important;
-        top: 70px !important;
-        transform: none !important;
-        max-width: calc(100vw - 20px) !important;
-        width: 340px !important;
-        max-height: 450px !important;
-        overflow-y: auto !important;
-        will-change: transform;
+      position: fixed !important;
+      right: 10px !important;
+      left: auto !important;
+      top: 70px !important;
+      transform: none !important;
+      max-width: calc(100vw - 20px) !important;
+      width: 340px !important;
+      max-height: 450px !important;
+      overflow-y: auto !important;
+      will-change: transform;
     }
-}
+  }
 </style>
 
 <?= js('includes/cashier/navbar') ?>
