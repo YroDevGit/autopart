@@ -94,7 +94,7 @@
 <?=include_page("cashier/sidebar")?>
 
 <div class="main-content-wrapper" id="mainContentWrapper">
-  <?=include_page('cashier/navbar', ["pagename"=>"Shipping Address", "icon"=>"bi-truck"])?>
+  <?=include_page('cashier/navbar', ["pagename"=>"Shipping", "icon"=>"bi-truck"])?>
 
   <div class="content-inner">
     <!-- SHIPPING ADDRESS MANAGEMENT CARD -->

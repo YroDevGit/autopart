@@ -280,6 +280,21 @@
   .top-navbar .container-fluid {
     padding: 0;
   }
+
+  @media (max-width: 767.98px) {
+    .dropdown-menu-end {
+        position: fixed !important;
+        right: 10px !important;
+        left: auto !important;
+        top: 70px !important;
+        transform: none !important;
+        max-width: calc(100vw - 20px) !important;
+        width: 340px !important;
+        max-height: 450px !important;
+        overflow-y: auto !important;
+        will-change: transform;
+    }
+}
 </style>
 
 <?= js('includes/cashier/navbar') ?>
