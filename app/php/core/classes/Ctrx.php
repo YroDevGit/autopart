@@ -173,6 +173,11 @@ class Ctrx
 
             $msg = self::$xrateMessage ?: 'Request limit exceeded. Please try again later.';
 
+            if (ctrx_endpoint() == "FE") {
+                throw new Exception("Request limit exceeded, please try again later");
+                return;
+            }
+
             echo json_encode([
                 'code'        => 429,
                 'message'     => $msg,
@@ -181,7 +186,6 @@ class Ctrx
                 'window'      => $window,
                 'retry_after' => max(0, $window - (time() - $data['start']))
             ]);
-
             exit;
         }
 
