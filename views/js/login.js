@@ -33,7 +33,6 @@ import { Tyrax } from "../code/src/tyrux/main.js";
 
 
     modex.form_submit(function(data,form){
-        console.log(form);return;
         Tyrax.post({
             url: "customer/reg",
             data: data,

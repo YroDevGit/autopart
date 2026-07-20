@@ -12,20 +12,20 @@ use Tables\User;
 
 $email = Validator::post("email")->required()->label("Email")->email()->exec();
 $password = Validator::post("password")->required()->exec();
-if(Validator::failed()){
+if (Validator::failed()) {
     $errors = Validator::errors();
     Response::code(402)->message("Validation failed")->errors($errors)->send();
 }
 
-$res = User::findOne(["username"=>$email]);
+$res = User::findOne(["username" => $email]);
 
-if(! $res){
+if (! $res) {
     Response::code(404)->message("User not found")->send();
 }
 
 $pass = $res['password'];
 
-if($password !== $pass){
+if ($password !== $pass) {
     Response::code(404)->message("Incorrect password for $email")->send();
 }
 
@@ -34,19 +34,33 @@ $cookie = Random::string(20);
 
 Ccookie::add("cookie", $cookie);
 
-if(! $res['id']){
+if (! $res['id']) {
     Response::code(404)->message("User Error")->send();
 }
 Ccookie::add("user", $res['id']);
 Ctrx::set_user_data([
     "id" => $res['id'],
     "role" => $res['role']
-],80);
+], 80);
 
-User::update(["id"=>$res['id']],[
+if ($res['role'] == 1) {
+    Ctrx::set_user_role("admin");
+    Ctrx::set_logout_page("login");
+}
+if($res['role'] == 2){
+    Ctrx::set_user_role("cashier");
+}
+if ($res['role'] == 3) {
+    Ctrx::set_user_role("rider");
+    Ctrx::set_logout_page("login");
+}
+
+
+
+User::update(["id" => $res['id']], [
     "updated_at" => now(),
-    
+
 ]);
 
 
-Response::code(200)->message("OK")->var(["cookie"=>$cookie, "role"=>$res['role'], "userid"=>$res['id']])->send();
+Response::code(200)->message("OK")->var(["cookie" => $cookie, "role" => $res['role'], "userid" => $res['id']])->send();

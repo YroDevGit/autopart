@@ -98,7 +98,7 @@ let profileModal = TModal.init({
 Ctr.click("#logout_btn", () => {
     Twal.ask("Are you sure to logout?").then((click) => {
         if (click.confirm) {
-            Ctr.redirect("logout");
+            Ctr.redirect("ctrx/logout");
         }
     });
 });

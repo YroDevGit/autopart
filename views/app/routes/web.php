@@ -1,45 +1,20 @@
 <?php
+
 use Tables\User;
 use Classes\Ccookie;
 use Classes\Page;
 use Classes\Ctrx;
 
-Page::group(
-"cashier/*"
-)->except("cashier/orders", "cashier/pos")->run(function(){
-    if(! Ctrx::get_user_data("id")){
-        redirect("logout");
-      }
-      $user = User::findOne(["id"=> Ctrx::get_user_data("id")]);
-      if(! $user){
-        redirect("logout");
-      }
-      if(isset($user['role']) && ( $user['role'] != 1)){
-        redirect("logout");
-      }
-      $fullname = $user['fullname'] ?? "USER";
-      
-      gval("fullname", $fullname);  
-      gval("role", $user['role']);      
-});
+Ctrx::role_filtering();
 
-Page::group(
-  "cashier/*"
-  )->run(function(){
-      if(! Ctrx::get_user_data("id")){
-          redirect("logout");
-        }
-        $user = User::findOne(["id"=> Ctrx::get_user_data("id")]);
-        if(! $user){
-          redirect("logout");
-        }
-        if(isset($user['role']) && ($user['role'] != 2 && $user['role'] != 1)){
-          redirect("logout");
-        }
-        $fullname = $user['fullname'] ?? "USER";
-        
-        gval("fullname", $fullname);  
-        gval("role", $user['role']);      
-  });
+if(Ctrx::has_user_data()){
+  $user = User::findOne(["id" => Ctrx::get_user_data("id")]);
+  $fullname = $user['fullname'] ?? "USER";
+  if(! $user){
+    redirect_logout("login");
+  }
+  gval("fullname", $fullname);
+  gval("role", $user['role']?? null);
+}
 
-Page::group("/*");
+

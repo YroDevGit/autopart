@@ -50,8 +50,8 @@
       </li>
 
       <li class="nav-item">
-        <a href="/ctrxtools/database" class="nav-link-admin <?= current_page() == "ctrxtools/database" ? 'active' : '' ?> nav-link d-flex align-items-center">
-          <i class="bi bi-database"></i> <span>Database</span>
+        <a href="/ctrxtools" class="nav-link-admin <?= current_page() == "ctrxtools" ? 'active' : '' ?> nav-link d-flex align-items-center">
+          <i class="bi bi-database"></i> <span>Tools</span>
         </a>
       </li>
       <li class="nav-item" style="display: none;">
