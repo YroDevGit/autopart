@@ -159,24 +159,23 @@ class Ctrx
         $remaining = max(0, $limit - $data['count']);
         $reset = $data['start'] + $window;
 
-        header("X-RateLimit-Limit: {$limit}");
-        header("X-RateLimit-Remaining: {$remaining}");
-        header("X-RateLimit-Reset: {$reset}");
-
         if ($data['count'] > $limit) {
+
+            header("X-RateLimit-Limit: {$limit}");
+            header("X-RateLimit-Remaining: {$remaining}");
+            header("X-RateLimit-Reset: {$reset}");
             flock($fp, LOCK_UN);
             fclose($fp);
+            if (ctrx_endpoint() == "FE") {
+                die("Too many attemps, please try again later.");
+                return;
+            }
 
             header('Content-Type: application/json');
             http_response_code(429);
             header('Retry-After: ' . max(0, $window - (time() - $data['start'])));
 
             $msg = self::$xrateMessage ?: 'Request limit exceeded. Please try again later.';
-
-            if (ctrx_endpoint() == "FE") {
-                throw new Exception("Request limit exceeded, please try again later");
-                return;
-            }
 
             echo json_encode([
                 'code'        => 429,
@@ -281,6 +280,20 @@ class Ctrx
         if ($role == "admin" && $autoAdmin) {
             self::access_tools();
         }
+    }
+
+    public static function logout($page = null)
+    {
+        $path = "/ctrx/logout";
+        if ($page && is_string($path)) {
+            $path = $page + "?page=" + $page;
+        }
+        return $path;
+    }
+
+    public static function redirect_logout($page = null)
+    {
+        redirect_logout($page);
     }
 
     public static function set_logout_page(string|int $role): void
@@ -584,6 +597,12 @@ class Ctrx
             ]);
         }
         include "views/core/errors/forbidden.php";
+        if ($exit) exit;
+    }
+
+    public static function blocking_page($exit = true)
+    {
+        include "views/core/errors/blocked.php";
         if ($exit) exit;
     }
 
