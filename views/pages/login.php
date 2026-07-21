@@ -233,7 +233,7 @@
             </div>
             <div id="wowid"></div>
             <h2 class="display-6 fw-bold text-white mt-2">
-              <span style="background: linear-gradient(120deg, #fff, #ffb347); background-clip: text; -webkit-background-clip: text; color: transparent;">KYG AUTOPARTS</span>
+              <span style="background: linear-gradient(120deg, #fff, #ffb347); background-clip: text; -webkit-background-clip: text; color: transparent;"><?=strtoupper(variable('appname'))?></span>
             </h2>
             <p style="display: none;" class="text-light-emphasis text-white-50 mb-0"><?= t('Heavy‑Duty Performance Portal') ?></p>
             <div class="mech-line my-3"></div>

@@ -30,7 +30,7 @@ db_start();
 try {
     $pass = Random::integer(4);
     $cust = Customer::insert([
-        "fullname" => "KYG_". date("ymdHis"),
+        "fullname" => "AUT_". date("ymdHis"),
         "contact" => "-",
         "address" => "kyg@gmail.com",
         "fulladdress" => "-",

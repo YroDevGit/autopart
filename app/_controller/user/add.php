@@ -32,6 +32,6 @@ User::insert([
     "password" => $pass
 ]);
 
-Mail::send_email($email, "KYG Autoparts", "Your account has been created, password is: $pass");
+Mail::send_email($email, "Autoparts", "Your account has been created, password is: $pass");
 
 Response::code(200)->message("OK")->send();

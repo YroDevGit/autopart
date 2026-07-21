@@ -30,7 +30,7 @@ Ctr.submit("#signupForm", (data, formData, form)=>{
                 });
                 Twal.ok({
                     title: "Congratulations",
-                    text: "You have been registered to KYG, you can now login and order"
+                    text: "You have been registered to Autoparts, you can now login and order"
                 }, "/");
             }else{
                 Twal.err(message);

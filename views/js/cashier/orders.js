@@ -87,7 +87,7 @@ function printInvoice(order) {
     const invoiceHTML = `
     <div class="print-invoice">
         <div class="header">
-            <h3>KYG AUTOPARTS</h3>
+            <h3>AUTOPARTS</h3>
             <small>Order #${order.code || order.id} | ${CtrDATE.get_name(order.orderDate, "M d, Y h:ia")}</small>
         </div>
         
