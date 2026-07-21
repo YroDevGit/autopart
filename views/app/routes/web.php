@@ -15,6 +15,5 @@ if(Ctrx::has_user_data()){
   }
   gval("fullname", $fullname);
   gval("role", $user['role']?? null);
+  gval("rolename", strtoupper(Ctrx::get_user_role() ?? "USER"));
 }
-
-

@@ -2,7 +2,7 @@
 <aside class="admin-sidebar" id="adminSidebar">
   <div class="sidebar-brand d-flex align-items-center justify-content-center gap-2">
     <i class="bi bi-gear-wide-connected fs-3 text-warning"></i>
-    <span class="fw-bold fs-5 text-white">KYG <span class="text-warning">ADMIN</span></span>
+    <span class="fw-bold fs-5 text-white">KYG <span class="text-warning"><?=gval('rolename')?></span></span>
   </div>
   <ul class="nav flex-column mb-auto">
     <li class="nav-item">
