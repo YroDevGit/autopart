@@ -14,16 +14,7 @@ import { Tyrax } from "../code/src/tyrux/main.js";
         id: "modex", 
         form_id: "regForm",
         form: {
-            email: {type: "text", label: "Enter email here:", validation:{required: true, email:true, maxChar: 50, label: "Email"}},
-            sel : {
-                tag: "select",
-                label: "Select something",
-                options: [{value: "1", label: "Hi"},
-                {value: "2", label: "Hello"}],
-                onchange: (input, value)=> {console.log(value)},
-                value: 2,
-                multiple: true
-            }
+            email: {type: "text", label: "Enter email here:", validation:{required: true, email:true, maxChar: 50, label: "Email"}}
         }
     });
     
