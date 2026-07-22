@@ -7,8 +7,8 @@
     "unauthorize_page": "unauthorize",
     "role_filtering": "yes",
     "default_logout": "/",
-    "assets_version": 1.0,
-    "js_version": 1.0,
+    "assets_version": 8.0,
+    "js_version": 8.0,
     "variable": {
         "pagename": "CodeTazer App",
         "email": "admin@autoparts.com",
