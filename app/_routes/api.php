@@ -16,6 +16,8 @@ Router::group(
 Router::group(
     ["post" => "transaction/getupdate"],
     ["get" => "user/add"],
+    ["post" => "photo/upload"],
+    ["delete" => "photo/delete"],
     ["post" => "user/update"],
     ["post" => "transaction/getrevenue"],
     ["post"=> "product/add"]

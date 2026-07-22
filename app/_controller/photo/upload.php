@@ -19,7 +19,7 @@ if (! File::is_image($file)) {
     Response::code(401)->message("File is not image")->send();
 }
 
-$resp = CtrStorage::upload_file($file, "products");
+$resp = CtrStorage::upload_file($file, "public");
 $size = File::size($file, "kb");
 $lastUploaded = CtrStorage::get_last_uploaded();
 if ($resp) {

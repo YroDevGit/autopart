@@ -349,6 +349,7 @@
 
         <div class="text-center mt-4 text-white-50 small">
           <div>
+            <input type="text" name="" id="imagep">
             <i class="bi bi-wrench-adjustable-circle-fill"></i> Powering professional workshops & performance garages
           </div>
           <span class="mx-2">⚙️</span> <span id="year"></span> MADE IN CODETAZER

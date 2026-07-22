@@ -2,6 +2,7 @@ import Ctr from "../code/src/mods/ctr.js";
 import FormValidator from "../code/src/mods/formValidator.js";
 import Popmodal from "../code/src/mods/modals/popmodal.js";
 import TModal from "../code/src/mods/modals/tmodal.js";
+import CImagePicker from "../code/src/mods/picker/imagepicker.js";
 import Toast from "../code/src/mods/toast.js";
 import { Twal } from "../code/src/mods/twal.js";
 import Validator from "../code/src/mods/validator.js";
@@ -16,6 +17,10 @@ import { Tyrax } from "../code/src/tyrux/main.js";
         form: {
             email: {type: "text", label: "Enter email here:", validation:{required: true, email:true, maxChar: 50, label: "Email"}}
         }
+    });
+
+    CImagePicker.init({
+        id: "#imagep"
     });
     
     Ctr.click("#signupclick", ()=>{
