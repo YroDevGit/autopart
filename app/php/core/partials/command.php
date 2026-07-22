@@ -1,5 +1,6 @@
 <?php
 require_once 'vendor/autoload.php';
+
 use Classes\Ctrx;
 
 if (PHP_SAPI !== 'cli') {
@@ -23,9 +24,15 @@ function AddAllBaseTable($dbname)
     $stmnt->execute();
     $tables = $stmnt->fetchAll(PDO::FETCH_COLUMN);
 
+    $internalTable = ["ctrx_roles", "ctrx_roles_access", "translations"];
     foreach ($tables as $filename) {
         $newname  = ucfirst($filename);
-        $phpFile = "app/base/" . ucfirst($newname) . ".php";
+        $smallName = strtolower($filename);
+        if (in_array($smallName, $internalTable)) {
+            continue;
+        }
+        if ($filename)
+            $phpFile = "app/base/" . ucfirst($newname) . ".php";
 
         $phpContent = <<<EOT
     <?php 
@@ -69,7 +76,7 @@ $extra = isset($arguments[3]) ? $arguments[3] : '';
 $exxr = isset($arguments[4]) ? $arguments[4] : '';
 
 if ($route == "run" || $route == "server") {
-    include "envloader.php";
+    include "app/php/core/partials/envloader.php";
     $host = env("rootpath");
     $exp = explode("//", $host);
     $runner = $exp[1];
@@ -173,8 +180,21 @@ if ($route == "run" || $route == "server") {
             exit(1);
         }
     }
-}
-else if ($route == "generate:htaccess") {
+} else if ($route == "generate:testdb") {
+    copy(
+        'app/php/core/system/dtbs.php',
+        'views/pages/testdb.php'
+    );
+
+    include_once "app/php/core/partials/envloader.php";
+    $root = env('rootpath');
+
+    echo "\n✅ Test db has been created @views/pages/testdb.php.\n";
+    echo "⚠️  Please do not expose this in public.\n\n";
+    echo "Test-DB url @: $root/testdb\n\n";
+
+    exit;
+} else if ($route == "generate:htaccess") {
     //for deployment
     //for routing
     $filename = ".htaccess";
@@ -189,13 +209,11 @@ else if ($route == "generate:htaccess") {
 
     if (file_put_contents($filename, $content) !== false) {
         echo "\n✅ .htaccess has been created.\n\n";
-    }else{
+    } else {
         echo "\n❌ Failed to create Route file.\n\n";
     }
     exit;
-}
-
-else if ($route == "+controller" || $route == "+ctrl" || $route == "+c") {
+} else if ($route == "+controller" || $route == "+ctrl" || $route == "+c") {
     if ($filename == "") {
         echo "❌ Please provide a filename for the controller.\n";
         exit(1);
@@ -264,37 +282,37 @@ else if ($route == "+controller" || $route == "+ctrl" || $route == "+c") {
     }
     echo "\n";
     exit;
-}else if($route == "+js"){
+} else if ($route == "+js") {
     if ($filename == "") {
         echo "\n❌ Please provide a view path for the js\n\n";
         exit(1);
-    }  
+    }
     include "app/php/core/partials/ctrxc.php";
     $path = str_replace("\\", "/", $filename);
 
-    if(! str_starts_with($path, "views/pages/")){
-        if(str_starts_with($path, "/")){
-            $path = "views/pages".$path;
-        }else{
-            $path = "views/pages/".$path;
+    if (! str_starts_with($path, "views/pages/")) {
+        if (str_starts_with($path, "/")) {
+            $path = "views/pages" . $path;
+        } else {
+            $path = "views/pages/" . $path;
         }
     }
-    
+
     $result = preg_replace('#^views[/\\\\]pages[/\\\\]#', '', $path);
     $file = trim($result);
     $file = trim($result, "/");
     $file = trim($result, "\\");
     $file = rem_php($file);
-    
-    $js = $file.".js";
+
+    $js = $file . ".js";
     $dir = dirname($js);
     $jsFolder = "views/js/";
-    $dirName = $jsFolder.$dir;
-    if(!is_dir($dirName)){
+    $dirName = $jsFolder . $dir;
+    if (!is_dir($dirName)) {
         @mkdir($dirName, 0777, true);
     }
-    $newFile = $jsFolder.$js;
-    if(\Classes\Ctrx::file_exists_strict($newFile)){
+    $newFile = $jsFolder . $js;
+    if (\Classes\Ctrx::file_exists_strict($newFile)) {
         echo "\n❌ File already exist: $newFile\n\n";
         exit;
     }
@@ -303,14 +321,14 @@ else if ($route == "+controller" || $route == "+ctrl" || $route == "+c") {
     //Js file for $file
     EOT;
 
-    if (file_put_contents($newFile, $phpContent) !== false){
+    if (file_put_contents($newFile, $phpContent) !== false) {
         echo "\n✅ JS File created: $newFile\n\n";
-    }else{
+    } else {
         echo "\n❌ Failed to create file: $newFile\n\n";
     }
 
     exit;
-}else if ($route == "+model") {
+} else if ($route == "+model") {
     if ($filename == "") {
         echo "❌ Please provide a filename for the model.\n";
         exit(1);
@@ -631,8 +649,7 @@ if ($route == "update") {
             exit(1);
         }
     }
-}
-else if($route == "author"){
+} else if ($route == "author") {
     echo "\n";
     $tyronename = "CTRX by CodeYRO";
     echo "\033[1;33m$tyronename\033[0m\n";
@@ -641,10 +658,9 @@ else if($route == "author"){
     $tyroneEmzname = "Tyrone Limen Malocon 2025";
     echo "\033[32m$tyroneEmzname\033[0m\n";
     exit;
-}
-else if($route == "run:cron"){
+} else if ($route == "run:cron") {
     require_once 'vendor/autoload.php';
-    include_once "app/php/core/partials/envloader.php"; 
+    include_once "app/php/core/partials/envloader.php";
     $dbname = env("database");
     if (!$dbname) {
         echo "❌ No Database found @ .env\n\n";
@@ -653,23 +669,22 @@ else if($route == "run:cron"){
     include_once "app/php/core/partials/backend.php";
     date_default_timezone_set(env('time_zone'));
     $Past = \Classes\Ctrx::getPastDueCronJobs();
-    foreach($Past as $k=>$v){
+    foreach ($Past as $k => $v) {
         $api = $v['file_path'] ?? null;
         $id = $v['id'] ?? null;
-        $pass =$v['cron_pass'] ?? null;
+        $pass = $v['cron_pass'] ?? null;
 
-        if(! $api | ! $id | ! $pass) continue;
+        if (! $api | ! $id | ! $pass) continue;
 
-        $result = $result = \Classes\Ctrx::selfCurl("api/".$api, ['apikey'=>$pass]);
-        if(isset($result['code']) && $result['code'] == success_code){
+        $result = $result = \Classes\Ctrx::selfCurl("api/" . $api, ['apikey' => $pass]);
+        if (isset($result['code']) && $result['code'] == success_code) {
             $res = \Classes\Ctrx::selfCurl("cron?runNow=true&runId=$id");
             echo $result;
-        }else{
+        } else {
             echo $result;
         }
     }
-}
-else if ($route == "download:table") {
+} else if ($route == "download:table") {
     include "app/php/core/partials/envloader.php";
     $dbname = env("database");
     if (!$dbname) {
@@ -726,12 +741,9 @@ else if ($route == "download:table") {
         exit;
     }
 
-    if ($filename == "") {
-        echo "❌ Please input json filename for migration.\n\n";
-        exit(1);
-    }
+    $filename = "migration";
 
-    if (! \Classes\Ctrx::file_exists_strict("app/php/db/" . $filename . ".php")) {
+    if (! \Classes\Ctrx::file_exists_strict("app/config/" . $filename . ".php")) {
         echo "❌ Invalid migration name\n";
         exit;
     }
@@ -751,7 +763,7 @@ else if ($route == "download:table") {
 
     include "app/php/core/classes/Migration.php";
 
-    $jsonfile = "app/php/db/" . $filename . ".php";
+    $jsonfile = "app/config/" . $filename . ".php";
 
     $jsonfile = str_ends_with($jsonfile, ".php") ? $jsonfile : $jsonfile . ".php";
 

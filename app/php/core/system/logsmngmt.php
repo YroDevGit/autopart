@@ -101,6 +101,59 @@ if ($parent_path == '.') $parent_path = '';
 
 // Show message if exists
 $message = isset($_GET['msg']) ? $_GET['msg'] : '';
+
+function folderSize($folder)
+{
+    $size = 0;
+
+    if (!is_dir($folder)) {
+        return 0;
+    }
+
+    foreach (scandir($folder) as $item) {
+        if ($item === '.' || $item === '..') {
+            continue;
+        }
+
+        $path = $folder . DIRECTORY_SEPARATOR . $item;
+
+        if (is_dir($path)) {
+            $size += folderSize($path);
+        } else {
+            $size += filesize($path);
+        }
+    }
+
+    return $size;
+}
+
+if (isset($_GET['clearlogs']) && $_GET['clearlogs'] == "yes") {
+    function deleteFolder($folder)
+    {
+        if (!is_dir($folder)) {
+            return false;
+        }
+
+        foreach (scandir($folder) as $item) {
+            if ($item === '.' || $item === '..') {
+                continue;
+            }
+
+            $path = $folder . DIRECTORY_SEPARATOR . $item;
+
+            if (is_dir($path)) {
+                deleteFolder($path);
+            } else {
+                unlink($path);
+            }
+        }
+        return rmdir($folder);
+    }
+    deleteFolder("logs");
+    reload_page(false);
+}
+
+$size = folderSize('logs');
 ?>
 
 <!DOCTYPE html>
@@ -139,7 +192,7 @@ $message = isset($_GET['msg']) ? $_GET['msg'] : '';
             align-items: center;
             flex-wrap: wrap;
             gap: 15px;
-            border-bottom: 3px solid #e94560;
+            border-bottom: 3px solid #0d6efd;
             padding-bottom: 15px;
             margin-bottom: 25px;
         }
@@ -151,7 +204,7 @@ $message = isset($_GET['msg']) ? $_GET['msg'] : '';
         }
 
         h1 {
-            color: #e94560;
+            color: #0d6efd;
             font-weight: 600;
             letter-spacing: 1px;
             margin: 0;
@@ -213,7 +266,7 @@ $message = isset($_GET['msg']) ? $_GET['msg'] : '';
         }
 
         .breadcrumb a {
-            color: #e94560;
+            color: #0d6efd;
             text-decoration: none;
         }
 
@@ -250,7 +303,7 @@ $message = isset($_GET['msg']) ? $_GET['msg'] : '';
 
         .search-box:focus {
             outline: none;
-            border-color: #e94560;
+            border-color: #0d6efd;
             box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.1);
         }
 
@@ -279,7 +332,7 @@ $message = isset($_GET['msg']) ? $_GET['msg'] : '';
             text-transform: uppercase;
             font-size: 12px;
             letter-spacing: 0.5px;
-            border-bottom: 2px solid #e94560;
+            border-bottom: 2px solid #0d6efd;
         }
 
         td {
@@ -501,6 +554,11 @@ $message = isset($_GET['msg']) ? $_GET['msg'] : '';
             border-top: 1px solid #e9ecef;
         }
 
+        .stats span {
+            margin-right: 10px;
+            text-decoration: underline;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
@@ -555,7 +613,7 @@ $message = isset($_GET['msg']) ? $_GET['msg'] : '';
                 <?php if ($current_path != ''): ?>
                     <a href="?path=" class="top-back">⬅ Back</a>
                 <?php endif; ?>
-                <a href="<?=$backpage?>" class="exit-btn" onclick="return confirmExit();">🚪 Exit</a>
+                <a href="<?= $backpage ?>" class="exit-btn" onclick="return confirmExit();">🚪 Exit</a>
             </div>
         </div>
 
@@ -601,8 +659,9 @@ $message = isset($_GET['msg']) ? $_GET['msg'] : '';
                             <td colspan="4" class="empty-message">📂 This directory is empty</td>
                         </tr>
                     <?php else: ?>
+                        <?php $items = array_reverse($items); ?>
                         <?php foreach ($items as $item): ?>
-                            <?php if(isset($item['name']) && str_starts_with($item['name'], ".git")) continue; ?>
+                            <?php if (isset($item['name']) && str_starts_with($item['name'], ".git")) continue; ?>
                             <tr data-name="<?php echo strtolower(htmlspecialchars($item['name'])); ?>">
                                 <td>
                                     <?php if ($item['is_dir']): ?>
@@ -640,7 +699,8 @@ $message = isset($_GET['msg']) ? $_GET['msg'] : '';
         </div>
 
         <div class="stats">
-            Total: <?php echo count($items); ?> items
+            <span>Total: <?php echo count($items); ?> items</span>
+            <span>Size: <?php echo formatSize($size); ?> <a href="?clearlogs=yes" onclick="return confirm('Are you sure to clear all logs?')">(clear)</a></span>
         </div>
 
         <?php if (isset($_GET['view']) && isset($_GET['file'])):

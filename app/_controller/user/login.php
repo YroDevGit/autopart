@@ -41,7 +41,7 @@ Ccookie::add("user", $res['id']);
 Ctrx::set_user_data([
     "id" => $res['id'],
     "role" => $res['role']
-], 80);
+],200);
 
 if ($res['role'] == 1) {
     Ctrx::set_user_role("admin");
@@ -49,6 +49,7 @@ if ($res['role'] == 1) {
 }
 if($res['role'] == 2){
     Ctrx::set_user_role("cashier");
+    Ctrx::set_logout_page("login");
 }
 if ($res['role'] == 3) {
     Ctrx::set_user_role("rider");
