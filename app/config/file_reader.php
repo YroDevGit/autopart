@@ -9,6 +9,6 @@ use Classes\CtrStorage;
  * $dir = a subfolder inside ctr storage
  */
 
-if ($dir == "public" || $dir == "products" || "tyrone") {
-    CtrStorage::ctr_read_image($file_path, $mime_type);
+if ($dir == "public" || $dir == "products") {
+    CtrStorage::ctr_read_file($file_path, $mime_type);
 }

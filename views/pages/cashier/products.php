@@ -118,7 +118,7 @@
             </div>
             <div class="col-12">
               <label class="form-label fw-semibold">Image URL (optional)</label>
-              <input type="text" class="form-control" name="image" id="prodImage" placeholder="https://via.placeholder.com/60?text=AutoPart">
+              <input type="text" class="form-control prodImage" name="image" id="prodImage" placeholder="https://via.placeholder.com/60?text=AutoPart">
               <small class="text-muted">Enter direct image link or use placeholder</small>
               <div class="mt-2" id="imagePreviewPlaceholder" style="display: none;">
                 <img id="previewImg" src="#" width="100" height="100" class="rounded border">
@@ -163,7 +163,7 @@
             </div>
             <div class="col-12">
               <label class="form-label">Image URL</label>
-              <input type="text" class="form-control" id="editProdImage">
+              <input type="text" class="form-control prodImage" id="editProdImage">
             </div>
           </div>
         </div>

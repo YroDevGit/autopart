@@ -3,6 +3,7 @@ import Currency from "../../code/src/mods/currency.js";
 import CtrDATE from "../../code/src/mods/date.js";
 import Loading from "../../code/src/mods/loading.js";
 import TModal from "../../code/src/mods/modals/tmodal.js";
+import CImagePicker from "../../code/src/mods/picker/imagepicker.js";
 import Toast from "../../code/src/mods/toast.js";
 import { Twal } from "../../code/src/mods/twal.js";
 import { Tyrax } from "../../code/src/tyrux/main.js";
@@ -23,6 +24,10 @@ let modal = TModal.init({
     "qty": { type: "number", label: "Quantity" },
     "supplier": { tag: "select", label: "Supplier", options: supplier, config: { value: "id", label: ['name', 'address'], separator: " - ", index: "Select Supplier" } }
   },
+});
+
+CImagePicker.init({
+  element: ".prodImage"
 });
 
 let imgpath = localStorage.getItem("imgpath");
@@ -77,7 +82,7 @@ function renderProductTable(pr = []) {
     const row = document.createElement('tr');
     row.innerHTML = `
         <td class="fw-semibold">${prod.id}</td>
-        <td><img src="${prod.image || 'https://via.placeholder.com/45?text=Part'}" class="product-img-preview" alt="product" onerror="this.src='https://via.placeholder.com/45?text=No+Image'"></td>
+        <td><img src="${prod.image || ''}" class="product-img-preview" alt="product""></td>
         <td class="fw-medium">${prod.name}</td>
         <td><span class="badge bg-secondary bg-opacity-25 text-dark px-3 py-1 rounded-pill">${prod.category}</span></td>
         <td class="text-success fw-bold">${Currency.peso(prod.price.toFixed(2))}</td>
