@@ -18,10 +18,6 @@ import { Tyrax } from "../code/src/tyrux/main.js";
             email: {type: "text", label: "Enter email here:", validation:{required: true, email:true, maxChar: 50, label: "Email"}}
         }
     });
-
-    CImagePicker.init({
-        id: "#imagep"
-    });
     
     Ctr.click("#signupclick", ()=>{
         modex.show();
