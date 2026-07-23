@@ -16,7 +16,7 @@
 <?=include_page("cashier/sidebar")?>
 
 <div class="main-content-wrapper" id="mainContentWrapper">
-  <?=include_page('cashier/navbar', ["pagename"=>"Products / Inventory", "icon"=>"bi-box-seam"])?>
+  <?=include_page('cashier/navbar', ["pagename"=>"Inventory", "icon"=>"bi-box-seam"])?>
 
   <div class="content-inner">
     <!-- PRODUCT MANAGEMENT CARD (TABLE INSIDE) -->
