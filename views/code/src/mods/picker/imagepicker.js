@@ -741,6 +741,59 @@ class CImagePicker {
         return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
     }
 
+    static compressImage(file, quality = 0.7, maxWidth = 1920, maxHeight = 1920) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = (event) => {
+                const img = new Image();
+                img.src = event.target.result;
+                img.onload = () => {
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > maxWidth) {
+                        height = (height * maxWidth) / width;
+                        width = maxWidth;
+                    }
+                    if (height > maxHeight) {
+                        width = (width * maxHeight) / height;
+                        height = maxHeight;
+                    }
+
+                    const canvas = document.createElement('canvas');
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.imageSmoothingEnabled = true;
+                    ctx.imageSmoothingQuality = 'high';
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    const format = 'image/jpeg';
+                    const name = file.name.replace(/\.[^.]+$/, '.jpg');
+
+                    canvas.toBlob((blob) => {
+                        if (blob) {
+                            if (blob.size < file.size) {
+                                const compressedFile = new File([blob], name, {
+                                    type: format,
+                                    lastModified: Date.now()
+                                });
+                                resolve(compressedFile);
+                            } else {
+                                resolve(file);
+                            }
+                        } else {
+                            reject(new Error('Compression failed'));
+                        }
+                    }, format, quality);
+                };
+                img.onerror = () => reject(new Error('Failed to load image'));
+            };
+            reader.onerror = () => reject(new Error('Failed to read file'));
+        });
+    }
+
     static init(config = {}) {
         this.ensureStyle();
 
@@ -774,6 +827,10 @@ class CImagePicker {
             const instanceConfig = { ...config };
             instanceConfig.id = input.id || input.className || `cimagepicker-${Date.now()}-${Math.random()}`;
             instanceConfig.path = config.path ?? config.dir ?? config.directory ?? "public";
+            instanceConfig.quality = config.quality ?? 95;
+            instanceConfig.maxWidth = config.maxWidth ?? 1920;
+            instanceConfig.maxHeight = config.maxHeight ?? 1920;
+            instanceConfig.compressThreshold = config.compressThreshold ?? 100;
 
             input.setAttribute("readonly", "");
 
@@ -1095,17 +1152,35 @@ class CImagePicker {
                         }
                     }
 
+                    let fileToUpload = file;
+                    const quality = instanceConfig.quality ?? 95;
+                    const maxWidth = instanceConfig.maxWidth ?? 1920;
+                    const maxHeight = instanceConfig.maxHeight ?? 1920;
+                    const compressThreshold = instanceConfig.compressThreshold ?? 100;
+
+                    if (quality < 100 && file.size > (compressThreshold * 1024)) {
+                        try {
+                            const qualityValue = quality / 100;
+                            const clampedQuality = Math.max(0.1, Math.min(0.99, qualityValue));
+                            this.progressBar.style.width = "1%";
+                            fileToUpload = await CImagePicker.compressImage(file, clampedQuality, maxWidth, maxHeight);
+                        } catch (error) {
+                            console.warn("Compression failed, using original file", error);
+                            fileToUpload = file;
+                        }
+                    }
+
                     this.isUploading = true;
                     this.fileInput.disabled = true;
                     this.addBtn.disabled = true;
                     this.progressBar.parentElement.classList.add("cimagepicker-show");
-                    this.progressBar.style.width = "0%";
+                    this.progressBar.style.width = "1%";
                     this.nameProgress.style.display = "";
                     Ctr.set_loading(true, ".cimagepicker-sensitive-load", 33);
 
                     try {
                         const result = await CImagePicker.uploadImage(
-                            file,
+                            fileToUpload,
                             instanceConfig.path || "public",
                             (percent) => {
                                 this.progressBar.style.width = percent + "%";
