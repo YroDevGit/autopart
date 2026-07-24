@@ -7,8 +7,10 @@ import { getBaranggay, getMunicipality } from "../classes/functions/addresses.js
 
 let cities = await getMunicipality(NegrosCode());
 
-Ctr.setOptions("#city", cities, {
-    value: "code", label: "name", onChange: async (element) => {
+Ctr.setOptions("#city", {
+    options: cities,
+    config: { value: "code", label: "name" },
+    onChange: async (element) => {
         let cityCode = element.value;
         showbrgys(cityCode);
     }
@@ -17,7 +19,10 @@ Ctr.setOptions("#city", cities, {
 async function showbrgys(cityCode) {
     Loading.load(true);
     let bgrys = await getBaranggay(cityCode);
-    Ctr.setOptions("#brgy", bgrys, { value: "code", label: "name" });
+    Ctr.setOptions("#brgy", {
+        options: bgrys,
+        config: { value: "code", label: "name" }
+    });
     Loading.load(false);
 }
 
@@ -145,7 +150,7 @@ function renderAddresses() {
                     Tyrax.update({
                         table: tbl_address(),
                         where: { id: id },
-                        update: {active: 0},
+                        update: { active: 0 },
                         response: (send) => {
                             if (send.code == 200) {
                                 Twal.ok("Address has been deleted", true);

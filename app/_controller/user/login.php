@@ -32,12 +32,10 @@ if ($password !== $pass) {
 Ctrql::activate("CRUDQ",);
 $cookie = Random::string(20);
 
-Ccookie::add("cookie", $cookie);
-
 if (! $res['id']) {
     Response::code(404)->message("User Error")->send();
 }
-Ccookie::add("user", $res['id']);
+
 Ctrx::set_user_data([
     "id" => $res['id'],
     "role" => $res['role']

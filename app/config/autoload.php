@@ -3,6 +3,7 @@
 // Load files inside _routes folder
 load_routes(
     "api",
+    "riderroute"
 );
 
 // Load files inside auto folder

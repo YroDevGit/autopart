@@ -15,15 +15,22 @@ let current_user = localStorage.getItem("userid");
 Loading.load(true);
 let cities = await getMunicipality(NegrosCode());
 Loading.load(false);
-Ctr.setOptions("#city",cities,{value: "code", label: "name", onChange: async(element)=>{
-  let cityCode = element.value;
-  showbrgys(cityCode);
-}});
+Ctr.setOptions("#city", {
+  options: cities,
+  config: { value: "code", label: "name" },
+  onChange: async (element) => {
+    let cityCode = element.value;
+    showbrgys(cityCode);
+  }
+});
 
-async function showbrgys(cityCode){
+async function showbrgys(cityCode) {
   Loading.load(true);
   let bgrys = await getBaranggay(cityCode);
-  Ctr.setOptions("#brgy", bgrys, {value: "code", label: "name"});
+  Ctr.setOptions("#brgy", {
+    options: bgrys,
+    config: { value: "code", label: "name" }
+  });
   Loading.load(false);
 }
 
@@ -136,7 +143,7 @@ function updateCartItemQuantity(productId, newQuantity) {
   renderAllCarts();
 }
 
-Ctr.click("#exitButtonMain", ()=>{
+Ctr.click("#exitButtonMain", () => {
   location.href = "/logout";
 });
 
@@ -169,7 +176,7 @@ function renderProducts(prod = null) {
     products = prod;
   }
   products.forEach(prod => {
-    if(prod.quantity < 1) return;
+    if (prod.quantity < 1) return;
     const col = document.createElement('div');
     col.className = 'col-md-6 col-lg-4';
     col.innerHTML = `
@@ -377,15 +384,15 @@ if (checkoutBtnCart) {
       }
     }
 
-    
-    if(current_user){
+
+    if (current_user) {
       let userdata = await getCustomerDetails(current_user);
 
       checkoutName.value = userdata.fullname ?? "";
       contactnum.value = userdata.contact ?? "";
       checkoutEmail.value = userdata.email ?? "";
     }
-    
+
     Loading.load(true);
     shippingDetails = await getShippingDetailsById(Ctr.value("#shippingaddress"));
     let citycode = shippingDetails.city_code;
@@ -419,7 +426,7 @@ if (checkoutForm) {
         }
 
         const USER = Ctr.storage_get("userid");
-        if(! USER){
+        if (!USER) {
           Twal.err("User error, please login again", "/logout");
           return;
         }
@@ -429,17 +436,17 @@ if (checkoutForm) {
         const fulladdress = document.getElementById('fulladdress')?.value ?? "";
         const selectedOption = shippingAddressText.options[shippingAddressText.selectedIndex];
         const addressText = selectedOption ? selectedOption.text : '';
-        if(! Ctr.get_selected("#brgy").value || ! Ctr.get_selected("#city").value){
+        if (!Ctr.get_selected("#brgy").value || !Ctr.get_selected("#city").value) {
           Toast.error("City and Baranggay is required");
           return;
         }
         const shippingId = shippingAddressText.value;
-        
+
         const city_code = Ctr.get_selected("#city").value;
         const brgy_code = Ctr.get_selected("#brgy").value;
-        
-        const f_address = Ctr.get_selected("#brgy").label+", "+Ctr.get_selected("#city").label+", Negros Occidental";
-        const fl_address = fulladdress+", "+Ctr.get_selected("#brgy").label+", "+Ctr.get_selected("#city").label+", Negros Occidental";
+
+        const f_address = Ctr.get_selected("#brgy").label + ", " + Ctr.get_selected("#city").label + ", Negros Occidental";
+        const fl_address = fulladdress + ", " + Ctr.get_selected("#brgy").label + ", " + Ctr.get_selected("#city").label + ", Negros Occidental";
         const orderDetails = {
           code: await Ctr.shortHash(15),
           fullname: name,

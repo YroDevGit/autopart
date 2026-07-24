@@ -11,7 +11,7 @@ if ($id) {
   if ($user) {
     $role = $user['role'];
     if ($role == 2) {
-      redirect("cashier/products");
+      redirect("cashier/pos");
       exit;
     } else if ($role == 3) {
       redirect("rider/welcome");
