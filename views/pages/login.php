@@ -334,7 +334,7 @@
             </div>
 
             <!-- Footer badges -->
-            <div class="text-center mt-2">
+            <div class="text-center mt-2" style="display: none;">
               <div class="d-flex justify-content-center gap-2 mt-3">
                 <span class="badge bg-dark text-warning border border-warning rounded-pill px-3 py-2">
                   <i class="bi bi-shield-check"></i> OEM Parts
