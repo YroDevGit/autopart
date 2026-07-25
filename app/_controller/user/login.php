@@ -55,10 +55,8 @@ if ($res['role'] == 3) {
 }
 
 
-
 User::update(["id" => $res['id']], [
     "updated_at" => now(),
-
 ]);
 
 
