@@ -10,7 +10,7 @@ $role = Ctrx::get_user_role(); // Current user role
 $allow = ["admin"]; // roles allowed to fetch
 
 $dir = get("dir"); //requested directory
-
+$dir = all_subfolders($dir);
 // You can add more validations here...
 
 if(in_array($role, $allow)){
