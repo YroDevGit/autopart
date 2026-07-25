@@ -165,7 +165,6 @@ import { Tyrax } from "../code/src/tyrux/main.js";
                 }else if(send.code == 404){
                     Twal.err(send.message);
                 }else{
-                    return;
                     if(! send.userid) {Twal.err("User Error, please contact admin"); return;}
                     localStorage.setItem("userid", send.userid);
                     if(send.role == 1 || send.role == 2){
