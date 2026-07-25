@@ -1,13 +1,2 @@
 <?php
-
-use Tables\User;
-
-$res = User::fuzzy(["fullname"=>"tyrone emz"]);
-print_r($res);exit;
-//echo $distance = levenshtein($query, $name);
-
-$distance = levenshtein("trone emz", "tyrone lee emz");
-echo $distance;
-exit;
-
-echo json_encode($res);exit;
+echo decrypt('0o1nChs-wBpE2X8amPHXuEF6TFRHT2V0elREWlE2c1NoWlAwcG53UjAwcUNLR1RzKytZcURVOVh0TjIwSHRVeUtmK0R2b0UvUUM3MW8wK2Y2ZGFvenliWGM0WE1Kay82dHB5SC9XT050WHNacE1NWGpVVjBGSmVaYk9mYWVzR3pTME9NcVJxSTgzRlQ0eVZZMGRBVXN2MUtOZ2h3cVFKM3Y2T2RIMlZzS3ByQm9BYnZ5ekJtTzRwUS80ST0');

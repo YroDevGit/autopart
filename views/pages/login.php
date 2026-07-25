@@ -299,18 +299,8 @@
               <?=error_text("password")?>
             </div>
 
-
-            <div class="mb-4">
-              <label for="loginPassword" class="form-label text-light fw-semibold small text-uppercase">
-                <i class="bi bi-shield-lock-fill me-1"></i> <?= t('Password') ?>
-              </label>
-              <div class="input-group">
-              </div>
-              <?=error_text("password")?>
-            </div>
-
             <!-- remember me & forgot password -->
-            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+            <div class="justify-content-between align-items-center mb-4 flex-wrap" style="display: none;">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="rememberCheck" style="background-color:#1f3a42; border-color:#ff7b2c;">
                 <label class="form-check-label text-white-50" for="rememberCheck">
