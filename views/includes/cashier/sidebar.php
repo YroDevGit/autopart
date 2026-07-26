@@ -17,7 +17,7 @@
       </li>
       
     <?php if (gval("role") == 1): ?>
-      <li class="nav-item">
+      <li class="nav-item" style="display: none;">
         <a href="/cashier/uploads" class="nav-link-admin <?= current_page(true) == "cashier/uploads" ? 'active' : '' ?> nav-link d-flex align-items-center">
           <i class="bi bi-upload"></i> <span>Upload</span>
         </a>
