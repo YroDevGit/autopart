@@ -34,7 +34,10 @@ DB::bundle(function () use($email) {
         "code" => $NewHash
     ]);
 
-    Mail::send_email($email, variable("appname") . " Registration", "Please complete registration @ <a href='$link'>click here</a>");
+    Mail::to($email)
+    ->subject(variable("appname") . " Registration")
+    ->message("Please complete registration @ <a href='$link'>click here</a>")
+    ->send();
 });
 
 Response::code(200)->send();
