@@ -14,7 +14,7 @@ $dir = all_subfolders($dir);
 // You can add more validations here...
 
 if(in_array($role, $allow)){
-    CtrStorage::get_images($dir);
+    CtrStorage::get_images($dir, "products");
 }else{
     Response::code(unauthorized_code)->message("Unauthorized access")->send();
 }
