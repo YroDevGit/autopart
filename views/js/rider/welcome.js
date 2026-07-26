@@ -578,7 +578,7 @@ if (searchInput) {
 const exitBtn = document.getElementById('exitButtonMain');
 if (exitBtn) {
     exitBtn.addEventListener('click', () => {
-        if (confirm('Exit rider dashboard?')) window.location.href = '/logout';
+        if (confirm('Exit rider dashboard?')) window.location.href = '/ctrx/logout';
     });
 }
 

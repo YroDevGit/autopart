@@ -2,11 +2,14 @@
 
 use Tables\User;
 use Classes\Ccookie;
-if(! Ccookie::get("user")){
+use Classes\Ctrx;
+
+$userData = Ctrx::get_user_data();
+if(! $userData){
   redirect("logout");
 }
 
-$user = User::findOne(["id"=> Ccookie::get("user")]);
+$user = User::findOne(["id"=> $userData['id']]);
 if(! $user){
   redirect("logout");
 }

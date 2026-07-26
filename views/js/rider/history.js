@@ -9,7 +9,7 @@ import { getAllDeliveredByRider } from "../classes/functions/orderModel";
 
 
     if(! localStorage.getItem('userid')){
-        location.href = "/logout";
+        location.href = "/ctrx/logout";
     }
 
     
@@ -205,7 +205,7 @@ import { getAllDeliveredByRider } from "../classes/functions/orderModel";
     // ===== LOGOUT (dummy) =====
     document.getElementById('exitButtonMain').addEventListener('click', function() {
         if (confirm('Logout from rider dashboard?')) {
-            window.location.href = 'logout';
+            window.location.href = '/ctrx/logout';
         }
     });
 

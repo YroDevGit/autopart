@@ -54,10 +54,8 @@ if ($res['role'] == 3) {
     Ctrx::set_logout_page("login");
 }
 
-
 User::update(["id" => $res['id']], [
     "updated_at" => now(),
 ]);
-
 
 Response::code(200)->message("OK")->var(["cookie" => $cookie, "role" => $res['role'], "userid" => $res['id']])->send();
