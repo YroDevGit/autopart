@@ -29,6 +29,10 @@ if ($password !== $pass) {
     Response::code(404)->message("Incorrect password for $email")->send();
 }
 
+if($res['active'] != 1){
+    Response::code(404)->message("User access has been deactivated")->send();
+}
+
 Ctrql::activate("CRUDQ",);
 $cookie = Random::string(20);
 
