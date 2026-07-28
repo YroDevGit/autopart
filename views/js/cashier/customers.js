@@ -1,7 +1,7 @@
 import Ctr from "../../code/src/mods/ctr";
 import Currency from "../../code/src/mods/currency";
 import CtrDATE from "../../code/src/mods/date";
-import { getAllCustomers } from "../classes/functions/orderModel";
+import { getAllCustomers } from "../_classes/functions/orderModel";
 
     let customersData = await getAllCustomers();
 

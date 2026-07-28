@@ -3,11 +3,11 @@ import Currency from "../code/src/mods/currency.js";
 import Loading from "../code/src/mods/loading.js";
 import Toast from "../code/src/mods/toast.js";
 import { Twal } from "../code/src/mods/twal.js";
-import { NegrosCode, getAllAddress, getShippingById, getShippingDetailsById, setAddressOnCB } from "./classes/functions/address.js";
-import { getBaranggay, getMunicipality, getProvince } from "./classes/functions/addresses.js";
-import { displayCategoryOnCB } from "./classes/functions/category.js";
-import { getCustomerDetails } from "./classes/functions/customer.js";
-import { addProducts, getProductLeft, getProducts } from "./classes/functions/products.js";
+import { NegrosCode, getAllAddress, getShippingById, getShippingDetailsById, setAddressOnCB } from "./_classes/functions/address.js";
+import { getBaranggay, getMunicipality, getProvince } from "./_classes/functions/addresses.js";
+import { displayCategoryOnCB } from "./_classes/functions/category.js";
+import { getCustomerDetails } from "./_classes/functions/customer.js";
+import { addProducts, getProductLeft, getProducts } from "./_classes/functions/products.js";
 
 
 let shippingDetails = [];

@@ -1,7 +1,7 @@
 import Ctr from "../../code/src/mods/ctr.js";
 import { Twal } from "../../code/src/mods/twal.js";
 import { Tyrax } from "../../code/src/tyrux/main.js";
-import { deleteUser, getAllUsers } from "../classes/functions/users.js";
+import { deleteUser, getAllUsers } from "../_classes/functions/users.js";
 
 // Mock data for demo - replace with actual backend data
 let usersData = await getAllUsers();

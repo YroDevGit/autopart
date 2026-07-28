@@ -1,9 +1,9 @@
 import Ctr from "../../code/src/mods/ctr.js";
 import { Twal } from "../../code/src/mods/twal.js";
 import { Tyrax } from "../../code/src/tyrux/main.js";
-import { tbl_address, tbl_category } from "../classes/db/tables.js";
-import { NegrosCode, getAllAddress } from "../classes/functions/address.js";
-import { getBaranggay, getMunicipality } from "../classes/functions/addresses.js";
+import { tbl_address, tbl_category } from "../_classes/db/tables.js";
+import { NegrosCode, getAllAddress } from "../_classes/functions/address.js";
+import { getBaranggay, getMunicipality } from "../_classes/functions/addresses.js";
 
 let cities = await getMunicipality(NegrosCode());
 

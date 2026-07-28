@@ -1,5 +1,5 @@
 //Js file for includes/rider/nav
-import { getRiderName } from "../../classes/functions/users";
+import { getRiderName } from "../../_classes/functions/users";
 
 let riderName = await getRiderName(localStorage.getItem("userid"));
 

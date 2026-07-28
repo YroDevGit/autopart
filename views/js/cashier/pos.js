@@ -4,9 +4,9 @@ import CtrDATE from "../../code/src/mods/date.js";
 import Toast from "../../code/src/mods/toast.js";
 import { Twal } from "../../code/src/mods/twal.js";
 import { Tyrax } from "../../code/src/tyrux/main.js";
-import { tbl_inventory, tbl_product } from "../classes/db/tables.js";
-import { displayCategoryOnCB } from "../classes/functions/category.js";
-import { getProducts, getStocks } from "../classes/functions/products.js";
+import { tbl_inventory, tbl_product } from "../_classes/db/tables.js";
+import { displayCategoryOnCB } from "../_classes/functions/category.js";
+import { getProducts, getStocks } from "../_classes/functions/products.js";
 
 let cart = [];
 let products = [];

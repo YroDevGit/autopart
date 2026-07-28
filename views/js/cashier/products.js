@@ -7,10 +7,10 @@ import CImagePicker from "../../code/src/mods/picker/imagepicker.js";
 import Toast from "../../code/src/mods/toast.js";
 import { Twal } from "../../code/src/mods/twal.js";
 import { Tyrax } from "../../code/src/tyrux/main.js";
-import { tbl_inventory, tbl_product } from "../classes/db/tables.js";
-import { displayCategoryOnCB, getCategories } from "../classes/functions/category.js";
-import { disableProduct, getProductLeft, getProducts, getStocks, productUpdated } from "../classes/functions/products.js";
-import { getSupplier, getSupplierValueLabel } from "../classes/functions/supplier.js";
+import { tbl_inventory, tbl_product } from "../_classes/db/tables.js";
+import { displayCategoryOnCB, getCategories } from "../_classes/functions/category.js";
+import { disableProduct, getProductLeft, getProducts, getStocks, productUpdated } from "../_classes/functions/products.js";
+import { getSupplier, getSupplierValueLabel } from "../_classes/functions/supplier.js";
 
 
 let supplier = await getSupplier();

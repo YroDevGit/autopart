@@ -2,8 +2,8 @@
 
 import Ctr from "../../code/src/mods/ctr";
 import Currency from "../../code/src/mods/currency";
-import { orderStatusName } from "../classes/functions/constants";
-import { getAllDeliveredByRider } from "../classes/functions/orderModel";
+import { orderStatusName } from "../_classes/functions/constants";
+import { getAllDeliveredByRider } from "../_classes/functions/orderModel";
 
 (async function() {
 

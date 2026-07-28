@@ -2,7 +2,7 @@ import Ctr from "../code/src/mods/ctr";
 import FormValidator from "../code/src/mods/formValidator";
 import { Twal } from "../code/src/mods/twal";
 import { Tyrax } from "../code/src/tyrux/main";
-import { tbl_customer } from "./classes/db/tables";
+import { tbl_customer } from "./_classes/db/tables";
 
 Ctr.submit("#signupForm", (data, formData, form)=>{
     let rules = {

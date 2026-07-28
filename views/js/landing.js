@@ -1,7 +1,7 @@
 import Ctr from "../code/src/mods/ctr.js";
 import { Twal } from "../code/src/mods/twal.js";
 import { Tyrax } from "../code/src/tyrux/main.js";
-import { tbl_category, tbl_customer } from "./classes/db/tables.js";
+import { tbl_category, tbl_customer } from "./_classes/db/tables.js";
 
 Ctr.submit("#landingLoginForm", async(data)=>{
    let result = await Tyrax.ctrsync({

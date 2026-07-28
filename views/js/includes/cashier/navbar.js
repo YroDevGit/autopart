@@ -4,9 +4,9 @@ import TModal from "../../../code/src/mods/modals/tmodal.js";
 import Toast from "../../../code/src/mods/toast.js";
 import { Twal } from "../../../code/src/mods/twal.js";
 import { Tyrax } from "../../../code/src/tyrux/main.js";
-import { tbl_address, tbl_transaction } from "../../classes/db/tables.js";
-import { getCustomerDetails } from "../../classes/functions/customer.js";
-import { getUserDetails } from "../../classes/functions/users.js";
+import { tbl_address, tbl_transaction } from "../../_classes/db/tables.js";
+import { getCustomerDetails } from "../../_classes/functions/customer.js";
+import { getUserDetails } from "../../_classes/functions/users.js";
 
 let id = localStorage.getItem("userid");
 

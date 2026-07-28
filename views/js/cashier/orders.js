@@ -2,9 +2,9 @@ import CtrDATE from "../../code/src/mods/date.js";
 import TModal from "../../code/src/mods/modals/tmodal.js";
 import Toast from "../../code/src/mods/toast.js";
 import { Twal } from "../../code/src/mods/twal.js";
-import { orderStatusName } from "../classes/functions/constants.js";
-import { getAllOrders, updateDriver, updateStatus } from "../classes/functions/orderModel.js";
-import { getRiderName, getRiders } from "../classes/functions/users.js";
+import { orderStatusName } from "../_classes/functions/constants.js";
+import { getAllOrders, updateDriver, updateStatus } from "../_classes/functions/orderModel.js";
+import { getRiderName, getRiders } from "../_classes/functions/users.js";
 
 let ordersData = await getAllOrders();
 let oldStatus = 0;

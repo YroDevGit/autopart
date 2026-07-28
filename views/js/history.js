@@ -2,8 +2,8 @@
 import Currency from "../code/src/mods/currency";
 import { Twal } from "../code/src/mods/twal";
 import { Tyrax } from "../code/src/tyrux/main";
-import { orderStatusName } from "./classes/functions/constants";
-import { getAllOrdersByCustomer, updateStatus } from "./classes/functions/orderModel";
+import { orderStatusName } from "./_classes/functions/constants";
+import { getAllOrdersByCustomer, updateStatus } from "./_classes/functions/orderModel";
 
 
 
