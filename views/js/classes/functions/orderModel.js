@@ -9,12 +9,9 @@ let table_details = "transaction_details";
 
 export async function getAllOrders(page = 1){
     Ctr.set_loading(true,"#product-container", 30);
-    let paging = tyrax.db_paginate(page, 10);
-    let limit = paging.limit;
-    let offset = paging.offset;
     let result = await Tyrax.ctrsync({
         action: "query",
-        query: `select t.id, t.transaction_code 'code', t.rider, t.subtotal, t.shipping 'shippingFee', t.total_price 'total', t.customer_id, c.contact, c.address, c.email,c.fulladdress, t.created_at 'orderDate', t.status, c.fullname 'customerName', c.id 'customer_id' from ${table} t, ${customer_tbl()} c where c.id = t.customer_id order by t.updated_at desc limit ${limit} offset ${offset} ;`,
+        query: `select t.id, t.transaction_code 'code', t.rider, t.subtotal, t.shipping 'shippingFee', t.total_price 'total', t.customer_id, c.contact, c.address, c.email,c.fulladdress, t.created_at 'orderDate', t.status, c.fullname 'customerName', c.id 'customer_id' from ${table} t, ${customer_tbl()} c where c.id = t.customer_id order by t.updated_at desc;`,
         dataOnly: true
     });
     let arr = [];
