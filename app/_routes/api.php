@@ -10,11 +10,10 @@ Router::group(
     ["get"=> "customer/add"],
     ["post" => "customer/reg"],
 )->run(function(){
-    Ctrx::throttle(40);
+    Ctrx::throttle(10);
 });
 
 Router::group(
-    ["post" => "transaction/getupdate"],
     ["get" => "user/add"],
     ["post" => "photo/upload"],
     ["delete" => "photo/delete"],
@@ -24,7 +23,13 @@ Router::group(
     ["post" => "transaction/pos"],
     ["post"=> "user/add"]
 )->run(function(){
-    if(! Ctrx::has_user_data()){
-        Response::code(unauthorized_code)->message("User not authorized")->send(unauthorized_code);
-    }
+    Ctrx::throttle(7);
+    use_middleware("admin");
+});
+
+
+Router::group(
+    ["post" => "transaction/getupdate"]
+)->run(function(){
+    use_middleware("admin");
 });
