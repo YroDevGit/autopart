@@ -6,7 +6,8 @@ use Classes\Response;
  * This is a middleware for storage file upload
  * upload using CImagePicker
  */
-$role = Ctrx::get_user_role(); // Current user role
+Ctrx::throttle(3);
+ $role = Ctrx::get_user_role(); // Current user role
 $allow = ["admin"]; // roles allowed to upload
 
 $dir = get('dir');  // requested directory

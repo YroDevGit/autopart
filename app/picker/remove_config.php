@@ -6,6 +6,7 @@ use Classes\Response;
  * This is a middleware for storage file delete
  * delete using CImagePicker
  */
+Ctrx::throttle(20);
 $role = Ctrx::get_user_role(); // Current user role
 $allow = ["admin"]; // roles allowed to delete
 
