@@ -8,8 +8,6 @@ use Classes\Response;
 use Tables\Product;
 use Classes\Validator;
 
-if(! Ccookie::get("user")) Response::code(ctrql_auth_failed)->message("User is not authenticated to add products")->send(ctrql_auth_failed);
-
 $name = Validator::post("name")->label("Name")->required()->maxChars(100)->X();
 $price = Validator::post("price")->label("Price")->required()->number()->X();
 $details = Validator::post("details")->label("Details")->required()->maxChars(200)->X();

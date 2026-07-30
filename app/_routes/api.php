@@ -9,6 +9,7 @@ Router::group(
     ["post" => "transaction/add"],
     ["get"=> "customer/add"],
     ["post" => "customer/reg"],
+    ["post" => "up/p"],
 )->run(function(){
     Ctrx::throttle(10);
 });
