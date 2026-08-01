@@ -27,6 +27,9 @@
       background: linear-gradient(135deg, #00a89615 0%, #02809010 100%);
       padding: 1rem;
       border-bottom: 2px solid #00a896;
+      display: grid;
+      grid-auto-flow: row;
+      gap: 10px;
     }
     
     .user-card-body {
@@ -53,6 +56,7 @@
       border-radius: 50px;
       font-size: 0.7rem;
       font-weight: 600;
+      right: 10px;
     }
     
     .role-admin { background: #dc354520; color: #a71d2a; border: 1px solid #dc354560; }
@@ -126,6 +130,15 @@
     .form-password-wrapper .form-control {
       padding-right: 40px;
     }
+
+    @media (max-width: 768px) {
+      .user-grid{
+        grid-template-columns: none;
+      }
+      .user-card-header{
+        display: block;
+      }
+    }
   </style>
 </head>
 <body>
@@ -135,7 +148,7 @@
 <?=include_page("cashier/sidebar")?>
 
 <div class="main-content-wrapper" id="mainContentWrapper">
-  <?=include_page('cashier/navbar', ["pagename"=>"User Management", "icon"=>"bi-people"])?>
+  <?=include_page('cashier/navbar', ["pagename"=>"Users", "icon"=>"bi-people"])?>
 
   <div class="content-inner">
     <!-- USER MANAGEMENT CARD -->

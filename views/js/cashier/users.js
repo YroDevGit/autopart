@@ -104,7 +104,7 @@ function renderUsers() {
         
         html += `
             <div class="user-card" data-user-id="${user.id}">
-                <div class="user-card-header d-flex justify-content-between align-items-center">
+                <div class="user-card-header justify-content-between align-items-center">
                     <div class="d-flex align-items-center gap-3">
                         ${user.avatar ? 
                             `<img src="${user.avatar}" class="user-avatar" alt="${escapeHtml(fullName)}">` :

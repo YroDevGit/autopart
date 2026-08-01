@@ -85,6 +85,12 @@
       font-size: 0.65rem;
       font-weight: 600;
     }
+
+    @media (max-width: 768px) {
+      .shipping-grid{
+        grid-template-columns: none;
+      }
+    }
   </style>
 </head>
 <body>
