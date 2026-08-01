@@ -134,6 +134,14 @@
       flex: 1;
       font-weight: 500;
     }
+    @media (max-width: 768px) {
+      .customer-grid{
+        grid-template-columns: none;
+      }
+      .customer-card-header{
+        display: block;
+      }
+    }
   </style>
 </head>
 
@@ -144,7 +152,7 @@
   <?= include_page("cashier/sidebar") ?>
 
   <div class="main-content-wrapper" id="mainContentWrapper">
-    <?= include_page('cashier/navbar', ["pagename" => "Customer Management", "icon"=>"bi-people"]) ?>
+    <?= include_page('cashier/navbar', ["pagename" => "Customers", "icon"=>"bi-people"]) ?>
     <div class="content-inner">
       <!-- CUSTOMER MANAGEMENT CARD -->
       <div class="card admin-card border-0 shadow-sm">
