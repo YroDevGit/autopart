@@ -1,0 +1,22 @@
+{
+    "actions": "Aksyon",
+    "add new product": "Dugang pradak",
+    "category": "CATEGORYA",
+    "customers": "Kustomir",
+    "email address": "emil",
+    "filter": "Salaon",
+    "id": "Aydi",
+    "image": "Imahe",
+    "manage customer orders, update status, and track deliveries": "Dumalahan ang order sang customer, i-update ang status, kag bantayan ang delivery",
+    "new products": "Bag-o nga pradak",
+    "orders": "Mga ordir",
+    "product name": "Produkto",
+    "password": "pasword",
+    "price": "Presyo",
+    "product catalog management": "Pagdumala sang katalogo sang produkto",
+    "products": "Mga pradak",
+    "search by name, category, id...": "Pangitaa paagi sa ngalan, kategorya, ID...",
+    "search product": "Pangitaa ang produkto",
+    "type product name, sku, or category...": "Isulat ang ngalan sang produkto, SKU, ukon kategorya...",
+    "view cart": "Tan-awa ang Cart"
+}
