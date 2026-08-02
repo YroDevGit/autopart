@@ -1,12 +1,14 @@
 {
-    "generated_at": "2026-08-02 08:32:38",
+    "generated_at": "2026-08-02 20:32:11",
     "languages": [
         {
             "lang": "fil",
+            "name": "Filipino",
             "count": 17
         },
         {
             "lang": "hil",
+            "name": "Hiligaynon",
             "count": 20
         }
     ],
