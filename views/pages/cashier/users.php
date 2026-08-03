@@ -57,6 +57,8 @@
       font-size: 0.7rem;
       font-weight: 600;
       right: 10px;
+      width: 50%;
+      text-align: center;
     }
     
     .role-admin { background: #dc354520; color: #a71d2a; border: 1px solid #dc354560; }
