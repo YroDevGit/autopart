@@ -8,7 +8,7 @@
   <title>AutoParts Elite | Login</title>
   <!-- Bootstrap 5 CSS + Icons -->
   <link rel="stylesheet" href="<?=assets('cashier.css')?>">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <?=_bootstrap_css()?>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <style>
     body {
@@ -399,7 +399,7 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <?=_bootstrap_js()?>
 
   <script>
     // Update hidden field when radio changes
