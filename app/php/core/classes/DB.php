@@ -90,7 +90,7 @@ class DB
         return self::quoteIdentifier($column) . "->>'$.{$path}'";
     }
 
-    private static function getJsonContains(string $column, string $value, string $path = null): string
+    private static function getJsonContains(string $column, string $value, string|null $path = null): string
     {
         if (self::isMariaDB()) {
             if ($path) {
@@ -767,7 +767,7 @@ class DB
         return self::findOne($table, [self::$primaryKey => $id]);
     }
 
-    public static function primaryKey(string $pk = null)
+    public static function primaryKey(string|null $pk = null)
     {
         if (! $pk) return self::$primaryKey;
         self::$primaryKey = $pk;
@@ -866,7 +866,7 @@ class DB
         string $table,
         int $size,
         array $where = [],
-        callable $callback = null,
+        callable|null $callback = null,
         array|int|null $extra = null
     ) {
         if ($size <= 0) {
