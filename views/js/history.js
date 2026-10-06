@@ -235,6 +235,8 @@ import { getAllOrdersByCustomer, updateStatus } from "./_classes/functions/order
 
        Twal.ask(`Do you want to cancel order #${currentOrder.code}?`).then((click)=>{
         if(click.confirm){
+            let msg = prompt("Please enter your reason for cancellation:");
+            if(! msg) return;
             updateStatus(currentOrder.id, 7);
 
             Twal.ok("Order cancelled", true);

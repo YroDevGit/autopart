@@ -157,7 +157,7 @@ if (! function_exists('json_unauthorized')) {
 
 if (! function_exists("post")) {
     /** (Any) returns the value of the post */
-    function post(string $inputname = null, bool|null|string $trim = true)
+    function post(string|null $inputname = null, bool|null|string $trim = true)
     {
         $data = $_POST ?? [];
         if (! $inputname) {

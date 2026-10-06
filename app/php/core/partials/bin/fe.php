@@ -700,7 +700,7 @@ if (! function_exists("use_middleware")) {
 }
 
 if (! function_exists("get_json")) {
-    function get_json(string $jsonfile, string $path = null)
+    function get_json(string $jsonfile, string|null $path = null)
     {
         if (! $path) {
             $ep = ctr_endpoint();
