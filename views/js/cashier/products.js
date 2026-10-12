@@ -9,6 +9,7 @@ import { Twal } from "../../code/src/mods/twal.js";
 import { Tyrax } from "../../code/src/tyrux/main.js";
 import { tbl_inventory, tbl_product } from "../_classes/db/tables.js";
 import { displayCategoryOnCB, getCategories } from "../_classes/functions/category.js";
+import { generateProductCode } from "../_classes/functions/constants.js";
 import { disableProduct, getProductLeft, getProducts, getStocks, productUpdated } from "../_classes/functions/products.js";
 import { getSupplier, getSupplierValueLabel } from "../_classes/functions/supplier.js";
 
@@ -81,7 +82,7 @@ function renderProductTable(pr = []) {
   products.forEach(prod => {
     const row = document.createElement('tr');
     row.innerHTML = `
-        <td class="fw-semibold">${prod.id}</td>
+        <td class="fw-semibold">${prod.code ?? generateProductCode(prod.id)}</td>
         <td><img src="${prod.image || ''}" class="product-img-preview" alt="product""></td>
         <td class="fw-medium">${prod.name}</td>
         <td><span class="badge bg-secondary bg-opacity-25 text-dark px-3 py-1 rounded-pill">${prod.category}</span></td>
@@ -99,7 +100,7 @@ function renderProductTable(pr = []) {
     let id = element.getAttribute("attr");
     element.addEventListener("click", () => {
       modal.show();
-      modal.form_submit((data) => {
+      modal.form_submit((raw,data) => {
         if (!data.qty) {
           Toast.error("Quantity is required to proceed"); return;
         }
@@ -197,7 +198,8 @@ function openEditModal(id, category = null) {
   document.getElementById('editProdName').value = product.name;
   document.getElementById('editProdCategory').value = category;
   document.getElementById('editProdPrice').value = product.price;
-  document.getElementById('editProdImage').value = product.image || '';
+  document.getElementById('editProdPrice').value = product.price;
+  document.getElementById('pcode').value = product.code || '';
   const editModal = new bootstrap.Modal(document.getElementById('editProductModal'));
   editModal.show();
 }
@@ -209,6 +211,7 @@ if (editForm) {
     const id = parseInt(document.getElementById('editProductId').value);
     const updatedName = document.getElementById('editProdName').value.trim();
     const updatedCategory = document.getElementById('editProdCategory').value;
+    const pcode = document.getElementById('pcode').value;
     const updatedPrice = parseFloat(document.getElementById('editProdPrice').value);
     const updatedImage = document.getElementById('editProdImage').value.trim() || 'https://via.placeholder.com/45?text=Part';
     if (!updatedName) { showToastAlert('Name required', 'danger'); return; }
@@ -221,7 +224,8 @@ if (editForm) {
           name: updatedName,
           category: updatedCategory,
           price: updatedPrice,
-          image: updatedImage
+          image: updatedImage,
+          code: pcode
         },
         response: (send)=>{
           if(send.code == 200){

@@ -57,7 +57,7 @@
           <table class="table table-hover align-middle mb-0" id="productTable">
             <thead class="table-light">
               <tr>
-                <th>#<?=t('ID')?></th>
+                <th>#<?=t('CODE')?></th>
                 <th><?=t('IMAGE')?></th>
                 <th><?=t('PRODUCT NAME')?></th>
                 <th><?=t("CATEGORY")?></th>
@@ -116,7 +116,7 @@
               <textarea class="form-control" name="details" id="" cols="30" rows="5"></textarea>
               <div class="text-danger err" id="_details"></div>
             </div>
-            <div class="col-12">
+            <div class="col-md-6">
               <label class="form-label fw-semibold">Image URL (optional)</label>
               <input type="text" class="form-control prodImage" name="image" id="prodImage" placeholder="https://via.placeholder.com/60?text=AutoPart">
               <small class="text-muted">Enter direct image link or use placeholder</small>
@@ -124,6 +124,11 @@
                 <img id="previewImg" src="#" width="100" height="100" class="rounded border">
               </div>
               <div class="text-danger err" id="_image"></div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Product code</label>
+              <input type="text" name="code" class="form-control" id="prodCode" >
+              <div class="text-danger err" id="_code"></div>
             </div>
           </div>
         </div>
@@ -161,11 +166,17 @@
               <label class="form-label">Price (₱)</label>
               <input type="number" step="0.01" class="form-control" id="editProdPrice" required>
             </div>
-            <div class="col-12">
+            <div class="col-md-6">
               <label class="form-label">Image URL</label>
               <input type="text" class="form-control prodImage" id="editProdImage">
             </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Product code</label>
+              <input type="text" name="pcode" class="form-control" id="pcode" >
+              <div class="text-danger err" id="_pcode"></div>
+            </div>
           </div>
+          
         </div>
         <div class="modal-footer bg-light">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

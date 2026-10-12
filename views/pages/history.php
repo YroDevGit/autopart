@@ -545,6 +545,7 @@
       <div class="modal-actions">
         <button class="btn btn-secondary" id="modalCloseBtn2"><i class="fas fa-arrow-left"></i> Back to orders</button>
         <button class="btn btn-danger" id="cancelOrderBtn"><i class="fas fa-ban"></i> Cancel order</button>
+        <button class="btn btn-primary" id="refundOrder"><i class="fas fa-refresh"></i> Refund</button>
       </div>
       <div id="modalToast" class="toast-message">✅ Order cancelled</div>
     </div>

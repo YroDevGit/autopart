@@ -325,7 +325,7 @@ document.getElementById('saveStatusBtn').addEventListener('click', () => {
                 new bootstrap.Modal(document.getElementById('rejectionModal')).show();
             }else if(newStatus === 2){
                 riderModal.show();
-                riderModal.form_submit((data)=>{
+                riderModal.form_submit((raw,data)=>{
                     if(! data.rider){
                         Toast.err("Please select rider first.");
                         return;

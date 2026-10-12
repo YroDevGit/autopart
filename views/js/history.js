@@ -1,4 +1,5 @@
 //Js file for history
+import Ctr from "../code/src/mods/ctr";
 import Currency from "../code/src/mods/currency";
 import { Twal } from "../code/src/mods/twal";
 import { Tyrax } from "../code/src/tyrux/main";
@@ -90,6 +91,26 @@ import { getAllOrdersByCustomer, updateStatus } from "./_classes/functions/order
     function openModal(order) {
         if (!order) return;
         currentOrder = order;
+        if(order.status == 3){
+            document.querySelector("#refundOrder").setAttribute("aydi", order.id);
+            document.querySelector("#refundOrder").style.display = '';
+
+            document.querySelector("#refundOrder").addEventListener("click", ()=>{
+                let id = order.id;
+                if(id){
+                    Twal.ask("Are you sure to refund this order").then(async(click)=>{
+                        if(click.confirm){
+                           await updateStatus(id, 8, "Message");
+                           Twal.ok("Order refunded").then(()=>{
+                            
+                           })
+                        }
+                    });
+                }
+            });
+        }else{
+            document.querySelector("#refundOrder").style.display = 'none'; 
+        }
         populateModal(order);
         modalOverlay.classList.add('active');
         toastEl.classList.remove('show');

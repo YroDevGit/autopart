@@ -16,6 +16,14 @@ if (! $email) {
     Response::code(402)->message("email is required")->send();
 }
 
+if(str_contains($email, "+")){
+    Response::code(402)->message("Your email looks a dump email")->send();
+}
+
+if(! str_contains($email,"gmail.com") && ! str_contains($email,"outlook.com")){
+    Response::code(402)->message("Invalid Email address")->send();
+}
+
 $check = Customer::findOne(["or" => ["email" => $email, "username" => $email]]);
 
 if ($check) {

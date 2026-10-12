@@ -10,7 +10,9 @@ use Classes\Validator;
 
 $name = Validator::post("name")->label("Name")->required()->maxChars(100)->X();
 $price = Validator::post("price")->label("Price")->required()->number()->X();
+$code = Validator::post("code")->label("Product code")->required()->X();
 $details = Validator::post("details")->label("Details")->required()->maxChars(200)->X();
+$image = null;
 if(Request::post("image")){
     $img = Request::post("image");
     if(str_starts_with($img, "/") || str_starts_with($img, "\\")){
@@ -36,6 +38,7 @@ $id = Product::insert([
     "price" => $price,
     "category" => $category,
     "image" => $image,
+    "code" => $code,
     "added_by" => Ccookie::get("user")
 ]);
 

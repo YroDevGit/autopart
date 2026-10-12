@@ -264,7 +264,7 @@
     <div class="row g-3 mb-4">
       <div class="col-md-3 col-6">
         <div class="analytics-stat-card">
-          <div class="icon text-success"><i class="bi bi-currency-dollar"></i></div>
+          <div class="icon text-success">₱</div>
           <div class="number text-success" id="totalRevenue">₱0</div>
           <div class="label">Total Revenue</div>
           <div class="trend trend-up" id="revenueTrend"><i class="bi bi-arrow-up"></i> +12.5%</div>

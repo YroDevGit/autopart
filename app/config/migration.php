@@ -29,6 +29,7 @@ Migration::table_ts("product", [
     "price" => "float",
     "category" => INTEGER,
     "image" => "text",
+    "code" => VARCHAR,
     "added_by" => INTEGER
 ], true);
 

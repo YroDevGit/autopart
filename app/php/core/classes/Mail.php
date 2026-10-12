@@ -14,7 +14,7 @@ class Mail
 
     private array $email_details = [];
 
-    public function __construct(string|array $var = null)
+    public function __construct(string|array|null $var = null)
     {
         $this->email_details['to'] = $var;
         return $this;

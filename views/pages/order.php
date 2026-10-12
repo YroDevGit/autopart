@@ -350,15 +350,15 @@ Ctrql::activate("CRUDQ");
           <form id="checkoutForm">
             <div class="mb-2">
               <label class="form-label small">Full Name</label>
-              <input type="text" class="form-control" id="checkoutName" placeholder="Enter name..." >
+              <input type="text" style="background:#f5f5f5;" class="form-control" id="checkoutName" placeholder="Enter name..." readonly>
             </div>
             <div class="mb-2">
               <label class="form-label small">Contact number</label>
-              <input type="text" class="form-control" id="contactnum">
+              <input type="text" style="background:#f5f5f5;" class="form-control" id="contactnum" readonly>
             </div>
             <div class="mb-2">
               <label class="form-label small">Email Address</label>
-              <input type="email" class="form-control" id="checkoutEmail" placeholder="customer@autoparts.com">
+              <input type="email" style="background:#f5f5f5;" class="form-control" id="checkoutEmail" placeholder="customer@autoparts.com" readonly>
             </div>
             <div class="mb-2">
               <label class="form-label small">City/Municipality</label>

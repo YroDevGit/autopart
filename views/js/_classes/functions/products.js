@@ -5,9 +5,9 @@ import { Tyrax } from "../../../code/src/tyrux/main.js";
 import { tbl_category, tbl_inventory, tbl_product } from "../db/tables.js";
 
 export async function getProducts(product = null, category = null) {
-    let sql = `SELECT p.id, COALESCE((SELECT SUM(i.quantity) FROM inventory i WHERE i.product_id = p.id),0) - COALESCE((SELECT SUM(t.quantity) FROM transaction_details t WHERE t.product_id = p.id),0) AS quantity, COALESCE((SELECT SUM(t.quantity) FROM transaction_details t WHERE t.product_id = p.id),0) AS sold, p.name, p.details, p.price, p.created_at, p.updated_at, p.category AS category_id, p.image, c.name AS category FROM ${tbl_product()} p, category c WHERE p.category = c.id AND p.active = 1${category ? ` AND c.id = '${category}'` : ""} ORDER BY updated_at DESC LIMIT 21;`;
+    let sql = `SELECT p.id, p.code, COALESCE((SELECT SUM(i.quantity) FROM inventory i WHERE i.product_id = p.id),0) - COALESCE((SELECT SUM(t.quantity) FROM transaction_details t WHERE t.product_id = p.id),0) AS quantity, COALESCE((SELECT SUM(t.quantity) FROM transaction_details t WHERE t.product_id = p.id),0) AS sold, p.name, p.details, p.price, p.created_at, p.updated_at, p.category AS category_id, p.image, c.name AS category FROM ${tbl_product()} p, category c WHERE p.category = c.id AND p.active = 1${category ? ` AND c.id = '${category}'` : ""} ORDER BY updated_at DESC LIMIT 21;`;
     if (product) {
-        sql = `select p.id,COALESCE((SELECT SUM(i.quantity) FROM inventory i WHERE i.product_id = p.id),0) - COALESCE((SELECT SUM(t.quantity) FROM transaction_details t WHERE t.product_id = p.id),0) AS quantity, COALESCE((SELECT SUM(t.quantity) FROM transaction_details t WHERE t.product_id = p.id),0) AS sold, p.name, p.details, p.price, p.created_at, p.updated_at, p.category as 'category_id', p.image, c.name as 'category' from ${tbl_product()} p, category c where p.category = c.id and p.active = 1${category ? ` AND c.id = '${category}'` : ""} and (p.name like '%${product}%' or p.details like '%${product}%') order by updated_at desc limit 21;`;
+        sql = `select p.id, p.code,COALESCE((SELECT SUM(i.quantity) FROM inventory i WHERE i.product_id = p.id),0) - COALESCE((SELECT SUM(t.quantity) FROM transaction_details t WHERE t.product_id = p.id),0) AS quantity, COALESCE((SELECT SUM(t.quantity) FROM transaction_details t WHERE t.product_id = p.id),0) AS sold, p.name, p.details, p.price, p.created_at, p.updated_at, p.category as 'category_id', p.image, c.name as 'category' from ${tbl_product()} p, category c where p.category = c.id and p.active = 1${category ? ` AND c.id = '${category}'` : ""} and (p.name like '%${product}%' or p.details like '%${product}%') order by updated_at desc limit 21;`;
     }
 
     let records = await Tyrax.ctrsync({
@@ -67,6 +67,8 @@ export async function disableProduct(id) {
 
 export async function addProducts(data){
     return new Promise((resolve, reject)=>{
+        data.created_at = CtrDATE.now();
+        data.updated_at = CtrDATE.now();
         Tyrax.post({
             url: "transaction/add",
             data: data,

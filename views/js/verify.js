@@ -7,7 +7,7 @@ import { tbl_customer } from "./_classes/db/tables";
 Ctr.submit("#signupForm", (data, formData, form)=>{
     let rules = {
         fullname: {required:true, maxChars:100},
-        contact: {required: true, maxChars: 13},
+        contact: {required: true, maxChars: 11, minChars: 11, startsWith: "09"},
         password: {required: true, minChars: 8}
     }
     let res = FormValidator.validate(data,rules, form);
