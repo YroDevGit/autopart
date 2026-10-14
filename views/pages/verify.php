@@ -5,15 +5,15 @@ use Tables\Verification;
 
 $code = get("code");
 if(! $code){
-    Ctrx::forbidden_page(previous_page());
+    //Ctrx::forbidden_page(previous_page());
 }
 
 $result = Verification::findOne(["code"=>$code, "active"=>1]);
 if(! $result){
-    Ctrx::forbidden_page(previous_page());
+    //Ctrx::forbidden_page(previous_page());
 }
 
-$email = $result['email'];
+$email = $result['email'] ?? null;
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +24,7 @@ $email = $result['email'];
     <title>Sign Up · Create account</title>
     <!-- Font Awesome for icons (optional but adds a nice touch) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -292,6 +293,15 @@ $email = $result['email'];
                     <input type="password" id="password" name="password" placeholder="Min 8 characters" minlength="8">
                     <?=error_text("password")?>
                     <span class="hint-text"><i class="fas fa-info-circle"></i> At least 8 characters</span>
+                </div>
+
+                <div class="field-group full-width">
+                    <label for="password">
+                        <i class="fas fa-lock"></i> Valid ID <span class="required-star">*</span>
+                    </label>
+                    <input type="file" id="idValid" name="id" placeholder="" accept="image/*">
+                    <?=error_text("id")?>
+                    <span class="hint-text"><i class="fas fa-info-circle"></i> Valid id</span>
                 </div>
 
                 <!-- submit button -->
