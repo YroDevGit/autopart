@@ -23,23 +23,29 @@ Ctr.submit("#signupForm", async (data, formData, form) => {
 
     try {
         Loading.load(true);
-        const { data: { text } } = await Tesseract.recognize(
+        let { data: { text } } = await Tesseract.recognize(
             file,
             'eng',
             {}
         );
+        text = text.toUpperCase();
         
         let fullname = formData.fullname ?? null;
         fullname = fullname.trim();
         if(! fullname.includes(" ")){
-            Twal.err("Please enter a valid fullname");
+            Twal.err("Please enter a valid Fullname");
+            return;
+        }
+
+        if(! text.includes("REPUBLIKA NG PILIPINAS") && ! text.includes("PHILIPPINE NATIONAL ID") && ! text.includes("DIGITAL ID NUMBER") && ! text.includes("TIRAHAN/ADDRESS")){
+            Twal.err("Invalid ID");
             return;
         }
 
         let splt = fullname.split(" ");
         let isValid = true;
         splt.forEach(element => {
-            if (! text.includes(element.toLowerCase()) && ! text.includes(element.toUpperCase())) {
+            if (! text.includes(element.toUpperCase())) {
                 isValid = false;
             }
         });
@@ -50,7 +56,7 @@ Ctr.submit("#signupForm", async (data, formData, form) => {
         
     } catch (err) {
         console.log(err);
-        Twal.err("ID is not readable, please make it clear.");
+        Twal.err("Can't read your ID, please re-upload a clear image of your ID");
         return;
     } finally {
         Loading.load(false);
