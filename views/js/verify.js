@@ -11,14 +11,14 @@ Ctr.submit("#signupForm", async (data, formData, form) => {
     let rules = {
         fullname: { required: true, maxChars: 100 },
         contact: { required: true, maxChars: 11, minChars: 11, startsWith: "09" },
-        password: { required: true, minChars: 8 },
-        id: { required: true }
+        password: { required: true, minChars: 8 }
     }
 
     if (!Vid.name) {
         Twal.err("Valid ID is required");
         return;
     }
+    
     const file = document.querySelector('#idValid').files[0];
 
     try {
@@ -37,7 +37,7 @@ Ctr.submit("#signupForm", async (data, formData, form) => {
             return;
         }
 
-        if(! text.includes("REPUBLIKA NG PILIPINAS") && ! text.includes("PHILIPPINE NATIONAL ID") && ! text.includes("DIGITAL ID NUMBER") && ! text.includes("TIRAHAN/ADDRESS")){
+        if(! text.includes("REPUBLIKA NG PILIPINAS") || ! text.includes("PHILIPPINE NATIONAL ID")){
             Twal.err("Invalid ID");
             return;
         }
@@ -45,13 +45,14 @@ Ctr.submit("#signupForm", async (data, formData, form) => {
         let splt = fullname.split(" ");
         let isValid = true;
         splt.forEach(element => {
-            if (! text.includes(element.toUpperCase())) {
+            if (! text.includes(element.toUpperCase()) && ! text.includes(element.toLowerCase())) {
                 isValid = false;
             }
         });
 
-        if(! isValid){
+        if(isValid == false){
             Twal.err("There is an error verifying your ID, make sure your credentials matched to your ID details.!");
+            return;
         }
         
     } catch (err) {
@@ -68,7 +69,9 @@ Ctr.submit("#signupForm", async (data, formData, form) => {
         return;
     }
 
+    newData.delete("id");
     formData = { ...formData, email: gEmail, username: gEmail };
+    delete formData.id;
 
     Tyrax.insert({
         table: tbl_customer(),
