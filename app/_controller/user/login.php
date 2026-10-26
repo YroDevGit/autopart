@@ -20,16 +20,19 @@ if (Validator::failed()) {
 $res = User::findOne(["username" => $email]);
 
 if (! $res) {
+    Ctrx::throttle(3, 60*15, "user/login/failedpassword");
     Response::code(404)->message("User not found")->send();
 }
 
 $pass = $res['password'];
 
 if ($password !== $pass) {
+    Ctrx::throttle(3, 60*15, "user/login/failedpassword");
     Response::code(404)->message("Incorrect password for $email")->send();
 }
 
 if($res['active'] != 1){
+    Ctrx::throttle(3, 60*15, "user/login/failedpassword");
     Response::code(404)->message("User access has been deactivated")->send();
 }
 

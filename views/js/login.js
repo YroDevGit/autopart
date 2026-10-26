@@ -18,6 +18,26 @@ import { Tyrax } from "../code/src/tyrux/main.js";
             email: {type: "text", label: "Enter email here:", validation:{required: true, email:true, maxChar: 50, label: "Email"}}
         }
     });
+
+    const forgotpass = TModal.init({
+        title: "Enter email",
+        id: "fgotpas",
+        form_id: "passwordlipat",
+        form: {
+            email: {type : "email", label: "Enter email here:",validation:{required: true, email:true, maxChar: 50, label: "Email"}}
+        }
+    });
+
+    forgotpass.form_submit((data, form)=>{
+        Tyrax.post({
+            url: "user/forgotpass",
+            data: data,
+            loading: {id: forgotpass.form_id, size: 50},
+            res: (send, code, message, data, errors)=>{
+
+            }
+        })
+    });
     
     Ctr.click("#signupclick", ()=>{
         modex.show();
@@ -130,9 +150,29 @@ import { Tyrax } from "../code/src/tyrux/main.js";
         }, 3000);
     }
 
+
+    function getCookie(name) {
+        const entry = document.cookie
+          .split('; ')
+          .find(row => row.startsWith(name + '='));
+        return entry ? decodeURIComponent(entry.split('=')[1]) : null;
+      }
+
+    let retry = -1;
     Ctr.submit("#loginForm", (data, formData)=>{
         if(formData.user_role == "customer"){
-            //Ctr.log(formData);return;
+            retry += 1;
+            if(retry >= 3){
+                const expires = new Date(Date.now() + 15 * 60 * 1000).toUTCString();
+                document.cookie = `session=abc123; expires=${expires}; path=/; SameSite=Lax`;
+                Twal.err("Login attempt limit reached", true);
+                return;
+            }
+
+            if(getCookie("session")){
+                Twal.err("Please Try again later", true);
+                return;
+            }
             Tyrax.findOne({
                 table: "customer",
                 loading: {id: "#loginForm", size: 35}, 

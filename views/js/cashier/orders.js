@@ -3,6 +3,7 @@ import TModal from "../../code/src/mods/modals/tmodal.js";
 import Toast from "../../code/src/mods/toast.js";
 import { Twal } from "../../code/src/mods/twal.js";
 import { orderStatusName } from "../_classes/functions/constants.js";
+import { convertTimezone } from "../_classes/functions/dateHandler.js";
 import { getAllOrders, updateDriver, updateStatus } from "../_classes/functions/orderModel.js";
 import { getRiderName, getRiders } from "../_classes/functions/users.js";
 
@@ -56,7 +57,6 @@ function renderOrdersTable() {
     filtered.forEach(order => {
         let statusClass = orderStatusName(order.status).statusClass;
         let statusText = orderStatusName(order.status).statusText;
-
         html += `<tr>
       <td class="fw-bold">${order.code || order.id}</td>
       <td>${escapeHtml(order.customerName)}<br><small class="text-muted">${escapeHtml(order.email)}</small></td>
@@ -64,7 +64,7 @@ function renderOrdersTable() {
       <td>₱${order.shippingFee.toFixed(2)}</td>
       <td class="fw-bold text-warning">₱${order.total.toFixed(2)}</td>
       <td><span class="status-badge ${statusClass}">${statusText}</span></td>
-      <td>${CtrDATE.get_name(order.orderDate, "F d, Y h:ia")}</td>
+      <td>${CtrDATE.get_name(convertTimezone(order.orderDate), "F d, Y h:ia")}</td>
       <td class="btn-action-group">
         <button class="btn btn-sm btn-outline-primary view-items-btn" data-order-id="${order.id}" title="View Details">
           <i class="bi bi-eye"></i> View & Manage

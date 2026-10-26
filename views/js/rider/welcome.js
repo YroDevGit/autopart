@@ -2,14 +2,13 @@ import Ctr from "../../code/src/mods/ctr.js";
 import CtrDATE from "../../code/src/mods/date.js";
 import { Twal } from "../../code/src/mods/twal.js";
 import { forRiderOrders } from "../_classes/functions/constants.js";
+import { convertTimezone } from "../_classes/functions/dateHandler.js";
 import { getAllOrders, getAllOrdersByRider, updateStatus } from "../_classes/functions/orderModel.js";
 
 
 document.querySelector("#statusFilterSelect").value = 2;
 
 let currentUser = localStorage.getItem("userid");
-
-
 
 let ordersData = await getAllOrdersByRider(currentUser);
 let currentMap = null;
@@ -400,7 +399,7 @@ function renderOrders() {
                     </div>
                     <div class="info-row">
                         <span class="info-label"><i class="bi bi-calendar"></i> Order Date</span>
-                        <span class="info-value">${formatDate(order.orderDate)}</span>
+                        <span class="info-value">${formatDate(convertTimezone(order.orderDate))}</span>
                     </div>
                     ${del}
                 </div>

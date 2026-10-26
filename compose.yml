@@ -25,6 +25,7 @@ services:
 
     environment:
       MARIADB_ROOT_PASSWORD: password
+      TZ: America/Los_Angeles
 
     ports:
       - "3309:3306"

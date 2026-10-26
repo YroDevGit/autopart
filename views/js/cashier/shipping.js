@@ -4,6 +4,7 @@ import { Tyrax } from "../../code/src/tyrux/main.js";
 import { tbl_address, tbl_category } from "../_classes/db/tables.js";
 import { NegrosCode, getAllAddress } from "../_classes/functions/address.js";
 import { getBaranggay, getMunicipality } from "../_classes/functions/addresses.js";
+import { convertTimezone } from "../_classes/functions/dateHandler.js";
 
 let cities = await getMunicipality(NegrosCode());
 
@@ -121,7 +122,7 @@ function renderAddresses() {
                         </div>
                     </div>
                     <div class="mt-2">
-                        <small class="text-muted"><i class="bi bi-calendar3"></i> Added: ${formatDate(address.created_at)}</small>
+                        <small class="text-muted"><i class="bi bi-calendar3"></i> Added: ${convertTimezone(address.created_at)}</small>
                     </div>
                 </div>
                 <div class="address-card-footer">
