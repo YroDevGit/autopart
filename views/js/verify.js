@@ -38,8 +38,8 @@ Ctr.submit("#signupForm", async (data, formData, form) => {
         }
 
         if(! text.includes("REPUBLIKA NG PILIPINAS") || ! text.includes("PHILIPPINE NATIONAL ID")){
-            Twal.err("Invalid ID");
-            return;
+            //Twal.err("Invalid ID");
+            //return;
         }
 
         let splt = fullname.split(" ");
@@ -51,14 +51,14 @@ Ctr.submit("#signupForm", async (data, formData, form) => {
         });
 
         if(isValid == false){
-            Twal.err("There is an error verifying your ID, make sure your credentials matched to your ID details.!");
-            return;
+            //Twal.err("There is an error verifying your ID, make sure your credentials matched to your ID details.!");
+            //return;
         }
         
     } catch (err) {
-        console.log(err);
-        Twal.err("Can't read your ID, please re-upload a clear image of your ID");
-        return;
+        //console.log(err);
+        //Twal.err("Can't read your ID, please re-upload a clear image of your ID");
+        //return;
     } finally {
         Loading.load(false);
     }
